@@ -25,32 +25,37 @@ export default function ProductsPage() {
   });
 
   useEffect(() => {
+    console.log('Component mounted, fetching data...');
     fetchProducts();
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    console.log('Products state updated:', products);
+  }, [products]);
+
   const fetchProducts = async () => {
     try {
-        const res = await fetch('/api/products', {
+      const res = await fetch('/api/products', {
         cache: 'no-store',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         }
-        });
-        
-        if (!res.ok) {
+      });
+      
+      if (!res.ok) {
         console.error('Fetch failed:', res.status);
         return;
-        }
-        
-        const data = await res.json();
-        console.log('Fetched products:', data);
-        setProducts(Array.isArray(data) ? data : []);
+      }
+      
+      const data = await res.json();
+      console.log('Fetched products:', data);
+      setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
-        console.error('Failed to fetch products:', error);
-        setProducts([]);
+      console.error('Failed to fetch products:', error);
+      setProducts([]);
     }
-    };
+  };
 
   const fetchCategories = async () => {
     try {
