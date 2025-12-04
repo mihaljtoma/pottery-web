@@ -31,7 +31,9 @@ export async function POST(request) {
 
   try {
     const data = await request.json();
+    console.log('Creating product:', data); // ADD THIS LINE FOR DEBUGGING
     const product = await createProduct(data);
+    console.log('Product created:', product); // ADD THIS LINE FOR DEBUGGING
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
     console.error('Create product error:', error);
