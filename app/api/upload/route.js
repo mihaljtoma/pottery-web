@@ -16,16 +16,20 @@ export async function POST(request) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
+    console.log('Uploading file:', file.name); // DEBUG
+
     // Upload to Vercel Blob
     const blob = await put(file.name, file, {
       access: 'public',
     });
 
+    console.log('Upload success:', blob.url); // DEBUG
+
     return NextResponse.json({ url: blob.url });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { error: 'Failed to upload image' },
+      { error: error.message || 'Failed to upload image' },
       { status: 500 }
     );
   }
