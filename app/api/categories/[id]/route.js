@@ -2,13 +2,14 @@ import { NextResponse } from 'next/server';
 import { updateCategory, deleteCategory } from '@/lib/db';
 import { requireAuth } from '@/lib/auth';
 
-export async function PUT(request, { params }) {
+export async function PUT(request, context) {
   const auth = await requireAuth();
   if (!auth.authenticated) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
+    const params = await context.params;
     const data = await request.json();
     const category = await updateCategory(params.id, data);
     
@@ -26,13 +27,14 @@ export async function PUT(request, { params }) {
   }
 }
 
-export async function DELETE(request, { params }) {
+export async function DELETE(request, context) {
   const auth = await requireAuth();
   if (!auth.authenticated) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
+    const params = await context.params;
     await deleteCategory(params.id);
     return NextResponse.json({ success: true });
   } catch (error) {
