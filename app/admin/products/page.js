@@ -31,13 +31,26 @@ export default function ProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/products');
-      const data = await res.json();
-      setProducts(data);
+        const res = await fetch('/api/products', {
+        cache: 'no-store',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+        });
+        
+        if (!res.ok) {
+        console.error('Fetch failed:', res.status);
+        return;
+        }
+        
+        const data = await res.json();
+        console.log('Fetched products:', data);
+        setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error('Failed to fetch products:', error);
+        console.error('Failed to fetch products:', error);
+        setProducts([]);
     }
-  };
+    };
 
   const fetchCategories = async () => {
     try {
