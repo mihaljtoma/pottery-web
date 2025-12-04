@@ -12,7 +12,10 @@ export async function GET(request) {
       search: searchParams.get('search')
     };
 
+    console.log('API: Fetching products with filters:', filters); // ADD THIS
     const products = await getProducts(filters);
+    console.log('API: Found products:', products.length); // ADD THIS
+    
     return NextResponse.json(products);
   } catch (error) {
     console.error('Get products error:', error);
@@ -31,9 +34,7 @@ export async function POST(request) {
 
   try {
     const data = await request.json();
-    console.log('Creating product:', data); // ADD THIS LINE FOR DEBUGGING
     const product = await createProduct(data);
-    console.log('Product created:', product); // ADD THIS LINE FOR DEBUGGING
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
     console.error('Create product error:', error);
