@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, ArrowLeft } from 'lucide-react';
+import { Plus, Edit2, Trash2, ArrowLeft, FolderTree } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CategoriesPage() {
