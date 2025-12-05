@@ -5,18 +5,13 @@ import { requireAuth } from '@/lib/auth';
 export async function GET() {
   try {
     const categories = await getCategories();
-    
-    // Make sure we always return an array
-    if (!categories || !Array.isArray(categories)) {
-      console.log('No categories found, returning empty array');
-      return NextResponse.json([]);
-    }
-    
-    console.log('Returning categories:', categories.length);
     return NextResponse.json(categories);
   } catch (error) {
     console.error('Get categories error:', error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch categories' },
+      { status: 500 }
+    );
   }
 }
 

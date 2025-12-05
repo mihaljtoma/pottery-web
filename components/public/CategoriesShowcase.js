@@ -13,24 +13,16 @@ export default function CategoriesShowcase() {
   }, []);
 
   const fetchCategories = async () => {
-  try {
-    const res = await fetch('/api/categories');
-    const data = await res.json();
-    
-    // FIX: Make sure data is an array before filtering
-    if (Array.isArray(data)) {
+    try {
+      const res = await fetch('/api/categories');
+      const data = await res.json();
       setCategories(data.filter(cat => cat.visible));
-    } else {
-      console.error('Categories data is not an array:', data);
-      setCategories([]);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error('Failed to fetch categories:', error);
-    setCategories([]);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   if (loading || categories.length === 0) {
     return null;
