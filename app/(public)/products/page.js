@@ -204,32 +204,150 @@ export default function ProductsPage() {
               </div>
             </div>
           </aside>
+{/* Mobile Filter Button */}
+<div className="lg:hidden">
+  <button
+    onClick={() => setShowFilters(!showFilters)}
+    className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition"
+  >
+    <Filter size={20} />
+    Filters
+    {hasActiveFilters && (
+      <span className="bg-amber-600 text-white text-xs px-2 py-1 rounded-full">
+        Active
+      </span>
+    )}
+  </button>
 
-          {/* Mobile Filter Button */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition"
-            >
-              <Filter size={20} />
-              Filters
-            </button>
+  {/* Mobile Filters Overlay */}
+  {showFilters && (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div className="absolute right-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-semibold">Filters</h2>
+          <button onClick={() => setShowFilters(false)}>
+            <X size={24} className="text-gray-500" />
+          </button>
+        </div>
 
-            {/* Mobile Filters Overlay */}
-            {showFilters && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-                <div className="absolute right-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-lg font-semibold">Filters</h2>
-                    <button onClick={() => setShowFilters(false)}>
-                      <X size={24} />
-                    </button>
-                  </div>
-                  {/* Same filters as desktop */}
-                </div>
-              </div>
-            )}
+        {/* Search */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Search
+          </label>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..."
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+            />
           </div>
+        </div>
+
+        {/* Categories */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Category
+          </label>
+          <div className="space-y-2">
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="category-mobile"
+                checked={selectedCategory === ''}
+                onChange={() => setSelectedCategory('')}
+                className="w-4 h-4 text-amber-600"
+              />
+              <span className="ml-3 text-gray-700">All Categories</span>
+            </label>
+            {categories.map((category) => (
+              <label key={category.id} className="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="category-mobile"
+                  checked={selectedCategory === category.slug}
+                  onChange={() => setSelectedCategory(category.slug)}
+                  className="w-4 h-4 text-amber-600"
+                />
+                <span className="ml-3 text-gray-700">{category.name}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Availability */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Availability
+          </label>
+          <div className="space-y-2">
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="availability-mobile"
+                checked={selectedAvailability === ''}
+                onChange={() => setSelectedAvailability('')}
+                className="w-4 h-4 text-amber-600"
+              />
+              <span className="ml-3 text-gray-700">All</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="availability-mobile"
+                checked={selectedAvailability === 'available'}
+                onChange={() => setSelectedAvailability('available')}
+                className="w-4 h-4 text-amber-600"
+              />
+              <span className="ml-3 text-gray-700">Available</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="availability-mobile"
+                checked={selectedAvailability === 'sold'}
+                onChange={() => setSelectedAvailability('sold')}
+                className="w-4 h-4 text-amber-600"
+              />
+              <span className="ml-3 text-gray-700">Sold</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="availability-mobile"
+                checked={selectedAvailability === 'reserved'}
+                onChange={() => setSelectedAvailability('reserved')}
+                className="w-4 h-4 text-amber-600"
+              />
+              <span className="ml-3 text-gray-700">Reserved</span>
+            </label>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="space-y-3">
+          {hasActiveFilters && (
+            <button
+              onClick={clearFilters}
+              className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 rounded-lg transition"
+            >
+              Clear Filters
+            </button>
+          )}
+          <button
+            onClick={() => setShowFilters(false)}
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 rounded-lg transition"
+          >
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
 
           {/* Products Grid */}
           <div className="flex-1">
