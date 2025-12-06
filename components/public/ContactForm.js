@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { useSettings } from '@/lib/hooks/useSettings';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export default function ContactForm() {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const { settings } = useSettings();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +69,12 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-600">contact@potterystudio.com</p>
+                  <a 
+                    href={`mailto:${settings.contactEmail || 'contact@potterystudio.com'}`}
+                    className="text-amber-600 hover:text-amber-700 transition"
+                  >
+                    {settings.contactEmail || 'contact@potterystudio.com'}
+                  </a>
                 </div>
               </div>
 
@@ -77,7 +84,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <p className="text-gray-600">{settings.contactPhone || '+1 (555) 123-4567'}</p>
                 </div>
               </div>
 
@@ -87,10 +94,8 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Studio</h3>
-                  <p className="text-gray-600">
-                    123 Pottery Lane<br />
-                    Artisan Quarter<br />
-                    Creative City, CC 12345
+                  <p className="text-gray-600 whitespace-pre-line">
+                    {settings.studioAddress || '123 Pottery Lane\nArtisan Quarter\nCreative City, CC 12345'}
                   </p>
                 </div>
               </div>

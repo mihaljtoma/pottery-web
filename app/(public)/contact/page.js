@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
-
+import { useSettings } from '@/lib/hooks/useSettings';
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,7 +11,7 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
-
+const { settings } = useSettings();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -91,7 +91,7 @@ export default function ContactPage() {
                     href="mailto:contact@potterystudio.com"
                     className="text-amber-600 hover:text-amber-700 transition"
                   >
-                    contact@potterystudio.com
+                   {settings.contactEmail || 'contact@potterystudio.com'}
                   </a>
                   <p className="text-sm text-gray-500 mt-1">
                     We'll respond within 24-48 hours
@@ -110,7 +110,7 @@ export default function ContactPage() {
                     href="tel:+15551234567"
                     className="text-green-600 hover:text-green-700 transition"
                   >
-                    +1 (555) 123-4567
+                   {settings.contactPhone || '+1 (555) 123-4567'}
                   </a>
                   <p className="text-sm text-gray-500 mt-1">
                     Mon-Fri, 9am-5pm EST
@@ -126,9 +126,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2 text-lg">Studio</h3>
                   <address className="text-gray-600 not-italic">
-                    123 Pottery Lane<br />
-                    Artisan Quarter<br />
-                    Creative City, CC 12345
+                    {settings.studioAddress || '123 Pottery Lane\nArtisan Quarter\nCreative City, CC 12345'}
                   </address>
                   <p className="text-sm text-gray-500 mt-2">
                     Studio visits by appointment only

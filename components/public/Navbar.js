@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
+import { useSettings } from '@/lib/hooks/useSettings';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { settings } = useSettings();
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -13,7 +15,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-amber-600">
-            Pottery Studio
+            {settings.siteName || 'Pottery Studio'}
           </Link>
 
           {/* Desktop Menu */}
