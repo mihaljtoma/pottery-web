@@ -19,9 +19,9 @@ export default function Hero() {
 
       {/* Content Overlay */}
       <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-full">
+        <div className="flex items-center justify-center h-full">
           {/* Text Content */}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center">
             {/* Small badge above title */}
             <div className="inline-flex items-center gap-2 bg-black/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
               ✨ Handcrafted with Love
@@ -42,7 +42,7 @@ export default function Hero() {
                 </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/products"
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-black px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-xl"
