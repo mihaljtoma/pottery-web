@@ -61,44 +61,60 @@ export default function SocialGallery() {
           )}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {posts.map((post) => (
-            <div
-              key={post.id}
-              className="relative aspect-square group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all"
-            >
-              {/* Image */}
-              <Image
-                src={post.imageUrl}
-                alt={post.caption || 'Gallery image'}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  {post.caption && (
-                    <p className="text-white text-sm line-clamp-2 mb-2">
-                      {post.caption}
-                    </p>
-                  )}
-                  {post.postUrl && (
-                    <a
-                      href={post.postUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-white text-sm font-medium hover:text-pink-300 transition"
-                    >
-                      View Post
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
+        {/* Masonry Gallery Grid */}
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+          {posts.map((post, index) => {
+            // Create varied heights for visual interest
+            const heights = ['aspect-square', 'aspect-[4/5]', 'aspect-[3/4]'];
+            const heightClass = heights[index % heights.length];
+            
+            return (
+              <div
+                key={post.id}
+                className="break-inside-avoid mb-4"
+              >
+                <div
+                  className={`relative ${heightClass} group overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all`}
+                >
+                  {/* Image */}
+                  <Image
+                    src={post.imageUrl}
+                    alt={post.caption || 'Gallery image'}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      {post.caption && (
+                        <p className="text-white text-sm leading-relaxed mb-3 line-clamp-3">
+                          {post.caption}
+                        </p>
+                      )}
+                      {post.postUrl && (
+                        <a
+                          href={post.postUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-4 py-2 rounded-lg text-sm font-medium transition border border-white/30"
+                        >
+                          <Instagram size={16} />
+                          View on Instagram
+                          <ExternalLink size={14} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Instagram Icon Badge */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-br from-purple-600 to-pink-600 p-2 rounded-full opacity-80 group-hover:opacity-100 transition">
+                    <Instagram size={16} className="text-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* View More Link */}

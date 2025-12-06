@@ -26,6 +26,9 @@ export default function Navbar() {
             <Link href="/products" className="text-gray-700 hover:text-amber-600 transition">
               Products
             </Link>
+            <Link href="/gallery" className="text-gray-700 hover:text-amber-600 transition">
+              Gallery
+            </Link>
             <Link href="/about" className="text-gray-700 hover:text-amber-600 transition">
               About
             </Link>
@@ -60,6 +63,13 @@ export default function Navbar() {
                 className="text-gray-700 hover:text-amber-600 transition"
               >
                 Products
+              </Link>
+              <Link
+                href="/gallery"
+                onClick={() => setIsOpen(false)}
+                className="text-gray-700 hover:text-amber-600 transition"
+              >
+                Gallery
               </Link>
               <Link
                 href="/about"
