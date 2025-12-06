@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, Heart, Sparkles } from 'lucide-react';
+import { useSettings } from '@/lib/hooks/useSettings';
 
 export const metadata = {
   title: 'About Us - Pottery Studio',
@@ -8,6 +9,7 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+const { settings } = useSettings();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -48,23 +50,20 @@ export default function AboutPage() {
               Crafting Beauty, One Piece at a Time
             </h2>
             <div className="prose prose-lg text-gray-600 space-y-4">
-              <p>
-                Welcome to our pottery studio, where tradition meets creativity. For over a decade, 
+                {settings.aboutText ||
+                    `Welcome to our pottery studio, where tradition meets creativity. For over a decade,
                 we've been dedicated to creating unique, handcrafted pieces that bring warmth and 
                 character to your home.
-              </p>
-              <p>
+
                 Each piece begins as raw clay and is carefully shaped, glazed, and fired with 
                 attention to detail and a deep respect for the craft. We believe that pottery is 
                 more than just functional art—it's a connection to centuries of tradition and a 
                 celebration of the handmade.
-              </p>
-              <p>
+
                 Our studio is a place where creativity flows freely, where imperfections are 
                 celebrated as marks of authenticity, and where every piece carries the energy 
-                and intention of its creation.
-              </p>
-            </div>
+                and intention of its creation.`}
+                </div>
           </div>
         </div>
 
