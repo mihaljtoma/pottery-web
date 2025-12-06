@@ -14,9 +14,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-amber-600">
-            {settings.siteName || 'Pottery Studio'}
-          </Link>
+          <Link href="/" className="text-3xl font-bold text-amber-700" style={{ fontFamily: "'Great Vibes', cursive" }}>
+                {settings.siteName || 'Pottery Studio'}
+                </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
