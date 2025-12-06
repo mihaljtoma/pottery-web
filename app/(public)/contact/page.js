@@ -138,21 +138,15 @@ const { settings } = useSettings();
 
             {/* Business Hours */}
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h3 className="font-semibold text-gray-900 mb-4">Business Hours</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Monday - Friday</span>
-                  <span className="font-medium text-gray-900">9:00 AM - 5:00 PM</span>
+            <h3 className="font-semibold text-gray-900 mb-4">Business Hours</h3>
+            <div className="space-y-2 text-sm">
+                {settings.businessHours && Object.entries(settings.businessHours).map(([day, hours]) => (
+                <div key={day} className="flex justify-between">
+                    <span className="text-gray-600 capitalize">{day}</span>
+                    <span className="font-medium text-gray-900">{hours}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Saturday</span>
-                  <span className="font-medium text-gray-900">10:00 AM - 3:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Sunday</span>
-                  <span className="font-medium text-gray-900">Closed</span>
-                </div>
-              </div>
+                ))}
+            </div>
             </div>
           </div>
 
