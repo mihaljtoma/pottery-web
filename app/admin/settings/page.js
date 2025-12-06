@@ -135,7 +135,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.siteName}
                   onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="e.g., Pottery Studio"
                   required
                 />
@@ -149,7 +149,7 @@ export default function AdminSettingsPage() {
                   type="text"
                   value={settings.tagline}
                   onChange={(e) => setSettings({ ...settings, tagline: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="e.g., Handcrafted Pottery with Love"
                 />
               </div>
@@ -166,7 +166,7 @@ export default function AdminSettingsPage() {
               value={settings.aboutText}
               onChange={(e) => setSettings({ ...settings, aboutText: e.target.value })}
               rows="8"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none resize-none"
+              className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none resize-none"
               placeholder="Tell your story... Who are you? How did you start? What makes your pottery special?"
             />
           </div>
@@ -193,7 +193,7 @@ export default function AdminSettingsPage() {
                   type="email"
                   value={settings.contactEmail}
                   onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="contact@potterystudio.com"
                 />
               </div>
@@ -207,7 +207,7 @@ export default function AdminSettingsPage() {
                   type="tel"
                   value={settings.contactPhone}
                   onChange={(e) => setSettings({ ...settings, contactPhone: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
@@ -221,7 +221,7 @@ export default function AdminSettingsPage() {
                   value={settings.studioAddress}
                   onChange={(e) => setSettings({ ...settings, studioAddress: e.target.value })}
                   rows="3"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none resize-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none resize-none"
                   placeholder="123 Pottery Lane&#10;Creative City, CC 12345"
                 />
               </div>
@@ -244,7 +244,7 @@ export default function AdminSettingsPage() {
                       ...settings,
                       businessHours: { ...settings.businessHours, [day]: e.target.value }
                     })}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                    className="flex-1 px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                     placeholder="9:00 AM - 5:00 PM or Closed"
                   />
                 </div>
@@ -268,7 +268,7 @@ export default function AdminSettingsPage() {
                   type="url"
                   value={settings.instagramUrl}
                   onChange={(e) => setSettings({ ...settings, instagramUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="https://instagram.com/yourpotterystudio"
                 />
               </div>
@@ -282,7 +282,7 @@ export default function AdminSettingsPage() {
                   type="url"
                   value={settings.facebookUrl}
                   onChange={(e) => setSettings({ ...settings, facebookUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="https://facebook.com/yourpotterystudio"
                 />
               </div>
@@ -296,7 +296,7 @@ export default function AdminSettingsPage() {
                   type="url"
                   value={settings.twitterUrl}
                   onChange={(e) => setSettings({ ...settings, twitterUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   placeholder="https://twitter.com/yourpotterystudio"
                 />
               </div>
@@ -336,7 +336,7 @@ export default function AdminSettingsPage() {
             <Link
               href="/"
               target="_blank"
-              className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition"
+              className="px-6 py-3 bg-gray-200 hover:bg-gray-600 text-gray-700 font-semibold rounded-lg transition"
             >
               Preview Site
             </Link>
