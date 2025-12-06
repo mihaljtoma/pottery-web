@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { requireAuth } from '@/lib/auth';
 import { getProducts, getCategories, getContactSubmissions } from '@/lib/db';
 import Link from 'next/link';
-import { Package, FolderTree, Mail, Settings, LogOut } from 'lucide-react';
+import { Package, FolderTree, Mail, Settings, LogOut, Instagram } from 'lucide-react';
 
 export default async function AdminDashboard() {
   const auth = await requireAuth();
@@ -93,6 +93,13 @@ export default async function AdminDashboard() {
             color="green"
           />
           <ActionCard
+            title="Social Gallery"
+            description="Manage Instagram/social posts"
+            href="/admin/gallery"
+            icon={<Instagram size={32} />}
+            color="pink"
+          />
+          <ActionCard
             title="Home Page"
             description="Customize homepage sections"
             href="/admin/home"
@@ -150,7 +157,8 @@ function ActionCard({ title, description, href, icon, color, external }) {
     green: 'from-green-500 to-emerald-500',
     purple: 'from-purple-500 to-pink-500',
     gray: 'from-gray-500 to-slate-500',
-    indigo: 'from-indigo-500 to-blue-500'
+    indigo: 'from-indigo-500 to-blue-500',
+    pink: 'from-pink-500 to-rose-500'
   };
 
   const Component = external ? 'a' : Link;
