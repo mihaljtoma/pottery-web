@@ -14,81 +14,70 @@ export default function ProductsPage() {
   const [selectedAvailability, setSelectedAvailability] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
-useEffect(() => {
-  if (categories.length > 0) { // Only fetch when categories are loaded
-    fetchProducts();
-  }
-}, [selectedCategory, selectedAvailability, searchQuery, categories]);
-
-useEffect(() => {
-  fetchCategories();
-  
-  // Read category from URL
-  if (typeof window !== 'undefined') {
-    const params = new URLSearchParams(window.location.search);
-    const categoryFromUrl = params.get('category');
-    if (categoryFromUrl) {
-      // Wait a bit for categories to load, then set
-      setTimeout(() => {
-        setSelectedCategory(categoryFromUrl);
-      }, 100);
-    }
-  }
-}, []);
-
+  // Fetch categories on mount and set category from URL
   useEffect(() => {
-    fetchProducts();
-  }, [selectedCategory, selectedAvailability, searchQuery]);
-
-  const fetchCategories = async () => {
-  try {
-    const res = await fetch('/api/categories');
-    const data = await res.json();
-    setCategories(Array.isArray(data) ? data.filter(cat => cat.visible) : []);
+    const loadCategories = async () => {
+      try {
+        const res = await fetch('/api/categories');
+        const data = await res.json();
+        const cats = Array.isArray(data) ? data.filter(cat => cat.visible) : [];
+        setCategories(cats);
+        
+        // After categories load, check URL parameter
+        if (typeof window !== 'undefined') {
+          const params = new URLSearchParams(window.location.search);
+          const categoryFromUrl = params.get('category');
+          if (categoryFromUrl) {
+            setSelectedCategory(categoryFromUrl);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+        setCategories([]);
+      }
+    };
     
-    // After categories load, check URL parameter
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const categoryFromUrl = params.get('category');
-      if (categoryFromUrl) {
-        setSelectedCategory(categoryFromUrl); // This triggers the filter!
+    loadCategories();
+  }, []);
+
+  // Fetch products when filters change
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+
+        if (selectedCategory && categories.length > 0) {
+          const category = categories.find(cat => cat.slug === selectedCategory);
+          if (category) {
+            params.append('categoryId', category.id);
+          }
+        }
+        if (selectedAvailability) {
+          params.append('availability', selectedAvailability);
+        }
+        if (searchQuery) {
+          params.append('search', searchQuery);
+        }
+
+        const res = await fetch('/api/products?' + params.toString());
+        const data = await res.json();
+        setProducts(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
       }
-    }
-  } catch (error) {
-    console.error('Failed to fetch categories:', error);
-    setCategories([]);
-  }
-};
+    };
 
- const fetchProducts = async () => {
-  setLoading(true);
-  try {
-    const params = new URLSearchParams();
+    // Only fetch if categories are loaded
+    if (categories.length > 0 || (!selectedCategory && !selectedAvailability && !searchQuery)) {
+      fetchProducts();
+    }
+  }, [selectedCategory, selectedAvailability, searchQuery, categories]);
 
-    if (selectedCategory) {
-      // Find category ID by slug
-      const category = categories.find(cat => cat.slug === selectedCategory);
-      if (category) {
-        params.append('categoryId', category.id);
-      }
-    }
-    if (selectedAvailability) {
-      params.append('availability', selectedAvailability);
-    }
-    if (searchQuery) {
-      params.append('search', searchQuery);
-    }
-
-    const res = await fetch('/api/products?' + params.toString());
-    const data = await res.json();
-    setProducts(Array.isArray(data) ? data : []);
-  } catch (error) {
-    console.error('Failed to fetch products:', error);
-    setProducts([]);
-  } finally {
-    setLoading(false);
-  }
-};
+  // ... rest of your component code (clearFilters, getCategoryName, return JSX, etc.)
 
   const clearFilters = () => {
     setSelectedCategory('');
