@@ -16,17 +16,20 @@ export default function ProductsPage() {
 
 
   useEffect(() => {
-    fetchCategories();
-    
-    // Read category from URL without useSearchParams
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const categoryFromUrl = params.get('category');
-      if (categoryFromUrl) {
+  fetchCategories();
+  
+  // Read category from URL
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const categoryFromUrl = params.get('category');
+    if (categoryFromUrl) {
+      // Wait a bit for categories to load, then set
+      setTimeout(() => {
         setSelectedCategory(categoryFromUrl);
-      }
+      }, 100);
     }
-  }, []);
+  }
+}, []);
 
   useEffect(() => {
     fetchProducts();
