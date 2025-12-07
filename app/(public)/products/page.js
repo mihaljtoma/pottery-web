@@ -42,34 +42,40 @@ export default function ProductsPage() {
     }
   };
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
+ const fetchProducts = async () => {
+  setLoading(true);
+  try {
+    const params = new URLSearchParams();
 
-      if (selectedCategory) {
-        const category = categories.find(cat => cat.slug === selectedCategory);
-        if (category) {
-          params.append('categoryId', category.id);
-        }
+    if (selectedCategory) {
+      // Find category ID by slug
+      const category = categories.find(cat => cat.slug === selectedCategory);
+      if (category) {
+        params.append('categoryId', category.id);
       }
-      if (selectedAvailability) {
-        params.append('availability', selectedAvailability);
-      }
-      if (searchQuery) {
-        params.append('search', searchQuery);
-      }
-
-      const res = await fetch('/api/products?' + params.toString());
-      const data = await res.json();
-      setProducts(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch products:', error);
-      setProducts([]);
-    } finally {
-      setLoading(false);
     }
-  };
+    if (selectedAvailability) {
+      params.append('availability', selectedAvailability);
+    }
+    if (searchQuery) {
+      params.append('search', searchQuery);
+    }
+
+    const res = await fetch('/api/products?' + params.toString());
+    const data = await res.json();
+    setProducts(Array.isArray(data) ? data : []);
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    setProducts([]);
+  } finally {
+    setLoading(false);
+  }
+};
+useEffect(() => {
+  if (categories.length > 0) { // Only fetch when categories are loaded
+    fetchProducts();
+  }
+}, [selectedCategory, selectedAvailability, searchQuery, categories]);
 
   const clearFilters = () => {
     setSelectedCategory('');
