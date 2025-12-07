@@ -413,9 +413,9 @@ export default function ProductsPage() {
                       
                       <div className="absolute top-4 right-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          product.availability === 'available' ? 'bg-green-500 text-white' :
-                          product.availability === 'sold' ? 'bg-red-500 text-white' :
-                          'bg-yellow-500 text-white'
+                          product.availability === 'available' ? 'bg-green-200 text-white' :
+                          product.availability === 'sold' ? 'bg-red-200 text-white' :
+                          'bg-yellow-200 text-white'
                         }`}>
                           {product.availability.charAt(0).toUpperCase() + product.availability.slice(1)}
                         </span>
