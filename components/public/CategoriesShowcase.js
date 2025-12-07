@@ -69,23 +69,6 @@ export default function CategoriesShowcase() {
         {useSlider ? (
           /* Slider Layout for 5+ categories */
           <div className="relative">
-            {/* Left Arrow */}
-            <button
-              onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all transform hover:scale-110"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={24} className="text-gray-800" />
-            </button>
-
-            {/* Right Arrow */}
-            <button
-              onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all transform hover:scale-110"
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={24} className="text-gray-800" />
-            </button>
 
             {/* Scrollable Container */}
             <div

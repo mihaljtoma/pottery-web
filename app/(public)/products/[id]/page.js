@@ -187,12 +187,12 @@ export default function ProductDetailPage() {
               <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
                 product.availability === 'available'
                   ? 'bg-green-100 text-green-800'
-                  : product.availability === 'sold'
+                  : product.availability === 'unavailable'
                   ? 'bg-red-100 text-red-800'
                   : 'bg-yellow-100 text-yellow-800'
               }`}>
                 {product.availability === 'available' ? 'Available' :
-                 product.availability === 'sold' ? 'Sold' : 'Reserved'}
+                 product.availability === 'unavailable' ? 'Unavailable' : 'Reserved'}
               </span>
               {product.featured && (
                 <span className="px-3 py-1 rounded-full text-sm font-semibold bg-amber-100 text-amber-800">

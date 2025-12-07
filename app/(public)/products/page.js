@@ -201,11 +201,11 @@ export default function ProductsPage() {
                     <input
                       type="radio"
                       name="availability"
-                      checked={selectedAvailability === 'sold'}
-                      onChange={() => setSelectedAvailability('sold')}
+                      checked={selectedAvailability === 'unavailable'}
+                      onChange={() => setSelectedAvailability('unavailable')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">Sold</span>
+                    <span className="ml-3 text-gray-700">Unavailable</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -325,11 +325,11 @@ export default function ProductsPage() {
               <input
                 type="radio"
                 name="availability-mobile"
-                checked={selectedAvailability === 'sold'}
-                onChange={() => setSelectedAvailability('sold')}
+                checked={selectedAvailability === 'unavailable'}
+                onChange={() => setSelectedAvailability('unavailable')}
                 className="w-4 h-4 text-amber-600"
               />
-              <span className="ml-3 text-gray-700">Sold</span>
+              <span className="ml-3 text-gray-700">Unavailable</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
@@ -414,7 +414,7 @@ export default function ProductsPage() {
                       <div className="absolute top-4 right-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           product.availability === 'available' ? 'bg-green-200 text-white' :
-                          product.availability === 'sold' ? 'bg-red-200 text-white' :
+                          product.availability === 'unavailable' ? 'bg-red-200 text-white' :
                           'bg-yellow-200 text-white'
                         }`}>
                           {product.availability.charAt(0).toUpperCase() + product.availability.slice(1)}

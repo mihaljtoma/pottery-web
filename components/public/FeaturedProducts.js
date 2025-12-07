@@ -82,12 +82,12 @@ export default function FeaturedProducts() {
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       product.availability === 'available'
                         ? 'bg-green-200 text-white'
-                        : product.availability === 'sold'
+                        : product.availability === 'unavailable'
                         ? 'bg-red-200 text-white'
                         : 'bg-yellow-200 text-white'
                     }`}>
                       {product.availability === 'available' ? 'Available' : 
-                       product.availability === 'sold' ? 'Sold' : 'Reserved'}
+                       product.availability === 'unavailable' ? 'Unavailable' : 'Reserved'}
                     </span>
                   </div>
                 </div>

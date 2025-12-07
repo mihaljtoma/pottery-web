@@ -358,7 +358,7 @@ export default function ProductsPage() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   >
                     <option value="available">Available</option>
-                    <option value="sold">Sold</option>
+                    <option value="unavailable">Unavailable</option>
                     <option value="reserved">Reserved</option>
                   </select>
                 </div>
@@ -440,7 +440,7 @@ export default function ProductsPage() {
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         product.availability === 'available' 
                           ? 'bg-green-100 text-green-800' 
-                          : product.availability === 'sold'
+                          : product.availability === 'unavailable'
                           ? 'bg-red-100 text-red-800'
                           : 'bg-yellow-100 text-yellow-800'
                       }`}>
