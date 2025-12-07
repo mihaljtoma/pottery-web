@@ -143,7 +143,7 @@ export default function FeaturedProducts() {
                     </div>
 
                     {/* Secondary Image - Shows on Hover */}
-                    {hasSecondImage && (
+                    {hasSecondImage && product.images && (
                       <div className="absolute inset-0 overflow-hidden">
                         <Image
                           src={product.images[1]}
