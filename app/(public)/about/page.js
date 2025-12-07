@@ -36,9 +36,14 @@ export default function AboutPage() {
           {/* Image */}
           <div className="relative">
             <div className="aspect-square bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-amber-200 to-orange-300 flex items-center justify-center">
-                <p className="text-8xl">🏺</p>
-              </div>
+             <Image
+                    src="/tea_up.png"
+                    alt="Pottery example"
+                    className="w-full h-full object-cover"
+                    width={600}
+                    height={600}
+                  />
+
             </div>
             {/* Decorative elements */}
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-200 rounded-full opacity-50 blur-2xl -z-10"></div>
