@@ -170,11 +170,11 @@ export default function FeaturedProducts() {
                     </div>
 
                     {/* Dark Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
 
                   {/* Product Info Overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-white pointer-events-none">
+                    <div className="absolute inset-0 flex flex-col justify-center p-6 text-white pointer-events-none">
                     <h3 className="text-2xl md:text-3xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
                       {product.name}
                     </h3>
@@ -190,7 +190,7 @@ export default function FeaturedProducts() {
                       </span>
                     )}
 
-                    <div className="flex items-center gap-2 text-amber-300 font-semibold transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                    <div className="flex items-center gap-2 text-white font-semibold transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
                       View Details
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </div>
