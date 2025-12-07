@@ -14,11 +14,6 @@ export default function ProductsPage() {
   const [selectedAvailability, setSelectedAvailability] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {
-  if (categories.length > 0) { // Only fetch when categories are loaded
-    fetchProducts();
-  }
-}, [selectedCategory, selectedAvailability, searchQuery, categories]);
 
   useEffect(() => {
     fetchCategories();
@@ -38,15 +33,24 @@ export default function ProductsPage() {
   }, [selectedCategory, selectedAvailability, searchQuery]);
 
   const fetchCategories = async () => {
-    try {
-      const res = await fetch('/api/categories');
-      const data = await res.json();
-      setCategories(Array.isArray(data) ? data.filter(cat => cat.visible) : []);
-    } catch (error) {
-      console.error('Failed to fetch categories:', error);
-      setCategories([]);
+  try {
+    const res = await fetch('/api/categories');
+    const data = await res.json();
+    setCategories(Array.isArray(data) ? data.filter(cat => cat.visible) : []);
+    
+    // After categories load, check URL parameter
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const categoryFromUrl = params.get('category');
+      if (categoryFromUrl) {
+        setSelectedCategory(categoryFromUrl); // This triggers the filter!
+      }
     }
-  };
+  } catch (error) {
+    console.error('Failed to fetch categories:', error);
+    setCategories([]);
+  }
+};
 
  const fetchProducts = async () => {
   setLoading(true);
