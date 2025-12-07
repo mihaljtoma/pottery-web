@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation'; // ADD THIS
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, Filter, Package, X } from 'lucide-react';
 
 export default function ProductsPage() {
-  const searchParams = useSearchParams(); // ADD THIS
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,12 +17,15 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchCategories();
     
-    // ADD THIS: Auto-select category from URL
-    const categoryFromUrl = searchParams.get('category');
-    if (categoryFromUrl) {
-      setSelectedCategory(categoryFromUrl);
+    // Read category from URL without useSearchParams
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const categoryFromUrl = params.get('category');
+      if (categoryFromUrl) {
+        setSelectedCategory(categoryFromUrl);
+      }
     }
-  }, [searchParams]); // ADD searchParams dependency
+  }, []);
 
   useEffect(() => {
     fetchProducts();
