@@ -6,10 +6,29 @@ import Link from 'next/link';
 import { ArrowRight, Package } from 'lucide-react';
 import './FeaturedProducts.css';
 
+interface ProductDimensions {
+  height?: number;
+  width?: number;
+  unit?: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  availability: 'available' | 'unavailable' | 'reserved';
+  images?: string[];
+  dimensions?: ProductDimensions;
+}
+
+interface GridSpan {
+  col: 1 | 2 | 3;
+  row: 1 | 2 | 3;
+}
+
 export default function FeaturedProducts() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [hoveredId, setHoveredId] = useState(null);
 
   useEffect(() => {
     fetchFeaturedProducts();
@@ -25,6 +44,18 @@ export default function FeaturedProducts() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const getGridSpan = (index: number): GridSpan => {
+    const patterns: GridSpan[] = [
+      { col: 2, row: 2 },
+      { col: 1, row: 1 },
+      { col: 1, row: 2 },
+      { col: 2, row: 1 },
+      { col: 1, row: 1 },
+      { col: 1, row: 1 },
+    ];
+    return patterns[index % patterns.length];
   };
 
   if (loading) {
@@ -48,19 +79,6 @@ export default function FeaturedProducts() {
   if (products.length === 0) {
     return null;
   }
-
-  // Function to determine grid span for mosaic effect
-  const getGridSpan = (index) => {
-    const patterns = [
-      { col: 2, row: 2 },
-      { col: 1, row: 1 },
-      { col: 1, row: 2 },
-      { col: 2, row: 1 },
-      { col: 1, row: 1 },
-      { col: 1, row: 1 },
-    ];
-    return patterns[index % patterns.length];
-  };
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
@@ -112,6 +130,7 @@ export default function FeaturedProducts() {
                           alt={product.name}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                          priority={index < 3}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
