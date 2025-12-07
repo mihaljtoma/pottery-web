@@ -88,17 +88,7 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="bg-amber-100 p-3 rounded-lg">
-                  <MapPin className="text-amber-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Studio</h3>
-                  <p className="text-gray-600 whitespace-pre-line">
-                    {settings.studioAddress || '123 Pottery Lane\nArtisan Quarter\nCreative City, CC 12345'}
-                  </p>
-                </div>
-              </div>
+              
             </div>
           </div>
 

@@ -52,17 +52,17 @@ const { settings } = useSettings();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Have a question about our pottery or interested in a custom piece? 
-            We'd love to hear from you!
-          </p>
-        </div>
-      </div>
+      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-8 md:py-8">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
+      Get in Touch
+    </h1>
+    <p className="text-xl text-gray-600 leading-relaxed" style={{ fontFamily: "'Lora', serif" }}>
+      Have a question about our pottery or interested in a custom piece? 
+      We'd love to hear from you!
+    </p>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -70,10 +70,10 @@ const { settings } = useSettings();
           {/* Contact Information - Left Side */}
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "'Lora', serif" }}>
                 Contact Information
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600 mb-8" style={{ fontFamily: "'Lora', serif" }}>
                 We're here to help and answer any questions you might have. 
                 We look forward to hearing from you!
               </p>
@@ -94,7 +94,7 @@ const { settings } = useSettings();
                   >
                    {settings.contactEmail || 'contact@potterystudio.com'}
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="text-sm text-gray-500 mt-1" >
                     We'll respond within 24-48 hours
                   </p>
                 </div>
@@ -119,44 +119,19 @@ const { settings } = useSettings();
                 </div>
               </div>
 
-              {/* Studio Address */}
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 p-4 rounded-xl flex-shrink-0">
-                  <MapPin className="text-blue-600" size={28} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">Studio</h3>
-                  <address className="text-gray-600 not-italic">
-                    {settings.studioAddress || '123 Pottery Lane\nArtisan Quarter\nCreative City, CC 12345'}
-                  </address>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Studio visits by appointment only
-                  </p>
-                </div>
-              </div>
+           
             </div>
 
-            {/* Business Hours */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4">Business Hours</h3>
-            <div className="space-y-2 text-sm">
-                {settings.businessHours && Object.entries(settings.businessHours).map(([day, hours]) => (
-                <div key={day} className="flex justify-between">
-                    <span className="text-gray-600 capitalize">{day}</span>
-                    <span className="font-medium text-gray-900">{hours}</span>
-                </div>
-                ))}
-            </div>
-            </div>
+         
           </div>
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Lora', serif" }}>
                 Send us a Message
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600 mb-8" style={{ fontFamily: "'Lora', serif" }}>
                 Fill out the form below and we'll get back to you as soon as possible.
               </p>
 

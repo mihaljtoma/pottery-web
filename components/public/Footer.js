@@ -125,11 +125,7 @@ export default function Footer() {
                   {settings.contactPhone}
                 </li>
               )}
-              {settings.studioAddress && (
-                <li className="whitespace-pre-line hover:text-black transition-colors">
-                  {settings.studioAddress}
-                </li>
-              )}
+            
             </ul>
           </div>
         </div>

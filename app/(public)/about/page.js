@@ -18,16 +18,16 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            About Our Craft
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Every piece tells a story of passion, dedication, and the timeless art of pottery making.
-          </p>
-        </div>
-      </div>
+      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-8 md:py-8">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
+      About Our Craft
+    </h1>
+    <p className="text-xl text-gray-600 leading-relaxed" style={{ fontFamily: "'Lora', serif" }}>
+      Every piece tells a story of passion, dedication, and the timeless art of pottery making.
+    </p>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
