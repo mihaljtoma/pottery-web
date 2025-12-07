@@ -14,8 +14,13 @@ export default function ProductsPage() {
   const [selectedAvailability, setSelectedAvailability] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
+useEffect(() => {
+  if (categories.length > 0) { // Only fetch when categories are loaded
+    fetchProducts();
+  }
+}, [selectedCategory, selectedAvailability, searchQuery, categories]);
 
-  useEffect(() => {
+useEffect(() => {
   fetchCategories();
   
   // Read category from URL
