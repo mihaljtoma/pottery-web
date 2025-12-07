@@ -167,7 +167,38 @@ export default function CategoriesPage() {
                   rows="3"
                 />
               </div>
-
+                    {/* Category Image */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Category Image (Optional)
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                // Upload image
+                const formData = new FormData();
+                formData.append('file', file);
+                
+                const res = await fetch('/api/upload', {
+                  method: 'POST',
+                  body: formData
+                });
+                
+                const data = await res.json();
+                if (res.ok) {
+                  setFormData({ ...formData, image: data.url });
+                }
+              }}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+            />
+            {formData.image && (
+              <img src={formData.image} alt="Preview" className="mt-2 w-32 h-32 object-cover rounded-lg" />
+            )}
+          </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">

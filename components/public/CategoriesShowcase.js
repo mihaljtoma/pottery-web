@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function CategoriesShowcase() {
@@ -28,22 +29,15 @@ export default function CategoriesShowcase() {
     return null;
   }
 
-  // Icon mapping for categories (you can customize these)
-  const categoryIcons = {
-    default: '🏺',
-    bowls: '🥣',
-    vases: '🏺',
-    plates: '🍽️',
-    mugs: '☕',
-    cups: '🫖',
-    decorative: '🎨',
-    sculptures: '🗿'
-  };
-
-  const getIcon = (name) => {
-    const key = name.toLowerCase();
-    return categoryIcons[key] || categoryIcons.default;
-  };
+  // Fallback gradient colors for categories without images
+  const gradients = [
+    'from-amber-400 to-orange-500',
+    'from-rose-400 to-pink-500',
+    'from-orange-400 to-red-500',
+    'from-yellow-400 to-amber-500',
+    'from-amber-500 to-orange-600',
+    'from-pink-400 to-rose-500'
+  ];
 
   return (
     <section className="py-16 bg-gradient-to-br from-gray-50 to-amber-50">
@@ -60,35 +54,54 @@ export default function CategoriesShowcase() {
 
         {/* Categories Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
-              className="group"
+              className="group relative"
             >
-              <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 text-center">
-                {/* Icon */}
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {getIcon(category.name)}
-                </div>
-                
-                {/* Category Name */}
-                <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-amber-600 transition">
-                  {category.name}
-                </h3>
-                
-                {/* Description */}
-                {category.description && (
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                    {category.description}
-                  </p>
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+                {/* Category Image or Gradient */}
+                {category.image ? (
+                  <Image
+                    src={category.image}
+                    alt={category.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${gradients[index % gradients.length]}`}>
+                    {/* Decorative pattern overlay */}
+                    <div className="absolute inset-0 opacity-20" style={{
+                      backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+                      backgroundSize: '30px 30px'
+                    }} />
+                  </div>
                 )}
                 
-                {/* View Link */}
-                <span className="inline-flex items-center gap-1 text-amber-600 font-semibold text-sm group-hover:gap-2 transition-all">
-                  Explore
-                  <ArrowRight size={16} />
-                </span>
+                {/* Dark overlay for text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition">
+                    {category.name}
+                  </h3>
+                  
+                  {category.description && (
+                    <p className="text-sm text-white/90 mb-3 line-clamp-2">
+                      {category.description}
+                    </p>
+                  )}
+                  
+                  <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
+                    Explore
+                    <ArrowRight size={16} />
+                  </span>
+                </div>
+
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </div>
             </Link>
           ))}
