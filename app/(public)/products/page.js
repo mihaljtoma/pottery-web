@@ -15,6 +15,12 @@ export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
+  if (categories.length > 0) { // Only fetch when categories are loaded
+    fetchProducts();
+  }
+}, [selectedCategory, selectedAvailability, searchQuery, categories]);
+
+  useEffect(() => {
     fetchCategories();
     
     // Read category from URL without useSearchParams
@@ -71,11 +77,6 @@ export default function ProductsPage() {
     setLoading(false);
   }
 };
-useEffect(() => {
-  if (categories.length > 0) { // Only fetch when categories are loaded
-    fetchProducts();
-  }
-}, [selectedCategory, selectedAvailability, searchQuery, categories]);
 
   const clearFilters = () => {
     setSelectedCategory('');
