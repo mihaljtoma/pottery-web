@@ -18,7 +18,7 @@ export default async function AdminDashboard() {
   const stats = {
     totalProducts: products.length,
     available: products.filter(p => p.availability === 'available').length,
-    sold: products.filter(p => p.availability === 'sold').length,
+    unavailable: products.filter(p => p.availability === 'unavailable').length,
     categories: categories.length,
     unreadMessages: submissions.filter(s => !s.replied).length
   };
