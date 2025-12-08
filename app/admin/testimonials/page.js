@@ -190,21 +190,30 @@ export default function TestimonialsPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Rating */}
+             {/* Rating */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Rating
                   </label>
-                  <select
-                    name="rating"
-                    value={formData.rating}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent"
-                  >
-                    <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
-                    <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-                    <option value="3">⭐⭐⭐ (3 Stars)</option>
-                  </select>
+                  <div className="flex items-center gap-2">
+                    <select
+                      name="rating"
+                      value={formData.rating}
+                      onChange={handleInputChange}
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent"
+                    >
+                      <option value="5">5 Stars</option>
+                      <option value="4">4 Stars</option>
+                      <option value="3">3 Stars</option>
+                      <option value="2">2 Stars</option>
+                      <option value="1">1 Star</option>
+                    </select>
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(formData.rating)].map((_, i) => (
+                        <Star key={i} size={20} className="fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Order */}
