@@ -3,6 +3,7 @@ import FeaturedProducts from '@/components/public/FeaturedProducts';
 import CategoriesShowcase from '@/components/public/CategoriesShowcase';
 import ContactForm from '@/components/public/ContactForm';
 import SocialGallery from '@/components/public/SocialGallery';
+import Testimonials from '@/components/public/Testimonials';
 export const metadata = {
   title: 'Pottery Studio - Handcrafted Pottery',
   description: 'Discover unique handcrafted pottery pieces made with love and dedication.',
@@ -16,6 +17,7 @@ export default function HomePage() {
       <CategoriesShowcase />
       <SocialGallery />
       <ContactForm />
+      <Testimonials/>
     </div>
   );
 }
