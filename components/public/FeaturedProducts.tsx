@@ -191,14 +191,14 @@ export default function FeaturedProducts() {
                         <div className="flex flex-wrap gap-3">
                           {product.dimensions.height && (
                             <div className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
-                              <span className="text-sm text-white/90">H: {product.dimensions.height}{product.dimensions.unit}</span>
+                              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                              <span className="text-sm text-white/90">Height: {product.dimensions.height}{product.dimensions.unit}</span>
                             </div>
                           )}
                           {product.dimensions.width && (
                             <div className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
-                              <span className="text-sm text-white/90">W: {product.dimensions.width}{product.dimensions.unit}</span>
+                              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                              <span className="text-sm text-white/90">Width: {product.dimensions.width}{product.dimensions.unit}</span>
                             </div>
                           )}
                         </div>
