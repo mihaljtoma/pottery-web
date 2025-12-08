@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 import { requireAuth } from '@/lib/auth';
-import { getProducts, getCategories, getContactSubmissions } from '@/lib/db';
+import { getProducts, getCategories, getContactSubmissions, getTestimonials } from '@/lib/db';
 import Link from 'next/link';
-import { Package, FolderTree, Mail, Settings, LogOut, Instagram } from 'lucide-react';
+import { Package, FolderTree, Mail, Settings, LogOut, Instagram, MessageCircle } from 'lucide-react';
 
 export default async function AdminDashboard() {
   const auth = await requireAuth();
@@ -14,13 +14,15 @@ export default async function AdminDashboard() {
   const products = await getProducts();
   const categories = await getCategories();
   const submissions = await getContactSubmissions();
+  const testimonials = await getTestimonials();
 
   const stats = {
     totalProducts: products.length,
     available: products.filter(p => p.availability === 'available').length,
     unavailable: products.filter(p => p.availability === 'unavailable').length,
     categories: categories.length,
-    unreadMessages: submissions.filter(s => !s.replied).length
+    unreadMessages: submissions.filter(s => !s.replied).length,
+    testimonials: testimonials.filter(t => t.visible).length
   };
 
   return (
@@ -42,7 +44,7 @@ export default async function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
           <StatCard
             title="Total Products"
             value={stats.totalProducts}
@@ -66,6 +68,12 @@ export default async function AdminDashboard() {
             value={stats.unreadMessages}
             icon={<Mail />}
             color="orange"
+          />
+          <StatCard
+            title="Testimonials"
+            value={stats.testimonials}
+            icon={<MessageCircle />}
+            color="rose"
           />
         </div>
 
@@ -91,6 +99,13 @@ export default async function AdminDashboard() {
             href="/admin/messages"
             icon={<Mail size={32} />}
             color="green"
+          />
+          <ActionCard
+            title="Testimonials"
+            description="Manage customer testimonials"
+            href="/admin/testimonials"
+            icon={<MessageCircle size={32} />}
+            color="rose"
           />
           <ActionCard
             title="Social Gallery"
@@ -132,7 +147,8 @@ function StatCard({ title, value, icon, color }) {
     blue: 'bg-blue-100 text-blue-600',
     green: 'bg-green-100 text-green-600',
     purple: 'bg-purple-100 text-purple-600',
-    orange: 'bg-orange-100 text-orange-600'
+    orange: 'bg-orange-100 text-orange-600',
+    rose: 'bg-rose-100 text-rose-600'
   };
 
   return (
@@ -158,7 +174,8 @@ function ActionCard({ title, description, href, icon, color, external }) {
     purple: 'from-purple-500 to-pink-500',
     gray: 'from-gray-500 to-slate-500',
     indigo: 'from-indigo-500 to-blue-500',
-    pink: 'from-pink-500 to-rose-500'
+    pink: 'from-pink-500 to-rose-500',
+    rose: 'from-rose-500 to-pink-500'
   };
 
   const Component = external ? 'a' : Link;

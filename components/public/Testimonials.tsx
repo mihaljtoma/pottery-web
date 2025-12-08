@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 interface Testimonial {
@@ -10,53 +10,32 @@ interface Testimonial {
   text: string;
   rating: number;
   image?: string;
+  visible?: boolean;
+  order?: number;
 }
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const testimonials: Testimonial[] = [
-    {
-      id: '1',
-      name: 'Sarah Mitchell',
-      location: 'New York',
-      text: 'Beautiful quality. Each piece arrived in perfect condition. The attention to detail is remarkable.',
-      rating: 5,
-      image: '/testimonials/sarah.jpg',
-    },
-    {
-      id: '2',
-      name: 'James Chen',
-      location: 'California',
-      text: 'Feels so personal. Not just a product, but a work of art. The craftsmanship is evident in every piece.',
-      rating: 5,
-      image: '/testimonials/james.jpg',
-    },
-    {
-      id: '3',
-      name: 'Emma Rodriguez',
-      location: 'Texas',
-      text: 'Arrived safely and quickly. Packaging was thoughtful and protective. Exceeded all expectations!',
-      rating: 5,
-      image: '/testimonials/emma.jpg',
-    },
-    {
-      id: '4',
-      name: 'Michael Thompson',
-      location: 'Florida',
-      text: 'The quality is exceptional. Every detail shows the artist\'s passion. Highly recommend to anyone.',
-      rating: 5,
-      image: '/testimonials/michael.jpg',
-    },
-    {
-      id: '5',
-      name: 'Lisa Anderson',
-      location: 'Washington',
-      text: 'Outstanding customer service and beautiful pieces. This is truly special pottery work.',
-      rating: 5,
-      image: '/testimonials/lisa.jpg',
-    },
-  ];
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  const fetchTestimonials = async () => {
+    try {
+      const res = await fetch('/api/testimonials');
+      const data = await res.json();
+      // Filter only visible testimonials and sort by order
+      const visible = data.filter((t: Testimonial) => t.visible !== false);
+      setTestimonials(visible);
+    } catch (error) {
+      console.error('Failed to fetch testimonials:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -65,6 +44,20 @@ export default function Testimonials() {
   const prevTestimonial = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <p className="text-gray-600">Loading testimonials...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   const current = testimonials[currentIndex];
 
@@ -121,8 +114,17 @@ export default function Testimonials() {
 
               {/* Author Info */}
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-xl">
-                  {current.name.charAt(0)}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-xl overflow-hidden">
+                  {current.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={current.image}
+                      alt={current.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    current.name.charAt(0)
+                  )}
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{current.name}</p>
