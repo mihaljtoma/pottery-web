@@ -95,12 +95,12 @@ export default function TestimonialsPage() {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : type === 'number' ? Number(value) : value
-    }));
-  };
+  const { name, value, type, checked } = e.target;
+  setFormData(prev => ({
+    ...prev,
+    [name]: name === 'rating' ? Number(value) : type === 'checkbox' ? checked : type === 'number' ? Number(value) : value
+  }));
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
@@ -190,7 +190,7 @@ export default function TestimonialsPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             {/* Rating */}
+                {/* Rating */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Rating
