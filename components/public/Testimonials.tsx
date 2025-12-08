@@ -62,12 +62,13 @@ export default function Testimonials() {
   const current = testimonials[currentIndex];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
+<section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 overflow-hidden">
+        {/* Background Elements */}
       {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/20 rounded-full blur-3xl"></div>
-      </div>
+<div className="absolute inset-0 pointer-events-none overflow-hidden">
+  <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl hidden md:block"></div>
+  <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/20 rounded-full blur-3xl hidden md:block"></div>
+</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -90,7 +91,7 @@ export default function Testimonials() {
 
         {/* Testimonial Card */}
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
+          <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
             {/* Content */}
             <div className="p-8 md:p-12">
               {/* Quote Icon */}
@@ -177,39 +178,44 @@ export default function Testimonials() {
             </div>
           </div>
 
-          {/* Trust Badges */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: '✨',
-                title: 'Beautiful Quality',
-                description: 'Each piece crafted with meticulous care and attention to detail',
-              },
-              {
-                icon: '💝',
-                title: 'Feels Personal',
-                description: 'Not just products, but meaningful works of art for your home',
-              },
-              {
-                icon: '📦',
-                title: 'Safe Delivery',
-                description: 'Arrives safely and quickly with thoughtful protective packaging',
-              },
-            ].map((badge, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="text-4xl mb-3">{badge.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {badge.title}
-                </h3>
-                <p className="text-sm text-gray-600">{badge.description}</p>
-              </div>
-            ))}
-          </div>
+         
         </div>
       </div>
+       {/* Feature Cards - Fun Aligned */}
+<div className="mt-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max">
+  {/* Card 1 - Top Left */}
+  <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-0">
+     <div className="flex items-start gap-4">
+              <div className="text-3xl">✨</div>
+              <div>
+                <h5 className="font-bold text-gray-900 mb-2">Handcrafted Quality</h5>
+                <p className="text-sm text-gray-700">Each piece is made with meticulous care and attention to detail.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 - Middle, Slightly Down */}
+<div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-6">
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">🚀</div>
+              <div>
+                <h5 className="font-bold text-gray-900 mb-2">Fast Shipping</h5>
+                <p className="text-sm text-gray-700">We ship your order quickly and safely to your door.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 - Top Right */}
+<div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-12">
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">♻️</div>
+              <div>
+                <h5 className="font-bold text-gray-900 mb-2">Eco Friendly</h5>
+                <p className="text-sm text-gray-700">Made with sustainable practices and natural materials.</p>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
   );
 }

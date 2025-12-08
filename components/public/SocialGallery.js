@@ -33,11 +33,12 @@ export default function SocialGallery() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        <div className="text-center mb-12 ">
+          <div className="inline-flex  items-center gap-2 bg-pink-100 text-pink-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <Instagram size={16} />
             Social Gallery
           </div>

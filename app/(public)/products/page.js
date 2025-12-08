@@ -93,9 +93,9 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       {/* Header */}
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 border-b">
+      <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
             Our Collection
@@ -110,7 +110,7 @@ export default function ProductsPage() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar - Desktop */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl shadow-sm p-6 sticky top-24">
+            <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
                 {hasActiveFilters && (
@@ -395,7 +395,7 @@ export default function ProductsPage() {
                   <Link
                     key={product.id}
                     href={`/products/${product.id}`}
-                    className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all"
+                    className="group bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all"
                   >
                     <div className="relative h-64 bg-gray-100">
                       {product.images && product.images.length > 0 ? (
@@ -432,7 +432,7 @@ export default function ProductsPage() {
                   </Link>
                 ))}
               </div>
-            )}
+            )} 
           </div>
         </div>
       </div>

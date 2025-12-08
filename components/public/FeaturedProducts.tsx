@@ -38,7 +38,7 @@ export default function FeaturedProducts() {
     try {
       const res = await fetch('/api/products?featured=true');
       const data = await res.json();
-      setProducts(data.slice(0, 6));
+      setProducts(data.slice(0, 9)); // Show 9 products for better mosaic
     } catch (error) {
       console.error('Failed to fetch featured products:', error);
     } finally {
@@ -47,6 +47,7 @@ export default function FeaturedProducts() {
   };
 
   const getGridSpan = (index: number): GridSpan => {
+    // Desktop pattern: 2x2, 1x1, 1x2, 2x1, 1x1, 1x1, 1x2, 1x1
     const patterns: GridSpan[] = [
       { col: 2, row: 2 },
       { col: 1, row: 1 },
@@ -54,15 +55,17 @@ export default function FeaturedProducts() {
       { col: 2, row: 1 },
       { col: 1, row: 1 },
       { col: 1, row: 1 },
+      { col: 1, row: 2 },
+      { col: 1, row: 1 },
     ];
     return patterns[index % patterns.length];
   };
 
   if (loading) {
     return (
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+      <section className="py-16 py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+        <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
+          <div className="text-center py-12">
             <div className="inline-block">
               <div className="animate-pulse flex items-center gap-2">
                 <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
@@ -81,16 +84,10 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50 relative overflow-hidden">
-      {/* Ambient background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-200/20 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+      <div className="max-w-full px-0 mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
             <span className="text-sm font-semibold text-amber-600 tracking-wide uppercase">
@@ -107,8 +104,8 @@ export default function FeaturedProducts() {
           </p>
         </div>
 
-        {/* Masonry Grid */}
-        <div className="masonry-grid">
+        {/* Masonry Grid - No gaps, no rounded corners */}
+        <div className="masonry-grid-seamless">
           {products.map((product, index) => {
             const span = getGridSpan(index);
             const hasSecondImage = product.images && product.images.length > 1;
@@ -117,94 +114,96 @@ export default function FeaturedProducts() {
               <Link
                 key={product.id}
                 href={`/products/${product.id}`}
-                className={`masonry-item col-span-${span.col} row-span-${span.row} group`}
+                className={`masonry-item-seamless col-span-${span.col} row-span-${span.row} group relative overflow-hidden`}
               >
-                <div className="relative h-full bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform group-hover:-translate-y-1">
-                  {/* Product Image Container */}
-                  <div className="relative w-full h-full bg-gray-100 overflow-hidden">
-                    {/* Primary Image */}
-                    <div className="product-image-wrapper absolute inset-0">
-                      {product.images && product.images.length > 0 ? (
-                        <Image
-                          src={product.images[0]}
-                          alt={product.name}
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                          priority={index < 3}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                          <Package size={56} className="text-gray-300" />
-                        </div>
-                      )}
-                      
-                      {/* Shine Effect Overlay */}
-                      <div className="absolute inset-0 shine-effect pointer-events-none"></div>
-                    </div>
-
-                    {/* Secondary Image - Shows on Hover */}
-                    {hasSecondImage && product.images && (
-                      <div className="absolute inset-0 overflow-hidden">
-                        <Image
-                          src={product.images[1]}
-                          alt={`${product.name} - alternate view`}
-                          fill
-                          className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 shine-effect pointer-events-none"></div>
+                <div className="relative w-full h-full bg-gray-100">
+                  {/* Primary Image */}
+                  <div className="product-image-wrapper-seamless absolute inset-0">
+                    {product.images && product.images.length > 0 ? (
+                      <Image
+                        src={product.images[0]}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        priority={index < 3}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                        <Package size={56} className="text-gray-300" />
                       </div>
                     )}
-
-                    {/* Availability Badge */}
-                    <div className="absolute top-5 right-5 z-20">
-                      <span className={`px-4 py-1.5 rounded-full text-xs font-bold backdrop-blur-md transition-all duration-300 ${
-                        product.availability === 'available'
-                          ? 'bg-emerald-500/90 text-white shadow-lg shadow-emerald-500/50'
-                          : product.availability === 'unavailable'
-                          ? 'bg-red-500/90 text-white shadow-lg shadow-red-500/50'
-                          : 'bg-amber-500/90 text-white shadow-lg shadow-amber-500/50'
-                      }`}>
-                        {product.availability === 'available' ? '✓ Available' : 
-                         product.availability === 'unavailable' ? '✗ Unavailable' : '◆ Reserved'}
-                      </span>
-                    </div>
-
-                    {/* Dark Overlay for Text Readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Shine Effect Overlay */}
+                    <div className="absolute inset-0 shine-effect pointer-events-none"></div>
                   </div>
 
-                  {/* Product Info Overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-6">
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition">
-                        {product.name}
-                      </h3>
+                  {/* Secondary Image - Shows on Hover */}
+                  {hasSecondImage && (
+                    <div className="absolute inset-0 overflow-hidden">
+                      <Image
+                        src={product.images![1]}
+                        alt={`${product.name} - alternate view`}
+                        fill
+                        className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 shine-effect pointer-events-none"></div>
+                    </div>
+                  )}
 
-                      
-                      {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
+                  {/* Availability Badge */}
+                  <div className="absolute top-5 right-5 z-20">
+                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold backdrop-blur-md transition-all duration-300 ${
+                      product.availability === 'available'
+                        ? 'bg-emerald-500/90 text-white shadow-lg shadow-emerald-500/50'
+                        : product.availability === 'unavailable'
+                        ? 'bg-red-500/90 text-white shadow-lg shadow-red-500/50'
+                        : 'bg-amber-500/90 text-white shadow-lg shadow-amber-500/50'
+                    }`}>
+                      {product.availability === 'available' ? '✓ Available' : 
+                       product.availability === 'unavailable' ? '✗ Unavailable' : '◆ Reserved'}
+                    </span>
+                  </div>
+
+                  {/* Dark Overlay for Text Readability - Always visible */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+
+                {/* Product Info Overlay */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-100 transition">
+                    {product.name}
+                  </h3>
+                  
+                  {/* Show description and dimensions only on desktop hover and on larger cards */}
+                  <div className="hidden sm:block">
+                    
+                    
+                    {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
                       <div className="mb-4 pb-3 border-b border-white/20">
                         <p className="text-xs font-semibold text-white/70 uppercase tracking-wide mb-2">Dimensions</p>
                         <div className="flex flex-wrap gap-3">
                           {product.dimensions.height && (
                             <div className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                              <span className="w-1.5 h-1.5 bg-amber-600 rounded-full"></span>
                               <span className="text-sm text-white/90">H: {product.dimensions.height}{product.dimensions.unit}</span>
                             </div>
                           )}
                           {product.dimensions.width && (
                             <div className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                              <span className="w-1.5 h-1.5 bg-amber-600 rounded-full"></span>
                               <span className="text-sm text-white/90">W: {product.dimensions.width}{product.dimensions.unit}</span>
                             </div>
                           )}
                         </div>
                       </div>
                     )}
+                  </div>
 
-                      <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
-                        View Details
-                        <ArrowRight size={16} />
-                      </span>
-                    </div>
+                  {/* View Details link */}
+                  <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
+                    View Details
+                    <ArrowRight size={16} />
+                  </span>
                 </div>
               </Link>
             );
@@ -212,11 +211,10 @@ export default function FeaturedProducts() {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 px-4 sm:px-6 lg:px-8">
           <Link
             href="/products"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl group"
-          >
+className="inline-flex items-center gap-3  bg-gradient-to-r from-amber-100 to-amber-50 text-amber-600 px-10 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl group">        
             <span>Explore All Collections</span>
             <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform" />
           </Link>

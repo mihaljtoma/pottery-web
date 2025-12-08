@@ -1,14 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const searchParams = useSearchParams();
+  const productId = searchParams.get('productId');
+  const productName = searchParams.get('productName');
+
+ const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: productName ? `Hello, I'm reaching out because I'm interested in the “${productName}” piece. Could you provide more details?` : '',
+    productId: productId || null
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
@@ -50,9 +56,9 @@ const { settings } = useSettings();
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-8 md:py-8">
+      <div className="py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
       Get in Touch
@@ -127,7 +133,7 @@ const { settings } = useSettings();
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+            <div className="bgpy-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl shadow-xl p-8 md:p-10">
               <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Lora', serif" }}>
                 Send us a Message
               </h2>
@@ -147,7 +153,7 @@ const { settings } = useSettings();
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
                     placeholder="John Doe"
                   />
                 </div>
@@ -163,7 +169,7 @@ const { settings } = useSettings();
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -179,9 +185,14 @@ const { settings } = useSettings();
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows="6"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition resize-none text-black"
                     placeholder="Tell us about your inquiry..."
                   />
+                  {productName && (
+                    <p className="text-xs text-amber-600 mt-2">
+                      💡 Pre-filled: You're inquiring about "{productName}"
+                    </p>
+                  )}
                 </div>
 
                 {/* Status Message */}

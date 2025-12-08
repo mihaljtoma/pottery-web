@@ -10,15 +10,15 @@ export default function AboutPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 flex items-center justify-center">
         <div className="animate-pulse text-gray-500">Loading...</div>
       </div>
     );
   }
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-8 md:py-8">
+      <div className="py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
       About Our Craft
@@ -99,7 +99,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Value 1 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                 <Heart className="text-amber-600" size={32} />
               </div>
@@ -113,7 +113,7 @@ export default function AboutPage() {
             </div>
 
             {/* Value 2 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                 <Sparkles className="text-green-600" size={32} />
               </div>
@@ -127,7 +127,7 @@ export default function AboutPage() {
             </div>
 
             {/* Value 3 */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                 <Mail className="text-blue-600" size={32} />
               </div>

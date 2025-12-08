@@ -228,29 +228,7 @@ export default function AdminSettingsPage() {
             </div>
           </div>
 
-          {/* Business Hours */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Business Hours</h2>
-            <div className="space-y-3">
-              {Object.entries(settings.businessHours).map(([day, hours]) => (
-                <div key={day} className="flex items-center gap-4">
-                  <label className="w-32 text-sm font-medium text-gray-700 capitalize">
-                    {day}
-                  </label>
-                  <input
-                    type="text"
-                    value={hours}
-                    onChange={(e) => setSettings({
-                      ...settings,
-                      businessHours: { ...settings.businessHours, [day]: e.target.value }
-                    })}
-                    className="flex-1 px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
-                    placeholder="9:00 AM - 5:00 PM or Closed"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          
 
           {/* Social Media */}
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">

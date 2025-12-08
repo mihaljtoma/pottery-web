@@ -1,64 +1,184 @@
-/* FeaturedProducts.css */
+/* FeaturedProducts-Seamless.css */
 
-/* Masonry Grid Layout */
-.masonry-grid {
+/* ============ DESKTOP MASONRY GRID - SEAMLESS ============ */
+.masonry-grid-seamless {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  grid-auto-rows: 380px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  grid-auto-rows: 300px;
   grid-auto-flow: dense;
-  margin-bottom: 3rem;
 }
 
-/* Masonry Items - Dynamic spanning */
-.masonry-item.col-span-2 {
-  grid-column: span 2;
-}
-
-.masonry-item.col-span-1 {
+/* Masonry Items - Dynamic spanning without gaps or rounded corners */
+.masonry-item-seamless.col-span-1 {
   grid-column: span 1;
 }
 
-.masonry-item.row-span-2 {
-  grid-row: span 2;
+.masonry-item-seamless.col-span-2 {
+  grid-column: span 2;
 }
 
-.masonry-item.row-span-1 {
+.masonry-item-seamless.col-span-3 {
+  grid-column: span 3;
+}
+
+.masonry-item-seamless.row-span-1 {
   grid-row: span 1;
 }
 
-/* Responsive adjustments for tablet */
+.masonry-item-seamless.row-span-2 {
+  grid-row: span 2;
+}
+
+.masonry-item-seamless.row-span-3 {
+  grid-row: span 3;
+}
+
+/* ============ TABLET - MASONRY 3 COLUMNS ============ */
 @media (max-width: 1024px) {
-  .masonry-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-auto-rows: 320px;
-    gap: 1.25rem;
+  .masonry-grid-seamless {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+    gap: 0;
   }
 
-  .masonry-item.col-span-2 {
+  .masonry-item-seamless.col-span-2 {
+    grid-column: span 2;
+  }
+
+  .masonry-item-seamless.col-span-3 {
     grid-column: span 1;
   }
 
-  .masonry-item.row-span-2 {
+  .masonry-item-seamless.row-span-2 {
+    grid-row: span 2;
+  }
+
+  .masonry-item-seamless.row-span-3 {
     grid-row: span 1;
   }
 }
 
-/* Responsive adjustments for mobile */
+/* ============ MOBILE - MASONRY GRID (1 LARGE LEFT, 2 SMALL RIGHT) ============ */
 @media (max-width: 640px) {
-  .masonry-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 300px;
-    gap: 1rem;
+  .masonry-grid-seamless {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 250px;
+    gap: 0;
   }
 
-  .masonry-item {
-    grid-column: span 1 !important;
-    grid-row: span 1 !important;
+  /* Pattern: 1 large left, 2 small right, repeat */
+  
+  /* Item 1: Large left (1x2) */
+  .masonry-item-seamless:nth-child(1) {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  /* Items 2-3: Small right */
+  .masonry-item-seamless:nth-child(2),
+  .masonry-item-seamless:nth-child(3) {
+    grid-column: 2;
+    grid-row: span 1;
+  }
+
+  /* Item 4: Small left */
+  .masonry-item-seamless:nth-child(4) {
+    grid-column: 1;
+    grid-row: span 1;
+  }
+
+  /* Item 5: Small left */
+  .masonry-item-seamless:nth-child(5) {
+    grid-column: 1;
+    grid-row: span 1;
+  }
+
+  /* Item 6: Large right (1x2) */
+  .masonry-item-seamless:nth-child(6) {
+    grid-column: 2;
+    grid-row: span 2;
+  }
+
+  /* Item 7: Large left (1x2) */
+  .masonry-item-seamless:nth-child(7) {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  /* Items 8-9: Small right */
+  .masonry-item-seamless:nth-child(8),
+  .masonry-item-seamless:nth-child(9) {
+    grid-column: 2;
+    grid-row: span 1;
+  }
+
+  /* Show all text on mobile (keep description and dimensions visible) */
+  .masonry-item-seamless .hidden {
+    display: block !important;
+  }
+}
+/* ============ MOBILE - MASONRY GRID (1 LARGE LEFT, 2 SMALL RIGHT) ============ */
+@media (max-width: 640px) {
+  .masonry-grid-seamless {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 250px;
+    gap: 0;
+  }
+
+  /* Pattern: 1 large left, 2 small right, repeat */
+  
+  /* Item 1: Large left (1x2) */
+  .masonry-item-seamless:nth-child(1) {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  /* Items 2-3: Small right */
+  .masonry-item-seamless:nth-child(2),
+  .masonry-item-seamless:nth-child(3) {
+    grid-column: 2;
+    grid-row: span 1;
+  }
+
+  /* Item 4: Small left */
+  .masonry-item-seamless:nth-child(4) {
+    grid-column: 1;
+    grid-row: span 1;
+  }
+
+  /* Item 5: Small left */
+  .masonry-item-seamless:nth-child(5) {
+    grid-column: 1;
+    grid-row: span 1;
+  }
+
+  /* Item 6: Large right (1x2) */
+  .masonry-item-seamless:nth-child(6) {
+    grid-column: 2;
+    grid-row: span 2;
+  }
+
+  /* Item 7: Large left (1x2) */
+  .masonry-item-seamless:nth-child(7) {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  /* Items 8-9: Small right */
+  .masonry-item-seamless:nth-child(8),
+  .masonry-item-seamless:nth-child(9) {
+    grid-column: 2;
+    grid-row: span 1;
+  }
+
+  /* Show all text on mobile (keep description and dimensions visible) */
+  .masonry-item-seamless .hidden {
+    display: block !important;
   }
 }
 
-/* Shine Effect Animation */
+/* ============ SHINE EFFECT ANIMATION ============ */
 @keyframes shine {
   0% {
     left: -100%;
@@ -106,30 +226,11 @@
   }
 }
 
-.group:hover .product-image-wrapper {
+.group:hover .product-image-wrapper-seamless {
   animation: shimmer 2s ease-in-out infinite;
 }
 
-/* Gradient Text for headings */
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .bg-clip-text {
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-}
-
-/* Smooth transitions and animations */
-.masonry-item {
-  position: relative;
-  transition: all 0.3s ease-out;
-}
-
-/* Enhanced shadow on hover */
-.masonry-item:hover {
-  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15));
-}
-
-/* Stagger animation for initial load */
+/* ============ STAGGER ANIMATION FOR INITIAL LOAD ============ */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -141,93 +242,80 @@
   }
 }
 
-.masonry-item {
+.masonry-item-seamless {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.masonry-item:nth-child(1) { animation-delay: 0.1s; }
-.masonry-item:nth-child(2) { animation-delay: 0.2s; }
-.masonry-item:nth-child(3) { animation-delay: 0.3s; }
-.masonry-item:nth-child(4) { animation-delay: 0.4s; }
-.masonry-item:nth-child(5) { animation-delay: 0.5s; }
-.masonry-item:nth-child(6) { animation-delay: 0.6s; }
+.masonry-item-seamless:nth-child(1) { animation-delay: 0.1s; }
+.masonry-item-seamless:nth-child(2) { animation-delay: 0.2s; }
+.masonry-item-seamless:nth-child(3) { animation-delay: 0.3s; }
+.masonry-item-seamless:nth-child(4) { animation-delay: 0.4s; }
+.masonry-item-seamless:nth-child(5) { animation-delay: 0.5s; }
+.masonry-item-seamless:nth-child(6) { animation-delay: 0.6s; }
+.masonry-item-seamless:nth-child(7) { animation-delay: 0.7s; }
+.masonry-item-seamless:nth-child(8) { animation-delay: 0.8s; }
 
-/* Smooth text transitions in overlay */
-.masonry-item h3,
-.masonry-item p,
-.masonry-item span {
+/* ============ SMOOTH TEXT TRANSITIONS ============ */
+.masonry-item-seamless h3,
+.masonry-item-seamless p,
+.masonry-item-seamless span {
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.5s ease-out;
+              opacity 0.5s ease-out,
+              color 0.3s ease-out;
 }
 
-/* Additional refinements */
-.masonry-item {
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-/* Improve text readability on all backgrounds */
-.masonry-item h3 {
+/* ============ IMPROVE TEXT READABILITY ============ */
+.masonry-item-seamless h3 {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
-.masonry-item p {
+.masonry-item-seamless p {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   font-weight: 500;
 }
 
-/* Cursor improvement on hover */
-.masonry-item {
+/* ============ HOVER EFFECTS ============ */
+.masonry-item-seamless {
+  transition: all 0.3s ease-out;
   cursor: pointer;
 }
 
-.masonry-item:active {
+.masonry-item-seamless:active {
   transform: scale(0.98);
 }
 
-/* Focus states for accessibility */
-.masonry-item:focus-visible {
+/* ============ ACCESSIBILITY ============ */
+.masonry-item-seamless:focus-visible {
   outline: 3px solid #d97706;
   outline-offset: 2px;
 }
 
-/* Premium glass effect on badge */
-.masonry-item [class*="bg-"][class*="/90"] {
+/* ============ GLASS EFFECT ON BADGE ============ */
+.masonry-item-seamless [class*="bg-"][class*="/90"] {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Advanced hover stagger effect for overlays */
-.group:hover h3 {
-  animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.group:hover p {
-  animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Prevent text selection on rapid clicks */
-.masonry-item {
+/* ============ PREVENT TEXT SELECTION ============ */
+.masonry-item-seamless {
   -webkit-user-select: none;
   user-select: none;
 }
 
-/* Enhance performance */
-.masonry-item {
+/* ============ PERFORMANCE OPTIMIZATION ============ */
+.masonry-item-seamless {
   will-change: transform, filter, box-shadow;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+
+/* ============ GRADIENT TEXT ============ */
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 }

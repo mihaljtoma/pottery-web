@@ -74,7 +74,7 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 flex items-center justify-center">
         <Package size={48} className="text-gray-400 animate-pulse" />
       </div>
     );
@@ -87,9 +87,9 @@ export default function ProductDetailPage() {
   const hasMultipleImages = product.images && product.images.length > 1;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       {/* Back Button */}
-      <div className="bg-white border-b">
+      <div className="py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link 
             href="/products"
@@ -217,7 +217,7 @@ export default function ProductDetailPage() {
 
             {/* Dimensions */}
             {product.dimensions && (product.dimensions.height || product.dimensions.width || product.dimensions.depth) && (
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl p-6 shadow-sm border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Dimensions</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {product.dimensions.height && (
@@ -282,18 +282,18 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Contact Button */}
-            <div className="pt-6">
-              <Link
-                href="/contact"
-                className="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center font-semibold py-4 rounded-lg transition-all transform hover:scale-105"
-              >
-                Inquire About This Piece
-              </Link>
-              <p className="text-sm text-gray-500 text-center mt-3">
-                Interested in this piece? Get in touch with us!
-              </p>
-            </div>
+           {/* Contact Button */}
+          <div className="pt-6">
+            <Link
+              href={`/contact?productId=${product.id}&productName=${encodeURIComponent(product.name)}`}
+              className="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center font-semibold py-4 rounded-lg transition-all transform hover:scale-105"
+            >
+              Inquire About This Piece
+            </Link>
+            <p className="text-sm text-gray-500 text-center mt-3">
+              Interested in this piece? Get in touch with us!
+            </p>
+          </div>
           </div>
         </div>
 

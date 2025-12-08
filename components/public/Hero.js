@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section className="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
       {/* Golden Gradient Background */}
-<div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-16 md:py-24">        
+<div className="absolute inset-0 py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">        
         {/* Decorative circles */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl" />
@@ -52,7 +52,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-semibold border-2 border-white/40 transition-all shadow-lg"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-black px-8 py-4 rounded-lg border-2 border-white/40 transition-all shadow-lg"
               >
                 Learn More
               </Link>
