@@ -186,14 +186,26 @@ export default function FeaturedProducts() {
                       )}
                       
                       {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
-                        <span className="text-xs text-white/80 mb-3">
-                          {product.dimensions.height && `H: ${product.dimensions.height}${product.dimensions.unit}`}
-                          {product.dimensions.height && product.dimensions.width && ' × '}
-                          {product.dimensions.width && `W: ${product.dimensions.width}${product.dimensions.unit}`}
-                        </span>
-                      )}
+                      <div className="mb-4 pb-3 border-b border-white/20">
+                        <p className="text-xs font-semibold text-white/70 uppercase tracking-wide mb-2">Dimensions</p>
+                        <div className="flex flex-wrap gap-3">
+                          {product.dimensions.height && (
+                            <div className="flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                              <span className="text-sm text-white/90">H: {product.dimensions.height}{product.dimensions.unit}</span>
+                            </div>
+                          )}
+                          {product.dimensions.width && (
+                            <div className="flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                              <span className="text-sm text-white/90">W: {product.dimensions.width}{product.dimensions.unit}</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
 
-                      <span className="inline-flex items-center gap-2 text-amber-300 font-semibold text-sm group-hover:gap-3 transition-all">
+                      <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
                         View Details
                         <ArrowRight size={16} />
                       </span>
