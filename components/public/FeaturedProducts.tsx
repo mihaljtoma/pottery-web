@@ -174,27 +174,30 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Product Info Overlay */}
-<div className="absolute inset-0 flex flex-col justify-start pt-16 p-6 text-white pointer-events-none">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm md:text-base text-gray-100 line-clamp-2 mb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                      {product.description}
-                    </p>
-                    
-                    {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
-                      <span className="text-xs md:text-sm text-gray-200 mb-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                        {product.dimensions.height && `H: ${product.dimensions.height}${product.dimensions.unit}`}
-                        {product.dimensions.height && product.dimensions.width && ' × '}
-                        {product.dimensions.width && `W: ${product.dimensions.width}${product.dimensions.unit}`}
-                      </span>
-                    )}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition">
+                        {product.name}
+                      </h3>
+                      
+                      {product.description && (
+                        <p className="text-sm text-white/90 mb-3 line-clamp-2">
+                          {product.description}
+                        </p>
+                      )}
+                      
+                      {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
+                        <span className="text-xs text-white/80 mb-3">
+                          {product.dimensions.height && `H: ${product.dimensions.height}${product.dimensions.unit}`}
+                          {product.dimensions.height && product.dimensions.width && ' × '}
+                          {product.dimensions.width && `W: ${product.dimensions.width}${product.dimensions.unit}`}
+                        </span>
+                      )}
 
-                    <div className="flex items-center gap-2 text-white font-semibold transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                      View Details
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      <span className="inline-flex items-center gap-2 text-amber-300 font-semibold text-sm group-hover:gap-3 transition-all">
+                        View Details
+                        <ArrowRight size={16} />
+                      </span>
                     </div>
-                  </div>
                 </div>
               </Link>
             );
