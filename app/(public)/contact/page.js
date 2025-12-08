@@ -1,25 +1,40 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
 
-export default function ContactPage() {
-  const searchParams = useSearchParams();
-  const productId = searchParams.get('productId');
-  const productName = searchParams.get('productName');
+export default function ContactPageContent() {
+  const [productName, setProductName] = useState('');
+  const [productId, setProductId] = useState('');
 
- const [formData, setFormData] = useState({
+  useEffect(() => {
+    // Get URL params using URLSearchParams
+    const params = new URLSearchParams(window.location.search);
+    setProductId(params.get('productId') || '');
+    setProductName(params.get('productName') || '');
+  }, []);
+
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: productName ? `Hello, I'm reaching out because I'm interested in the “${productName}” piece. Could you provide more details?` : '',
+    message: productName ? `I'm interested in the "${productName}" piece.` : '',
     productId: productId || null
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
-const { settings } = useSettings();
-  const handleSubmit = async (e) => {
+  const { settings } = useSettings();
+
+  // Update message when productName loads
+  useEffect(() => {
+    if (productName) {
+      setFormData(prev => ({
+        ...prev,
+        message: `I'm interested in the "${productName}" piece.`
+      }));
+    }
+  }, [productName]);
+ const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setStatus({ type: '', message: '' });
@@ -38,7 +53,7 @@ const { settings } = useSettings();
           type: 'success',
           message: 'Thank you! Your message has been sent successfully. We\'ll get back to you soon!'
         });
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', productId: null });
       } else {
         setStatus({
           type: 'error',
