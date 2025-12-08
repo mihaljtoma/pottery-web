@@ -174,7 +174,7 @@ export default function FeaturedProducts() {
                   </div>
 
                   {/* Product Info Overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-center p-6 text-white pointer-events-none">
+<div className="absolute inset-0 flex flex-col justify-start pt-16 p-6 text-white pointer-events-none">
                     <h3 className="text-2xl md:text-3xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
                       {product.name}
                     </h3>
