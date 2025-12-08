@@ -178,12 +178,7 @@ export default function FeaturedProducts() {
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition">
                         {product.name}
                       </h3>
-                      
-                      {product.description && (
-                        <p className="text-sm text-white/90 mb-3 line-clamp-2">
-                          {product.description}
-                        </p>
-                      )}
+
                       
                       {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
                       <div className="mb-4 pb-3 border-b border-white/20">
@@ -192,13 +187,13 @@ export default function FeaturedProducts() {
                           {product.dimensions.height && (
                             <div className="flex items-center gap-2">
                               <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                              <span className="text-sm text-white/90">Height: {product.dimensions.height}{product.dimensions.unit}</span>
+                              <span className="text-sm text-white/90">H: {product.dimensions.height}{product.dimensions.unit}</span>
                             </div>
                           )}
                           {product.dimensions.width && (
                             <div className="flex items-center gap-2">
                               <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                              <span className="text-sm text-white/90">Width: {product.dimensions.width}{product.dimensions.unit}</span>
+                              <span className="text-sm text-white/90">W: {product.dimensions.width}{product.dimensions.unit}</span>
                             </div>
                           )}
                         </div>
