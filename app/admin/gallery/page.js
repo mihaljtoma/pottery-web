@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Plus, Trash2, Instagram, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Instagram,Menu, X, Image as ImageIcon } from 'lucide-react';
 
 export default function AdminGalleryPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [uploading, setUploading] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     imageUrl: '',
     caption: '',
@@ -103,33 +105,65 @@ export default function AdminGalleryPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/admin/dashboard" className="text-gray-600 hover:text-gray-900">
-                <ArrowLeft size={24} />
-              </Link>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                  <Instagram className="text-pink-600" size={28} />
-                  Social Gallery
-                </h1>
-                <p className="text-sm text-gray-600 mt-1">
-                  Manage your behind-the-scenes photos
-                </p>
-              </div>
+      <header className="bg-white shadow-sm border-b sticky top-0 z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/admin/dashboard" className="p-1.5 hover:bg-gray-100 rounded-lg transition">
+              <ArrowLeft size={20} className="text-gray-600" />
+            </Link>
+            <div className="hidden sm:block">
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Instagram className="text-pink-600" size={24} />
+                Social Gallery
+              </h1>
+              <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
+                Manage your behind-the-scenes photos
+              </p>
             </div>
+            <div className="sm:hidden">
+              <h1 className="text-base font-bold text-gray-900 flex items-center gap-1.5">
+                <Instagram className="text-pink-600" size={20} />
+                Gallery
+              </h1>
+            </div>
+          </div>
+
+          {/* Desktop Button */}
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition"
+          >
+            <Plus size={18} />
+            Add Post
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="sm:hidden p-1.5 hover:bg-gray-100 rounded-lg transition"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="sm:hidden mt-2 pt-2 border-t border-gray-200">
             <button
-              onClick={() => setShowForm(!showForm)}
-              className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg transition"
+              onClick={() => {
+                setShowForm(!showForm);
+                setMenuOpen(false);
+              }}
+              className="w-full flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-3 py-2 rounded-lg font-semibold text-sm transition"
             >
-              <Plus size={20} />
-              Add Post
+              <Plus size={16} />
+              {showForm ? 'Cancel' : 'Add Post'}
             </button>
           </div>
-        </div>
-      </header>
+        )}
+      </div>
+    </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Add Post Form */}

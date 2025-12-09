@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Mail, CheckCircle, Clock, Trash2, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Mail,Menu, X, CheckCircle, Clock, Trash2, ExternalLink } from 'lucide-react';
 
 export default function AdminMessagesPage() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // all, unread, replied
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchMessages();
@@ -74,62 +75,115 @@ export default function AdminMessagesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/admin/dashboard" className="text-gray-600 hover:text-gray-900">
-                <ArrowLeft size={24} />
-              </Link>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Contact Messages</h1>
-                <p className="text-sm text-gray-600 mt-1">
-                  {unreadCount > 0 && (
-                    <span className="inline-flex items-center gap-1 text-amber-600 font-medium">
-                      <Mail size={14} />
-                      {unreadCount} unread message{unreadCount !== 1 ? 's' : ''}
-                    </span>
-                  )}
-                </p>
-              </div>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  filter === 'all'
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                All ({messages.length})
-              </button>
-              <button
-                onClick={() => setFilter('unread')}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  filter === 'unread'
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Unread ({unreadCount})
-              </button>
-              <button
-                onClick={() => setFilter('replied')}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  filter === 'replied'
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Replied ({messages.length - unreadCount})
-              </button>
+     <header className="bg-white shadow-sm border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex items-center justify-between mb-4 lg:mb-0">
+          <div className="flex items-center gap-4">
+            <Link href="/admin/dashboard" className="text-gray-600 hover:text-gray-900">
+              <ArrowLeft size={24} />
+            </Link>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Contact Messages</h1>
+              <p className="text-sm text-gray-600 mt-1">
+                {unreadCount > 0 && (
+                  <span className="inline-flex items-center gap-1 text-amber-600 font-medium">
+                    <Mail size={14} />
+                    {unreadCount} unread message{unreadCount !== 1 ? 's' : ''}
+                  </span>
+                )}
+              </p>
             </div>
           </div>
+
+          {/* Hamburger Button - Mobile Only */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </header>
+
+        {/* Filter Tabs - Desktop */}
+        <div className="hidden lg:flex gap-2">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-lg font-medium transition ${
+              filter === 'all'
+                ? 'bg-amber-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            All ({messages.length})
+          </button>
+          <button
+            onClick={() => setFilter('unread')}
+            className={`px-4 py-2 rounded-lg font-medium transition ${
+              filter === 'unread'
+                ? 'bg-amber-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Unread ({unreadCount})
+          </button>
+          <button
+            onClick={() => setFilter('replied')}
+            className={`px-4 py-2 rounded-lg font-medium transition ${
+              filter === 'replied'
+                ? 'bg-amber-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Replied ({messages.length - unreadCount})
+          </button>
+        </div>
+
+        {/* Filter Tabs - Mobile (Dropdown) */}
+        {menuOpen && (
+          <div className="lg:hidden mt-4 flex flex-col gap-2">
+            <button
+              onClick={() => {
+                setFilter('all');
+                setMenuOpen(false);
+              }}
+              className={`w-full px-4 py-2 rounded-lg font-medium transition text-left ${
+                filter === 'all'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              All ({messages.length})
+            </button>
+            <button
+              onClick={() => {
+                setFilter('unread');
+                setMenuOpen(false);
+              }}
+              className={`w-full px-4 py-2 rounded-lg font-medium transition text-left ${
+                filter === 'unread'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Unread ({unreadCount})
+            </button>
+            <button
+              onClick={() => {
+                setFilter('replied');
+                setMenuOpen(false);
+              }}
+              className={`w-full px-4 py-2 rounded-lg font-medium transition text-left ${
+                filter === 'replied'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Replied ({messages.length - unreadCount})
+            </button>
+          </div>
+        )}
+      </div>
+    </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Loading */}
