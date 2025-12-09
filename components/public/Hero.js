@@ -8,7 +8,9 @@ export default function Hero() {
 <div className="absolute inset-0 py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">        
         {/* Decorative circles */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+  
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl" />
+        
         
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10" style={{

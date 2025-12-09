@@ -55,6 +55,7 @@ export default function CategoriesShowcase() {
 
   return (
     <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+     
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -113,6 +114,7 @@ export default function CategoriesShowcase() {
 // Separate CategoryCard component for reusability
 function CategoryCard({ category, index, gradients }) {
   return (
+    
     <Link
       href={`/products?category=${category.slug}`}
       className="group relative block"
@@ -160,6 +162,10 @@ function CategoryCard({ category, index, gradients }) {
         {/* Shine effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </div>
+
+      
     </Link>
+
+    
   );
 }

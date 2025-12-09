@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Package, ChevronLeft, ChevronRight } from 'lucide-react';
-
+import SimilarProducts from '@/components/public/SimilarProducts';
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -87,9 +87,9 @@ export default function ProductDetailPage() {
   const hasMultipleImages = product.images && product.images.length > 1;
 
   return (
-    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       {/* Back Button */}
-      <div className="py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border-b">
+      <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link 
             href="/products"
@@ -297,8 +297,13 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
-        {/* Related Products Section - Optional for future */}
-        {/* You can add a "Similar Products" section here later */}
+        {/* Similar Products section */}
+        {product && (
+            <SimilarProducts 
+              currentProductId={product.id} 
+              categoryId={product.categoryId}
+            />
+          )}
       </div>
     </div>
   );

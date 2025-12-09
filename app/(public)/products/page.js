@@ -112,7 +112,7 @@ export default function ProductsPage() {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+                <h2 className="text-lg font-semibold text-gray-1100">Filters</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
@@ -225,7 +225,7 @@ export default function ProductsPage() {
 <div className="lg:hidden">
   <button
     onClick={() => setShowFilters(!showFilters)}
-    className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition"
+    className="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition"
   >
     <Filter size={20} />
     Filters
@@ -239,9 +239,9 @@ export default function ProductsPage() {
   {/* Mobile Filters Overlay */}
   {showFilters && (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-      <div className="absolute right-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto">
+      <div className="absolute right-0 top-0 bottom-0 w-80 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 p-6 overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold">Filters</h2>
+          <h2 className="text-lg font-semibold text-gray-1100">Filters</h2>
           <button onClick={() => setShowFilters(false)}>
             <X size={24} className="text-gray-500" />
           </button>
@@ -259,7 +259,7 @@ export default function ProductsPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+              className="text-black w-full bg-white pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
             />
           </div>
         </div>
