@@ -78,7 +78,7 @@ export default function SocialGallery() {
     </div>
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-br from-amber-50 to-gray-50 to-amber-50 text-pink-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="py-8 inline-flex items-center gap-2 bg-gradient-to-br from-amber-50 to-gray-50 to-amber-50 text-pink-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <Instagram size={16} />
             Social Gallery
           </div>
