@@ -31,5 +31,6 @@ export async function POST(request) {
       { error: 'Internal server error' },
       { status: 500 }
     );
+    
   }
 }

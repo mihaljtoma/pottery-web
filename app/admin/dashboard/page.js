@@ -2,7 +2,8 @@ import { redirect } from 'next/navigation';
 import { requireAuth } from '@/lib/auth';
 import { getProducts, getCategories, getContactSubmissions, getTestimonials } from '@/lib/db';
 import Link from 'next/link';
-import { Package, FolderTree, Mail, Settings, LogOut, Instagram, MessageCircle } from 'lucide-react';
+import { Package, FolderTree, Mail, Settings, Logout, Instagram, MessageCircle } from 'lucide-react';
+import LogoutButton from '@/components/admin/LogoutButton';
 
 export default async function AdminDashboard() {
   const auth = await requireAuth();
@@ -32,12 +33,7 @@ export default async function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-            <form action="/api/auth/logout" method="POST">
-              <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition">
-                <LogOut size={20} />
-                Logout
-              </button>
-            </form>
+            <LogoutButton />
           </div>
         </div>
       </header>

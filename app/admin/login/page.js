@@ -1,71 +1,80 @@
-import Hero from '@/components/public/Hero';
-import FeaturedProducts from '@/components/public/FeaturedProducts';
-import CategoriesShowcase from '@/components/public/CategoriesShowcase';
-import ContactForm from '@/components/public/ContactForm';
-import SocialGallery from '@/components/public/SocialGallery';
-import Testimonials from '@/components/public/Testimonials';
-import { getHomepageSections } from '@/lib/db';
+'use client';
 
-export const metadata = {
-  title: 'Pottery Studio - Handcrafted Pottery',
-  description: 'Discover unique handcrafted pottery pieces made with love and dedication.',
-};
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-// Map section IDs to components
-const sectionComponents = {
-  'hero': Hero,
-  'featured-products': FeaturedProducts,
-  'categories': CategoriesShowcase,
-  'social-gallery': SocialGallery,
-  'testimonials': Testimonials,
-  'contact': ContactForm
-};
+export default function AdminLogin() {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-export default async function HomePage() {
-  let sections = [];
-  
-  try {
-    console.log('🔍 [HomePage] Fetching sections from getHomepageSections()');
-    sections = await getHomepageSections();
-    console.log('✅ [HomePage] Sections fetched:', sections);
-  } catch (error) {
-    console.error('❌ [HomePage] Error loading sections:', error);
-    // Fallback to all sections if there's an error
-    sections = [
-      { id: 'hero', enabled: true, order: 0 },
-      { id: 'featured-products', enabled: true, order: 1 },
-      { id: 'categories', enabled: true, order: 2 },
-      { id: 'social-gallery', enabled: true, order: 3 },
-      { id: 'testimonials', enabled: true, order: 4 },
-      { id: 'contact', enabled: true, order: 5 }
-    ];
-    console.log('⚠️ [HomePage] Using fallback sections:', sections);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
 
-  // Filter enabled sections and sort by order
-  const enabledSections = sections
-    .filter(section => section.enabled)
-    .sort((a, b) => a.order - b.order);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
 
-  console.log('📋 [HomePage] Enabled sections:', enabledSections);
+      const data = await res.json();
 
-  if (enabledSections.length === 0) {
-    console.warn('⚠️ [HomePage] No enabled sections found!');
-  }
+      if (res.ok) {
+        router.push('/admin/dashboard');
+        router.refresh();
+      } else {
+        setError(data.error || 'Invalid password');
+      }
+    } catch (err) {
+      setError('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div>
-      {enabledSections.map(section => {
-        const Component = sectionComponents[section.id];
-        
-        if (!Component) {
-          console.warn(`⚠️ [HomePage] Section component not found: ${section.id}`);
-          return null;
-        }
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100">
+      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Portal</h1>
+          <p className="text-gray-600">Enter password to continue</p>
+        </div>
 
-        console.log(`✓ [HomePage] Rendering section: ${section.id}`);
-        return <Component key={section.id} />;
-      })}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
+              placeholder="Enter admin password"
+              required
+            />
+          </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition duration-200"
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
