@@ -8,8 +8,16 @@
   grid-auto-flow: dense;
   gap: 0;
   width: 100%;
-}
+  
 
+}
+@media (min-width: 1024px) 
+{
+.masonry-grid-seamless {
+padding-left: 10%;
+padding-right: 10%;
+}  
+}
 /* Base item styles */
 .masonry-item-seamless {
   position: relative;

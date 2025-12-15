@@ -169,7 +169,7 @@ export default function ContactPageContent() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="bg-white w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
-                    placeholder="John Doe"
+                    placeholder="Ivana Marković"
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export default function ContactPageContent() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-white w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
-                    placeholder="john@example.com"
+                    placeholder="ivanamarkovic211@gmail.com"
                   />
                 </div>
 
@@ -201,7 +201,7 @@ export default function ContactPageContent() {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows="6"
                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition resize-none text-black"
-                    placeholder="Tell us about your inquiry..."
+                    placeholder="Recite nam više o vašem upitu..."
                   />
                   {productName && (
                     <p className="text-xs text-amber-600 mt-2">
