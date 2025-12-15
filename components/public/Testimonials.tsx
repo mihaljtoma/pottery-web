@@ -47,7 +47,7 @@ export default function Testimonials() {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-slate-50">
+      <section className="py-20 bg-amber-50">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="text-gray-600">Loading testimonials...</p>
         </div>
@@ -82,7 +82,7 @@ export default function Testimonials() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-900 to-gray-800 mb-4">
-            Testimonials
+            Reviews
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Hear what our happy customers have to say about their pottery pieces.

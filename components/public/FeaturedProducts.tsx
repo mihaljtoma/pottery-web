@@ -46,7 +46,7 @@ export default function FeaturedProducts() {
     }
   };
 
-  const getGridSpan = (index: number): GridSpan => {
+  const getGridSpan = (index: number, totalProducts: number): GridSpan => {
     // Desktop pattern: 2x2, 1x1, 1x2, 2x1, 1x1, 1x1, 1x2, 1x1
     const patterns: GridSpan[] = [
       { col: 2, row: 2 },
@@ -58,7 +58,18 @@ export default function FeaturedProducts() {
       { col: 1, row: 2 },
       { col: 1, row: 1 },
     ];
+    
+    // Last item gets special treatment
+    if (index === totalProducts - 1) {
+      return { col: 2, row: 1 }; // Desktop: 2x1, tablet will override to 1x1 via CSS
+    }
+    
     return patterns[index % patterns.length];
+  };
+
+  const getSpanClasses = (span: GridSpan, isLastItem: boolean): string => {
+    // Use inline styles to handle dynamic grid spans instead of Tailwind classes
+    return isLastItem ? 'masonry-item-last' : `col-span-${span.col} row-span-${span.row}`;
   };
 
   if (loading) {
@@ -107,14 +118,15 @@ export default function FeaturedProducts() {
         {/* Masonry Grid - No gaps, no rounded corners */}
         <div className="masonry-grid-seamless">
           {products.map((product, index) => {
-            const span = getGridSpan(index);
+            const isLastItem = index === products.length - 1;
+            const span = getGridSpan(index, products.length);
             const hasSecondImage = product.images && product.images.length > 1;
             
             return (
               <Link
                 key={product.id}
                 href={`/products/${product.id}`}
-                className={`masonry-item-seamless col-span-${span.col} row-span-${span.row} group relative overflow-hidden`}
+                className={`masonry-item-seamless ${isLastItem ? 'masonry-item-last' : `masonry-item-col-${span.col} masonry-item-row-${span.row}`} group relative overflow-hidden`}
               >
                 <div className="relative w-full h-full bg-gray-100">
                   {/* Primary Image */}

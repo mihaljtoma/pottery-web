@@ -1,38 +1,52 @@
-/* FeaturedProducts-Seamless.css */
 
-/* ============ DESKTOP MASONRY GRID - SEAMLESS ============ */
+
+/* Base masonry grid */
 .masonry-grid-seamless {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  grid-auto-rows: 300px;
+  grid-auto-rows: 280px;
   grid-auto-flow: dense;
+  gap: 0;
+  width: 100%;
 }
 
-/* Masonry Items - Dynamic spanning without gaps or rounded corners */
-.masonry-item-seamless.col-span-1 {
+/* Base item styles */
+.masonry-item-seamless {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid span classes for desktop */
+.masonry-item-col-1 {
   grid-column: span 1;
 }
 
-.masonry-item-seamless.col-span-2 {
+.masonry-item-col-2 {
   grid-column: span 2;
 }
 
-.masonry-item-seamless.col-span-3 {
+.masonry-item-col-3 {
   grid-column: span 3;
 }
 
-.masonry-item-seamless.row-span-1 {
+.masonry-item-row-1 {
   grid-row: span 1;
 }
 
-.masonry-item-seamless.row-span-2 {
+.masonry-item-row-2 {
   grid-row: span 2;
 }
 
-.masonry-item-seamless.row-span-3 {
+.masonry-item-row-3 {
   grid-row: span 3;
 }
+
+/* Last item - 1x1 on desktop to avoid overflow and holes */
+.masonry-item-last {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
 
 /* ============ TABLET - MASONRY 3 COLUMNS ============ */
 @media (max-width: 1024px) {
@@ -42,19 +56,25 @@
     gap: 0;
   }
 
-  .masonry-item-seamless.col-span-2 {
+  .masonry-item-col-2 {
     grid-column: span 2;
   }
 
-  .masonry-item-seamless.col-span-3 {
+  .masonry-item-col-3 {
     grid-column: span 1;
   }
 
-  .masonry-item-seamless.row-span-2 {
+  .masonry-item-row-2 {
     grid-row: span 2;
   }
 
-  .masonry-item-seamless.row-span-3 {
+  .masonry-item-row-3 {
+    grid-row: span 1;
+  }
+
+  /* Last item - 1x1 on tablet */
+  .masonry-item-last {
+    grid-column: span 1;
     grid-row: span 1;
   }
 }

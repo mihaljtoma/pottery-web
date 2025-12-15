@@ -9,10 +9,29 @@ export default function CategoriesShowcase() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const scrollContainerRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
 
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      setTimeout(() => checkScroll(), 100);
+      container.addEventListener('scroll', checkScroll);
+      return () => container.removeEventListener('scroll', checkScroll);
+    }
+  }, [categories]);
 
   const fetchCategories = async () => {
     try {
@@ -26,13 +45,14 @@ export default function CategoriesShowcase() {
     }
   };
 
-  const scroll = (direction) => {
+  const handleScroll = (direction) => {
     if (scrollContainerRef.current) {
       const scrollAmount = 400;
       scrollContainerRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
+      setTimeout(checkScroll, 100);
     }
   };
 
@@ -54,7 +74,7 @@ export default function CategoriesShowcase() {
   const useSlider = categories.length >= 5;
 
   return (
-    <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+    <section className="py-16 bg-amber-50">
      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -70,6 +90,25 @@ export default function CategoriesShowcase() {
         {useSlider ? (
           /* Slider Layout for 5+ categories */
           <div className="relative">
+            {/* Navigation Buttons - Hidden on mobile/tablet, visible on desktop */}
+            <div className="hidden lg:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 justify-between pointer-events-none px-2 z-10">
+              <button
+                onClick={() => handleScroll('left')}
+                disabled={!canScrollLeft}
+                className="pointer-events-auto p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft size={24} className="text-gray-700" />
+              </button>
+              <button
+                onClick={() => handleScroll('right')}
+                disabled={!canScrollRight}
+                className="pointer-events-auto p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={24} className="text-gray-700" />
+              </button>
+            </div>
 
             {/* Scrollable Container */}
             <div
@@ -114,7 +153,6 @@ export default function CategoriesShowcase() {
 // Separate CategoryCard component for reusability
 function CategoryCard({ category, index, gradients }) {
   return (
-    
     <Link
       href={`/products?category=${category.slug}`}
       className="group relative block"
@@ -143,7 +181,7 @@ function CategoryCard({ category, index, gradients }) {
         
         {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-end p-6">
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-300 transition">
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-50 transition">
             {category.name}
           </h3>
           
@@ -162,10 +200,6 @@ function CategoryCard({ category, index, gradients }) {
         {/* Shine effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </div>
-
-      
     </Link>
-
-    
   );
 }
