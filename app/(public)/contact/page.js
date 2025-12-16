@@ -18,7 +18,8 @@ export default function ContactPageContent() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: productName ? `I'm interested in the "${productName}" piece.` : '',
+    message: productName ? ` Pozdrav,
+  Zanima me "${productName}".` : '',
     productId: productId || null
   });
   const [status, setStatus] = useState({ type: '', message: '' });
@@ -30,7 +31,8 @@ export default function ContactPageContent() {
     if (productName) {
       setFormData(prev => ({
         ...prev,
-        message: `I'm interested in the "${productName}" piece.`
+        message: `Pozdrav,
+  Zanima me "${productName}".`
       }));
     }
   }, [productName]);
@@ -205,7 +207,7 @@ export default function ContactPageContent() {
                   />
                   {productName && (
                     <p className="text-xs text-amber-600 mt-2">
-                      💡 Pre-filled: You're inquiring about "{productName}"
+                      💡 Pre-filled: Vaš upit se odnosi na "{productName}"
                     </p>
                   )}
                 </div>

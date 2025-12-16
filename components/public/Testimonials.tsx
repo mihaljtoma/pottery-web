@@ -81,7 +81,7 @@ export default function Testimonials() {
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-900 to-gray-800 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Reviews
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">

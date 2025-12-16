@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
+import ParallaxSection from '@/components/public/ParallaxSection';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -51,7 +52,16 @@ export default function ContactForm() {
   return (
     <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div>
+            <ParallaxSection
+              imageUrl="/anton_suskov.jpg"
+              title=""
+              subtitle=""
+              height="h-96"
+            />
+          </div>
+
+        <div className="py-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
