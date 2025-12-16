@@ -10,6 +10,7 @@ export default function GalleryPage() {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [flipped, setFlipped] = useState({});
   const { settings } = useSettings();
 
   useEffect(() => {
@@ -54,8 +55,15 @@ export default function GalleryPage() {
     setSelectedPost(null);
   };
 
+  const toggleFlip = (postId) => {
+    setFlipped(prev => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+  };
+
   return (
-    <div className="min-h-screen bg-amber-50 +">
+    <div className="min-h-screen bg-amber-50">
       {/* Header */}
       <div className="bg-gradient-to-br from-purple-600 via-pink-600 to-rose-600 py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -119,35 +127,98 @@ export default function GalleryPage() {
                 'aspect-[4/3]'
               ];
               const aspectClass = aspects[index % aspects.length];
+              const isFlipped = flipped[post.id];
 
               return (
                 <div
                   key={post.id}
                   className="break-inside-avoid mb-4"
                 >
+                  {/* Flip Card Container */}
                   <div
-                    onClick={() => openPost(post, index)}
                     className={`relative ${aspectClass} group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer`}
+                    onClick={() => toggleFlip(post.id)}
+                    style={{
+                      perspective: '1000px'
+                    }}
                   >
-                    <Image
-                      src={post.imageUrl}
-                      alt={post.caption || 'Gallery image'}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        {post.caption && (
-                          <p className="text-white text-sm leading-relaxed line-clamp-3">
-                            {post.caption}
-                          </p>
-                        )}
+                    {/* Front Side - Image */}
+                    <div 
+                      className="w-full h-full relative"
+                      style={{
+                        transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                        transformStyle: 'preserve-3d',
+                        transition: 'transform 0.6s ease-in-out',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        pointerEvents: isFlipped ? 'none' : 'auto'
+                      }}
+                    >
+                      <Image
+                        src={post.imageUrl}
+                        alt={post.caption || 'Gallery image'}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          {post.caption && (
+                            <p className="text-white text-sm leading-relaxed line-clamp-3">
+                              {post.caption}
+                            </p>
+                          )}
+                          <p className="text-white text-xs mt-4 opacity-75">Click to see more</p>
+                        </div>
                       </div>
+
+                      <a
+                        href={post.postUrl || settings.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute top-4 right-4 bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition shadow-lg transform hover:scale-110"
+                      >
+                        <Instagram size={18} className="text-white" />
+                      </a>
                     </div>
 
-                    <div className="absolute top-4 right-4 bg-gradient-to-br from-purple-600 to-pink-600 p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition shadow-lg">
-                      <Instagram size={18} className="text-white" />
+                    {/* Back Side - Description & Link */}
+                    <div 
+                      className="absolute inset-0 bg-amber-50 rounded-2xl w-full h-full p-6 flex flex-col justify-between"
+                      style={{
+                        transform: isFlipped ? 'rotateY(0deg)' : 'rotateY(-180deg)',
+                        transformStyle: 'preserve-3d',
+                        transition: 'transform 0.6s ease-in-out',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        pointerEvents: isFlipped ? 'auto' : 'none'
+                      }}
+                    >
+                      <div>
+                        <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+                          <Instagram size={12} />
+                          Post Details
+                        </div>
+                        <p className="text-gray-800 text-sm leading-relaxed line-clamp-5 font-medium">
+                          {post.caption || 'No description available'}
+                        </p>
+                      </div>
+
+                      <div className="space-y-3 pt-4 border-t border-gray-200">
+                        <a
+                          href={post.postUrl || settings.instagramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition transform hover:scale-105 w-full"
+                        >
+                          <Instagram size={16} />
+                          View on Instagram
+                          <ExternalLink size={14} />
+                        </a>
+                        <p className="text-gray-500 text-xs text-center">Click card to flip back</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -175,7 +246,7 @@ export default function GalleryPage() {
 
           <div className="max-w-5xl w-full">
             {/* Main Image */}
-            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-2xl">
+            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl mb-6 shadow-2xl">
               <Image
                 src={selectedPost.imageUrl}
                 alt={selectedPost.caption || 'Gallery image'}

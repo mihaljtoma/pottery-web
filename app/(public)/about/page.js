@@ -172,7 +172,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Shaping</h3>
               <p className="text-sm text-gray-600">
-                Clay is carefully shaped on the wheel or by hand, taking form through skilled hands.
+                Clay is carefully shaped by hand, taking form through skilled hands.
               </p>
             </div>
 
