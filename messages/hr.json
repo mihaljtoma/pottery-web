@@ -260,5 +260,31 @@
   "tags": "Oznake",
   "inquireButton": "Upit o Ovom Komadu",
   "inquireNote": "Zainteresirani za ovaj komad? Javite nam se!"
+},"metadata": {
+  "home": {
+    "title": "Keramička Radionica - Ručno Izrađena Keramika",
+    "description": "Otkrijte jedinstvene ručno izrađene keramičke komade. Svaki komad je napravljen s ljubavlju i pažnjom na detalje."
+  },
+  "products": {
+    "title": "Proizvodi - Naša Kolekcija Keramike",
+    "description": "Pregledajte našu kolekciju ručno izrađene keramike. Od šalica do vaza, svaki komad je jedinstven."
+  },
+  "productDetail": {
+    "title": "Detalji Proizvoda",
+    "suffix": "Keramička Radionica",
+    "description": "Pogledajte detalje ovog jedinstvenog ručno izrađenog keramičkog komada."
+  },
+  "about": {
+    "title": "O Nama - Naša Priča",
+    "description": "Saznajte više o našoj keramičkoj radionici, procesu izrade i vrednotama koje nas vode."
+  },
+  "contact": {
+    "title": "Kontakt - Javite Nam Se",
+    "description": "Imate pitanja ili želite naručiti prilagođeni komad? Kontaktirajte nas!"
+  },
+  "gallery": {
+    "title": "Galerija - Iza Kulisa",
+    "description": "Pratite naše keramičko putovanje i pogledajte što se događa u radionici."
+  }
 }
 }

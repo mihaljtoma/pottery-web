@@ -260,5 +260,31 @@
   "tags": "Tags",
   "inquireButton": "Inquire About This Piece",
   "inquireNote": "Interested in this piece? Get in touch with us!"
+},"metadata": {
+  "home": {
+    "title": "Pottery Studio - Handcrafted Pottery",
+    "description": "Discover unique handcrafted pottery pieces. Each piece is made with love and attention to detail."
+  },
+  "products": {
+    "title": "Products - Our Pottery Collection",
+    "description": "Browse our collection of handcrafted pottery. From mugs to vases, each piece is unique."
+  },
+  "productDetail": {
+    "title": "Product Details",
+    "suffix": "Pottery Studio",
+    "description": "View details of this unique handcrafted pottery piece."
+  },
+  "about": {
+    "title": "About Us - Our Story",
+    "description": "Learn more about our pottery studio, our crafting process, and the values that guide us."
+  },
+  "contact": {
+    "title": "Contact - Get in Touch",
+    "description": "Have questions or want to order a custom piece? Contact us!"
+  },
+  "gallery": {
+    "title": "Gallery - Behind the Scenes",
+    "description": "Follow our pottery journey and see what's happening in the studio."
+  }
 }
 }

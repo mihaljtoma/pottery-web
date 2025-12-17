@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ArrowLeft, Package, ChevronLeft, ChevronRight } from 'lucide-react';
 import SimilarProducts from '@/components/public/SimilarProducts';
 import { useTranslations, useLocale } from 'next-intl';
+
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
