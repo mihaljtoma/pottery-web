@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Search, Filter, Package, X } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -13,7 +14,8 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedAvailability, setSelectedAvailability] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-
+  const t = useTranslations('products');
+  const locale = useLocale();
   // Fetch categories on mount and set category from URL
   useEffect(() => {
     const loadCategories = async () => {
@@ -98,10 +100,10 @@ export default function ProductsPage() {
       <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
-            Our Collection
+            {t('header.title')}
           </h1>
           <p className="text-lg text-gray-600" style={{ fontFamily: "'Lora', serif" }}>
-            Explore our handcrafted pottery pieces
+            {t('header.subtitle')}
           </p>
         </div>
       </div>
@@ -112,13 +114,13 @@ export default function ProductsPage() {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-gray-1100">Filters</h2>
+                <h2 className="text-lg font-semibold text-gray-1100">{t('filters.title')}</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
                     className="text-sm text-amber-600 hover:text-amber-700 font-medium"
                   >
-                    Clear all
+                    {t('filters.clearAll')}
                   </button>
                 )}
               </div>
@@ -126,7 +128,7 @@ export default function ProductsPage() {
               {/* Search */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Search
+                  {t('filters.search')}
                 </label>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
@@ -134,7 +136,7 @@ export default function ProductsPage() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search products..."
+                    placeholder={t('filters.searchPlaceholder')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
                   />
                 </div>
@@ -143,7 +145,7 @@ export default function ProductsPage() {
               {/* Categories */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Category
+                  {t('filters.category')}
                 </label>
                 <div className="space-y-2">
                   <label className="flex items-center cursor-pointer">
@@ -154,7 +156,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedCategory('')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">All Categories</span>
+                    <span className="ml-3 text-gray-700">{t('filters.allCategories')}</span>
                   </label>
                   {categories.map((category) => (
                     <label key={category.id} className="flex items-center cursor-pointer">
@@ -174,7 +176,7 @@ export default function ProductsPage() {
               {/* Availability */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Availability
+                  {t('filters.availability')}
                 </label>
                 <div className="space-y-2">
                   <label className="flex items-center cursor-pointer">
@@ -185,7 +187,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedAvailability('')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">All</span>
+                    <span className="ml-3 text-gray-700">{t('filters.all')}</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -195,7 +197,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedAvailability('available')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">Available</span>
+                    <span className="ml-3 text-gray-700">{t('filters.available')}</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -205,7 +207,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedAvailability('unavailable')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">Unavailable</span>
+                    <span className="ml-3 text-gray-700">{t('filters.unavailable')}</span>
                   </label>
                   <label className="flex items-center cursor-pointer">
                     <input
@@ -215,7 +217,7 @@ export default function ProductsPage() {
                       onChange={() => setSelectedAvailability('reserved')}
                       className="w-4 h-4 text-amber-600"
                     />
-                    <span className="ml-3 text-gray-700">Reserved</span>
+                    <span className="ml-3 text-gray-700">{t('filters.reserved')}</span>
                   </label>
                 </div>
               </div>
@@ -228,10 +230,10 @@ export default function ProductsPage() {
     className="w-full flex items-center justify-center gap-2 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 border border-gray-300 rounded-lg px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 transition"
   >
     <Filter size={20} />
-    Filters
+    {t('filters.filtersButton')}
     {hasActiveFilters && (
       <span className="bg-amber-600 text-white text-xs px-2 py-1 rounded-full">
-        Active
+        {t('filters.active')}
       </span>
     )}
   </button>
@@ -267,7 +269,7 @@ export default function ProductsPage() {
         {/* Categories */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            Category
+            {t('filters.category')}
           </label>
           <div className="space-y-2">
             <label className="flex items-center cursor-pointer">
@@ -298,7 +300,7 @@ export default function ProductsPage() {
         {/* Availability */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            Availability
+            {t('filters.availability')}
           </label>
           <div className="space-y-2">
             <label className="flex items-center cursor-pointer">
@@ -309,7 +311,7 @@ export default function ProductsPage() {
                 onChange={() => setSelectedAvailability('')}
                 className="w-4 h-4 text-amber-600"
               />
-              <span className="ml-3 text-gray-700">All</span>
+              <span className="ml-3 text-gray-700">{t('filters.all')}</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
@@ -319,7 +321,8 @@ export default function ProductsPage() {
                 onChange={() => setSelectedAvailability('available')}
                 className="w-4 h-4 text-amber-600"
               />
-              <span className="ml-3 text-gray-700">Available</span>
+              <span className="ml-3 text-gray-700">{t('filters.available')}
+</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
@@ -329,7 +332,7 @@ export default function ProductsPage() {
                 onChange={() => setSelectedAvailability('unavailable')}
                 className="w-4 h-4 text-amber-600"
               />
-              <span className="ml-3 text-gray-700">Unavailable</span>
+              <span className="ml-3 text-gray-700">{t('filters.unavailable')}</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
@@ -339,7 +342,7 @@ export default function ProductsPage() {
                 onChange={() => setSelectedAvailability('reserved')}
                 className="w-4 h-4 text-amber-600"
               />
-              <span className="ml-3 text-gray-700">Reserved</span>
+              <span className="ml-3 text-gray-700">{t('filters.reserved')}</span>
             </label>
           </div>
         </div>
@@ -351,14 +354,14 @@ export default function ProductsPage() {
               onClick={clearFilters}
               className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 rounded-lg transition"
             >
-              Clear Filters
+             {t('filters.clearFilters')}
             </button>
           )}
           <button
             onClick={() => setShowFilters(false)}
             className="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 rounded-lg transition"
           >
-            Apply Filters
+          {t('filters.applyFilters')}
           </button>
         </div>
       </div>
@@ -370,22 +373,22 @@ export default function ProductsPage() {
           <div className="flex-1">
             <div className="mb-6">
               <p className="text-gray-600">
-                {loading ? 'Loading...' : `${products.length} product${products.length !== 1 ? 's' : ''} found`}
+                {loading ? t('loading') :  t('productsFound', { count: products.length })}
               </p>
             </div>
 
             {loading && (
               <div className="text-center py-12">
                 <Package size={48} className="mx-auto text-gray-400 mb-4 animate-pulse" />
-                <p className="text-gray-500">Loading products...</p>
-              </div>
+              <p className="text-gray-500">{t('loadingProducts')}</p>   
+                         </div>
             )}
 
             {!loading && products.length === 0 && (
               <div className="text-center py-12">
                 <Package size={48} className="mx-auto text-gray-400 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-600">Try adjusting your filters</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('empty.title')}</h3>
+                <p className="text-gray-600">{t('empty.subtitle')}</p>
               </div>
             )}
 
@@ -394,8 +397,8 @@ export default function ProductsPage() {
                 {products.map((product) => (
                   <Link
                     key={product.id}
-                    href={`/products/${product.id}`}
-                    className="group bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all"
+                    href={`/${locale}/products/${product.id}`}   
+                   className="group bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all"
                   >
                     <div className="relative h-64 bg-gray-100">
                       {product.images && product.images.length > 0 ? (
@@ -412,12 +415,14 @@ export default function ProductsPage() {
                       )}
                       
                       <div className="absolute top-4 right-4">
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           product.availability === 'available' ? 'bg-green-200 text-white' :
                           product.availability === 'unavailable' ? 'bg-red-200 text-white' :
                           'bg-yellow-200 text-white'
                         }`}>
-                          {product.availability.charAt(0).toUpperCase() + product.availability.slice(1)}
+                          {product.availability === 'available' ? t('filters.available') :
+                          product.availability === 'unavailable' ? t('filters.unavailable') :
+                          t('filters.reserved')}
                         </span>
                       </div>
                     </div>

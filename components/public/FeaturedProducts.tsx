@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Package } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 import './FeaturedProducts.css';
 
 interface ProductDimensions {
@@ -29,6 +30,8 @@ interface GridSpan {
 export default function FeaturedProducts() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations('featured');
+  const locale = useLocale();
 
   useEffect(() => {
     fetchFeaturedProducts();
@@ -74,13 +77,13 @@ export default function FeaturedProducts() {
 
   if (loading) {
     return (
-      <section className="py-16 py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+      <section className="py-16 py-16 bg-amber-50">
         <div className="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
           <div className="text-center py-12">
             <div className="inline-block">
               <div className="animate-pulse flex items-center gap-2">
                 <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
-                <p className="text-gray-600 font-medium">Loading featured pieces...</p>
+                <p className="text-gray-600 font-medium">{t('loading')}</p>
                 <div className="w-2 h-2 bg-amber-600 rounded-full animate-bounce"></div>
               </div>
             </div>
@@ -95,23 +98,23 @@ export default function FeaturedProducts() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+    <section className="py-16 bg-amber-50">
       <div className="max-w-full px-0 mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
             <span className="text-sm font-semibold text-amber-600 tracking-wide uppercase">
-              Curated Selection
+              {t('badge')}
             </span>
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
           </div>
           
           <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-900 to-gray-800 mb-4">
-            Featured Work
+            {t('title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover our most beloved pieces, handcrafted with meticulous care and attention to detail. Each item tells its own story.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -125,7 +128,7 @@ export default function FeaturedProducts() {
             return (
               <Link
                 key={product.id}
-                href={`/products/${product.id}`}
+                href={`/${locale}/products/${product.id}`}
                 className={`masonry-item-seamless ${isLastItem ? 'masonry-item-last' : `masonry-item-col-${span.col} masonry-item-row-${span.row}`} group relative overflow-hidden`}
               >
                 <div className="relative w-full h-full bg-gray-100">
@@ -171,8 +174,9 @@ export default function FeaturedProducts() {
                         ? 'bg-red-500/90 text-white shadow-lg shadow-red-500/50'
                         : 'bg-amber-500/90 text-white shadow-lg shadow-amber-500/50'
                     }`}>
-                      {product.availability === 'available' ? '✓ Available' : 
-                       product.availability === 'unavailable' ? '✗ Unavailable' : '◆ Reserved'}
+                      {product.availability === 'available' ? t('availability.available') : 
+                       product.availability === 'unavailable' ? t('availability.unavailable') : 
+                       t('availability.reserved')}
                     </span>
                   </div>
 
@@ -188,11 +192,9 @@ export default function FeaturedProducts() {
                   
                   {/* Show description and dimensions only on desktop hover and on larger cards */}
                   <div className="hidden sm:block">
-                    
-                    
                     {product.dimensions && (product.dimensions.height || product.dimensions.width) && (
                       <div className="mb-4 pb-3 border-b border-white/20">
-                        <p className="text-xs font-semibold text-white/70 uppercase tracking-wide mb-2">Dimensions</p>
+                        <p className="text-xs font-semibold text-white/70 uppercase tracking-wide mb-2">{t('dimensions')}</p>
                         <div className="flex flex-wrap gap-3">
                           {product.dimensions.height && (
                             <div className="flex items-center gap-2">
@@ -213,7 +215,7 @@ export default function FeaturedProducts() {
 
                   {/* View Details link */}
                   <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
-                    View Details
+                    {t('viewDetails')}
                     <ArrowRight size={16} />
                   </span>
                 </div>
@@ -225,9 +227,10 @@ export default function FeaturedProducts() {
         {/* View All Button */}
         <div className="text-center mt-12 px-4 sm:px-6 lg:px-8">
           <Link
-            href="/products"
-className="inline-flex items-center gap-3  bg-gradient-to-r from-amber-100 to-amber-50 text-amber-600 px-10 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl group">        
-            <span>Explore All Collections</span>
+            href={`/${locale}/products`}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-100 to-amber-50 text-amber-600 px-10 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-2xl group"
+          >        
+            <span>{t('exploreAll')}</span>
             <ArrowRight size={22} className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

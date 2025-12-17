@@ -3,13 +3,16 @@
 import Link from 'next/link';
 import { Instagram, Facebook, Twitter, Heart } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { settings } = useSettings();
+  const t = useTranslations('footer');
+  const locale = useLocale();
 
   return (
-      <footer className="py-8 bg-gradient-to-br from-amber-50 to white to-amber-50 text-white relative overflow-hidden">
+    <footer className="py-8 bg-amber-50 text-white relative overflow-hidden">
       <div className="absolute top-10 right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
       <div className="absolute bottom-10 left-10 w-80 h-80 bg-orange-400/20 rounded-full blur-3xl" />
       
@@ -25,14 +28,14 @@ export default function Footer() {
         {/* Feature Cards - Zigzag Pattern */}
         <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 - Brand (Top Left) */}
-          <div className="bg-gradient-to-br from-amber-50  to-amber-50 rounded-2xl p-8 shadow-lg md:col-span-1 md:row-span-2">
+          <div className="bg-gradient-to-br from-amber-50 to-amber-50 rounded-2xl p-8 shadow-lg md:col-span-1 md:row-span-2">
             <div className="border-2 border-white rounded-xl p-6 h-full flex flex-col justify-between">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3"  style={{ fontFamily: "'Lora', serif" }}>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: "'Lora', serif" }}>
                   {settings.siteName || 'Rosy Pottery'}
                 </h3>
-                <p className="text-gray-700 leading-relaxed mb-6"  style={{ fontFamily: "'Lora', serif" }}>
-                  {settings.tagline || 'Handcrafted Pottery with Love and Enjoyment'}
+                <p className="text-gray-700 leading-relaxed mb-6" style={{ fontFamily: "'Lora', serif" }}>
+                  {settings.tagline || t('tagline')}
                 </p>
               </div>
               
@@ -75,34 +78,40 @@ export default function Footer() {
           </div>
 
           {/* Card 2 - Quick Links (Top Right) */}
-          <div className="bg-gradient-to-br from-amber-50  to-amber-50 rounded-2xl p-8 shadow-lg md:col-span-2 md:col-start-2">
-            <h4 className="font-semibold text-gray-900 mb-6 text-lg"  style={{ fontFamily: "'Lora', serif" }}>Quick Links</h4>
+          <div className="bg-gradient-to-br from-amber-50 to-amber-50 rounded-2xl p-8 shadow-lg md:col-span-2 md:col-start-2">
+            <h4 className="font-semibold text-gray-900 mb-6 text-lg" style={{ fontFamily: "'Lora', serif" }}>
+              {t('quickLinks')}
+            </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-              <Link href="/" className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
-                Home
+              <Link href={`/${locale}`} className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+                {t('nav.home')}
               </Link>
-              <Link href="/products" className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
-                Products
+              <Link href={`/${locale}/products`} className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+                {t('nav.products')}
               </Link>
-              <Link href="/gallery" className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
-                Gallery
+              <Link href={`/${locale}/gallery`} className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+                {t('nav.gallery')}
               </Link>
-              <Link href="/about" className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
-                About
+              <Link href={`/${locale}/about`} className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+                {t('nav.about')}
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
-                Contact
+              <Link href={`/${locale}/contact`} className="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+                {t('nav.contact')}
               </Link>
             </div>
           </div>
 
           {/* Card 3 - Contact (Bottom Right) */}
           <div className="bg-gradient-to-br from-amber-50 to-amber-50 rounded-2xl p-8 shadow-lg md:col-span-1 md:col-start-3 md:row-start-3">
-            <h4 className="font-semibold text-gray-900 mb-6 text-lg "  style={{ fontFamily: "'Lora', serif" }}>Contact</h4>
+            <h4 className="font-semibold text-gray-900 mb-6 text-lg" style={{ fontFamily: "'Lora', serif" }}>
+              {t('contact.title')}
+            </h4>
             <div className="space-y-4">
               {settings.contactEmail && (
                 <div>
-                  <p className="text-sm text-gray-600 mb-1"  style={{ fontFamily: "'Lora', serif" }}>Email</p>
+                  <p className="text-sm text-gray-600 mb-1" style={{ fontFamily: "'Lora', serif" }}>
+                    {t('contact.email')}
+                  </p>
                   <a 
                     href={`mailto:${settings.contactEmail}`} 
                     className="text-gray-700 hover:text-amber-600 font-medium transition-colors block"
@@ -113,7 +122,9 @@ export default function Footer() {
               )}
               {settings.contactPhone && (
                 <div>
-                  <p className="text-sm text-gray-600 mb-1"  style={{ fontFamily: "'Lora', serif" }}>Phone</p>
+                  <p className="text-sm text-gray-600 mb-1" style={{ fontFamily: "'Lora', serif" }}>
+                    {t('contact.phone')}
+                  </p>
                   <p className="text-gray-700 font-medium">
                     {settings.contactPhone}
                   </p>
@@ -128,10 +139,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-black/90 text-sm flex items-center gap-2 drop-shadow-sm">
               © {currentYear} {settings.siteName || 'Rosy Pottery'}. 
-              <span className="hidden md:inline">All rights reserved.</span>
+              <span className="hidden md:inline">{t('rights')}</span>
             </p>
             <p className="text-black/90 text-sm flex items-center gap-2 drop-shadow-sm">
-              Made with <Heart size={14} className="text-rose-300 fill-rose-300 animate-pulse" /> and clay
+              {t('madeWith')} <Heart size={14} className="text-rose-300 fill-rose-300 animate-pulse" /> {t('andClay')}
             </p>
           </div>
         </div>

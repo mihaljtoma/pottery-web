@@ -3,10 +3,13 @@
 import { useState, useEffect } from 'react';
 import { Mail, Phone, Send, CheckCircle } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function ContactPageContent() {
   const [productName, setProductName] = useState('');
   const [productId, setProductId] = useState('');
+  const t = useTranslations('contactPage');
+  const locale = useLocale();
 
   useEffect(() => {
     // Get URL params using URLSearchParams
@@ -18,8 +21,7 @@ export default function ContactPageContent() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: productName ? ` Pozdrav,
-  Zanima me "${productName}".` : '',
+    message: productName ? t('form.productMessage', { productName }) : '',
     productId: productId || null
   });
   const [status, setStatus] = useState({ type: '', message: '' });
@@ -31,12 +33,12 @@ export default function ContactPageContent() {
     if (productName) {
       setFormData(prev => ({
         ...prev,
-        message: `Pozdrav,
-  Zanima me "${productName}".`
+        message: t('form.productMessage', { productName })
       }));
     }
-  }, [productName]);
- const handleSubmit = async (e) => {
+  }, [productName, t]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setStatus({ type: '', message: '' });
@@ -53,19 +55,19 @@ export default function ContactPageContent() {
       if (res.ok) {
         setStatus({
           type: 'success',
-          message: 'Thank you! Your message has been sent successfully. We\'ll get back to you soon!'
+          message: t('status.success')
         });
         setFormData({ name: '', email: '', message: '', productId: null });
       } else {
         setStatus({
           type: 'error',
-          message: data.error || 'Something went wrong. Please try again.'
+          message: data.error || t('status.error')
         });
       }
     } catch (error) {
       setStatus({
         type: 'error',
-        message: 'Failed to send message. Please try again or email us directly.'
+        message: t('status.failed')
       });
     } finally {
       setLoading(false);
@@ -73,19 +75,18 @@ export default function ContactPageContent() {
   };
 
   return (
-    <div className="min-h-screen py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+    <div className="min-h-screen py-8 bg-amber-50">
       {/* Hero Section */}
-      <div className="py-8 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
-      Get in Touch
-    </h1>
-    <p className="text-xl text-gray-600 leading-relaxed" style={{ fontFamily: "'Lora', serif" }}>
-      Have a question about our pottery or interested in a custom piece? 
-      We'd love to hear from you!
-    </p>
-  </div>
-</div>
+      <div className="py-8 bg-amber-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: "'Lora', serif" }}>
+            {t('hero.title')}
+          </h1>
+          <p className="text-xl text-gray-600 leading-relaxed" style={{ fontFamily: "'Lora', serif" }}>
+            {t('hero.subtitle')}
+          </p>
+        </div>
+      </div>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -94,11 +95,10 @@ export default function ContactPageContent() {
           <div className="lg:col-span-2 space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "'Lora', serif" }}>
-                Contact Information
+                {t('info.title')}
               </h2>
               <p className="text-gray-600 mb-8" style={{ fontFamily: "'Lora', serif" }}>
-                We're here to help and answer any questions you might have. 
-                We look forward to hearing from you!
+                {t('info.subtitle')}
               </p>
             </div>
 
@@ -110,15 +110,15 @@ export default function ContactPageContent() {
                   <Mail className="text-amber-600" size={28} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">Email</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">{t('info.email')}</h3>
                   <a 
-                    href="mailto:contact@potterystudio.com"
+                    href={`mailto:${settings.contactEmail || 'contact@potterystudio.com'}`}
                     className="text-amber-600 hover:text-amber-700 transition"
                   >
-                   {settings.contactEmail || 'contact@potterystudio.com'}
+                    {settings.contactEmail || 'contact@potterystudio.com'}
                   </a>
-                  <p className="text-sm text-gray-500 mt-1" >
-                    We'll respond within 24-48 hours
+                  <p className="text-sm text-gray-500 mt-1">
+                    {t('info.emailNote')}
                   </p>
                 </div>
               </div>
@@ -129,40 +129,36 @@ export default function ContactPageContent() {
                   <Phone className="text-green-600" size={28} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">Phone</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">{t('info.phone')}</h3>
                   <a 
-                    href="tel:+15551234567"
+                    href={`tel:${settings.contactPhone || '+15551234567'}`}
                     className="text-green-600 hover:text-green-700 transition"
                   >
-                   {settings.contactPhone || '+1 (555) 123-4567'}
+                    {settings.contactPhone || '+1 (555) 123-4567'}
                   </a>
                   <p className="text-sm text-gray-500 mt-1">
-                    Mon-Fri, 9am-5pm EST
+                    {t('info.phoneNote')}
                   </p>
                 </div>
               </div>
-
-           
             </div>
-
-         
           </div>
 
           {/* Contact Form - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bgpy-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl shadow-xl p-8 md:p-10">
+            <div className="py-16 bg-amber-50 rounded-2xl shadow-xl p-8 md:p-10">
               <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Lora', serif" }}>
-                Send us a Message
+                {t('form.title')}
               </h2>
               <p className="text-gray-600 mb-8" style={{ fontFamily: "'Lora', serif" }}>
-                Fill out the form below and we'll get back to you as soon as possible.
+                {t('form.subtitle')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Name *
+                    {t('form.name')}
                   </label>
                   <input
                     type="text"
@@ -171,14 +167,14 @@ export default function ContactPageContent() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="bg-white w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
-                    placeholder="Ivana Marković"
+                    placeholder={t('form.namePlaceholder')}
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Email *
+                    {t('form.email')}
                   </label>
                   <input
                     type="email"
@@ -187,14 +183,14 @@ export default function ContactPageContent() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="bg-white w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition text-black"
-                    placeholder="ivanamarkovic211@gmail.com"
+                    placeholder={t('form.emailPlaceholder')}
                   />
                 </div>
 
                 {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Message *
+                    {t('form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -203,11 +199,11 @@ export default function ContactPageContent() {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows="6"
                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition resize-none text-black"
-                    placeholder="Recite nam više o vašem upitu..."
+                    placeholder={t('form.messagePlaceholder')}
                   />
                   {productName && (
                     <p className="text-xs text-amber-600 mt-2">
-                      💡 Pre-filled: Vaš upit se odnosi na "{productName}"
+                      {t('form.preFilled', { productName })}
                     </p>
                   )}
                 </div>
@@ -237,18 +233,18 @@ export default function ContactPageContent() {
                   {loading ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Sending...
+                      {t('form.sending')}
                     </>
                   ) : (
                     <>
-                      Send Message
+                      {t('form.submit')}
                       <Send size={20} />
                     </>
                   )}
                 </button>
 
                 <p className="text-sm text-gray-500 text-center">
-                  By submitting this form, you agree to our privacy policy.
+                  {t('form.privacy')}
                 </p>
               </form>
             </div>

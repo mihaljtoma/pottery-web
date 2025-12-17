@@ -1,12 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Hero() {
+  const t = useTranslations('home.hero');
+  const locale = useLocale();
+
   return (
     <section className="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
       {/* Golden Gradient Background */}
-      <div className="absolute inset-0 py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">        
+      <div className="absolute inset-0 py-16 bg-amber-50">        
         {/* Decorative circles */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
   
@@ -19,7 +25,7 @@ export default function Hero() {
         }} />
       </div>
 
-      {/* Background Image - positioned behind title on right side */}
+      {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <Image
           src="/ggg.jpg"
@@ -35,39 +41,39 @@ export default function Hero() {
         <div className="flex items-center justify-center h-full">
           {/* Text Content */}
           <div className="max-w-3xl text-center">
-            {/* Small badge above title */}
+            {/* Small badge */}
             <div className="inline-flex items-center gap-2 bg-black/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
-              ✨ Handcrafted with Love
+              {t('badge')}
             </div>
 
             {/* Main Title */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-3d-float-animated relative z-10" style={{ fontFamily: "'Playfair Display', serif" }}>
-              <span className="text-white">Handcrafted</span>
+              <span className="text-white">{t('title.line1')}</span>
               <span className="block text-amber-50">
-                Pottery
+                {t('title.line2')}
               </span>
-              <span className="text-white">with Rosy</span>
+              <span className="text-white">{t('title.line3')}</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-black/95 mb-8 leading-relaxed drop-shadow-md relative z-10" style={{ fontFamily: "'Lora', serif" }}>
-              Each piece is uniquely crafted by hand, bringing warmth and character to your home.
+              {t('subtitle')}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <Link
-                href="/products"
+                href={`/${locale}/products`}
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-black px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-xl"
               >
-                View Collection
+                {t('viewCollection')}
                 <ArrowRight size={20} />
               </Link>
               <Link
-                href="/about"
-                className="inline-flex items-center justify-center gap-2 bg-white/10  hover:bg-white/20 text-black px-8 py-4 rounded-lg border-2 border-white/40 transition-all shadow-lg"
+                href={`/${locale}/about`}
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-black px-8 py-4 rounded-lg border-2 border-white/40 transition-all shadow-lg"
               >
-                Learn More
+                {t('learnMore')}
               </Link>
             </div>
           </div>

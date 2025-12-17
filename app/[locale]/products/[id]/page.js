@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Package, ChevronLeft, ChevronRight } from 'lucide-react';
 import SimilarProducts from '@/components/public/SimilarProducts';
+import { useTranslations, useLocale } from 'next-intl';
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -13,7 +14,8 @@ export default function ProductDetailPage() {
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const t = useTranslations('productDetail');
+  const locale = useLocale();
   useEffect(() => {
     if (params.id) {
       fetchProduct();
@@ -96,7 +98,7 @@ export default function ProductDetailPage() {
             className="inline-flex items-center gap-2 text-gray-600 hover:text-amber-600 transition"
           >
             <ArrowLeft size={20} />
-            Back to Products
+            {t('backButton')}
           </Link>
         </div>
       </div>
@@ -178,7 +180,7 @@ export default function ProductDetailPage() {
             <div className="flex items-center gap-3">
               {category && (
                 <Link
-                  href={`/products?category=${category.slug}`}
+                  href={`/${locale}/products?category=${category.slug}`}
                   className="text-sm text-amber-600 hover:text-amber-700 font-medium"
                 >
                   {category.name}
@@ -191,12 +193,13 @@ export default function ProductDetailPage() {
                   ? 'bg-red-100 text-red-800'
                   : 'bg-yellow-100 text-yellow-800'
               }`}>
-                {product.availability === 'available' ? 'Available' :
-                 product.availability === 'unavailable' ? 'Unavailable' : 'Reserved'}
+                {product.availability === 'available' ? t('availability.available') :
+                product.availability === 'unavailable' ? t('availability.unavailable') : 
+                t('availability.reserved')}
               </span>
               {product.featured && (
                 <span className="px-3 py-1 rounded-full text-sm font-semibold bg-amber-100 text-amber-800">
-                  Featured
+                  {t('featured')}
                 </span>
               )}
             </div>
@@ -218,11 +221,12 @@ export default function ProductDetailPage() {
             {/* Dimensions */}
             {product.dimensions && (product.dimensions.height || product.dimensions.width || product.dimensions.depth) && (
               <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-xl p-6 shadow-sm border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Dimensions</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('dimensions.title')}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {product.dimensions.height && (
                     <div>
-                      <p className="text-sm text-gray-500">Height</p>
+                      <p className="text-sm text-gray-500">{t('dimensions.height')}
+</p>
                       <p className="text-lg font-semibold text-gray-900">
                         {product.dimensions.height} {product.dimensions.unit}
                       </p>
@@ -230,7 +234,8 @@ export default function ProductDetailPage() {
                   )}
                   {product.dimensions.width && (
                     <div>
-                      <p className="text-sm text-gray-500">Width</p>
+                      <p className="text-sm text-gray-500">{t('dimensions.width')}
+</p>
                       <p className="text-lg font-semibold text-gray-900">
                         {product.dimensions.width} {product.dimensions.unit}
                       </p>
@@ -238,7 +243,8 @@ export default function ProductDetailPage() {
                   )}
                   {product.dimensions.depth && (
                     <div>
-                      <p className="text-sm text-gray-500">Depth</p>
+                      <p className="text-sm text-gray-500">{t('dimensions.depth')}
+</p>
                       <p className="text-lg font-semibold text-gray-900">
                         {product.dimensions.depth} {product.dimensions.unit}
                       </p>
@@ -251,7 +257,7 @@ export default function ProductDetailPage() {
             {/* Materials */}
             {product.materials && product.materials.length > 0 && (
               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Materials</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('materials')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.materials.map((material, index) => (
                     <span 
@@ -268,7 +274,7 @@ export default function ProductDetailPage() {
             {/* Tags */}
             {product.tags && product.tags.length > 0 && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 mb-2">Tags</h3>
+                <h3 className="text-sm font-medium text-gray-500 mb-2">{t('tags')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag, index) => (
                     <span 
@@ -285,13 +291,13 @@ export default function ProductDetailPage() {
            {/* Contact Button */}
           <div className="pt-6">
             <Link
-              href={`/contact?productId=${product.id}&productName=${encodeURIComponent(product.name)}`}
-              className="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center font-semibold py-4 rounded-lg transition-all transform hover:scale-105"
+        href={`/${locale}/contact?productId=${product.id}&productName=${encodeURIComponent(product.name)}`}     
+         className="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center font-semibold py-4 rounded-lg transition-all transform hover:scale-105"
             >
-              Inquire About This Piece
+            {t('inquireButton')}
             </Link>
             <p className="text-sm text-gray-500 text-center mt-3">
-              Interested in this piece? Get in touch with us!
+            {t('inquireNote')}
             </p>
           </div>
           </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Instagram, ExternalLink, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
+import { useTranslations } from 'next-intl';
 
 export default function GalleryPage() {
   const [posts, setPosts] = useState([]);
@@ -12,6 +13,7 @@ export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [flipped, setFlipped] = useState({});
   const { settings } = useSettings();
+  const t = useTranslations('gallery');
 
   useEffect(() => {
     fetchPosts();
@@ -69,13 +71,13 @@ export default function GalleryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-6" style={{ fontFamily: "'Lora', serif" }}>
             <Instagram size={16} />
-            Social Gallery
+            {t('header.badge')}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Lora', serif" }}>
-            Behind the Scenes
+            {t('header.title')}
           </h1>
           <p className="text-xl text-white/90 leading-relaxed max-w-2xl mx-auto mb-8" style={{ fontFamily: "'Lora', serif" }}>
-            Follow our pottery journey and see what's happening in the studio
+            {t('header.subtitle')}
           </p>
           {settings.instagramUrl && (
             <a
@@ -85,7 +87,7 @@ export default function GalleryPage() {
               className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-purple-600 px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
             >
               <Instagram size={20} />
-              Follow on Instagram
+              {t('header.followButton')}
               <ExternalLink size={16} />
             </a>
           )}
@@ -98,7 +100,7 @@ export default function GalleryPage() {
         {loading && (
           <div className="text-center py-12">
             <Instagram size={48} className="mx-auto text-gray-400 mb-4 animate-pulse" />
-            <p className="text-gray-500">Loading gallery...</p>
+            <p className="text-gray-500">{t('loading')}</p>
           </div>
         )}
 
@@ -107,10 +109,10 @@ export default function GalleryPage() {
           <div className="text-center py-12">
             <Instagram size={48} className="mx-auto text-gray-400 mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              No posts yet
+              {t('empty.title')}
             </h3>
             <p className="text-gray-600">
-              Check back soon for behind-the-scenes photos!
+              {t('empty.subtitle')}
             </p>
           </div>
         )}
@@ -168,7 +170,7 @@ export default function GalleryPage() {
                               {post.caption}
                             </p>
                           )}
-                          <p className="text-white text-xs mt-4 opacity-75">Click to see more</p>
+                          <p className="text-white text-xs mt-4 opacity-75">{t('card.clickMore')}</p>
                         </div>
                       </div>
 
@@ -198,10 +200,10 @@ export default function GalleryPage() {
                       <div>
                         <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold mb-4">
                           <Instagram size={12} />
-                          Post Details
+                          {t('card.postDetails')}
                         </div>
                         <p className="text-gray-800 text-sm leading-relaxed line-clamp-5 font-medium">
-                          {post.caption || 'No description available'}
+                          {post.caption || t('card.noDescription')}
                         </p>
                       </div>
 
@@ -214,10 +216,10 @@ export default function GalleryPage() {
                           className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transition transform hover:scale-105 w-full"
                         >
                           <Instagram size={16} />
-                          View on Instagram
+                          {t('card.viewInstagram')}
                           <ExternalLink size={14} />
                         </a>
-                        <p className="text-gray-500 text-xs text-center">Click card to flip back</p>
+                        <p className="text-gray-500 text-xs text-center">{t('card.clickFlip')}</p>
                       </div>
                     </div>
                   </div>
@@ -272,7 +274,7 @@ export default function GalleryPage() {
                     className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105 shadow-lg"
                   >
                     <Instagram size={20} />
-                    View on Instagram
+                    {t('modal.viewInstagram')}
                     <ExternalLink size={16} />
                   </a>
                 )}

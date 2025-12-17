@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Package, ArrowRight } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface ProductDimensions {
   height?: number;
@@ -33,6 +34,8 @@ export default function SimilarProducts({ currentProductId, categoryId }: Simila
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations('similar');
+  const locale = useLocale();
 
   useEffect(() => {
     if (categoryId) {
@@ -90,7 +93,7 @@ export default function SimilarProducts({ currentProductId, categoryId }: Simila
       <section className="py-6 bg-amber-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-gray-500 text-xs">Loading similar products...</p>
+            <p className="text-gray-500 text-xs">{t('loading')}</p>
           </div>
         </div>
       </section>
@@ -107,7 +110,7 @@ export default function SimilarProducts({ currentProductId, categoryId }: Simila
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <h3 className="text-2xl font-bold text-gray-900">
-            Similar Products
+            {t('title')}
           </h3>
 
           {/* Navigation Buttons */}
@@ -141,7 +144,7 @@ export default function SimilarProducts({ currentProductId, categoryId }: Simila
           {products.map((product: Product) => (
             <Link
               key={product.id}
-              href={`/products/${product.id}`}
+              href={`/${locale}/products/${product.id}`}
               className="group relative block flex-shrink-0"
             >
               <div className="relative w-56 h-56 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
@@ -169,7 +172,7 @@ export default function SimilarProducts({ currentProductId, categoryId }: Simila
                   </h4>
                   
                   <span className="inline-flex items-center gap-1.5 text-white font-semibold text-xs group-hover:gap-2.5 transition-all">
-                    View Details
+                    {t('viewDetails')}
                     <ArrowRight size={14} />
                   </span>
                 </div>

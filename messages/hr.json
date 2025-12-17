@@ -1,0 +1,264 @@
+{
+  "home": {
+    "hero": {
+      "badge": "✨ Ručno Izrađeno s Ljubavlju",
+      "title": {
+        "line1": "Ručno Izrađena",
+        "line2": "Keramika",
+        "line3": "Rozy"
+      },
+      "subtitle": "Svaki komad je jedinstveno izrađen ručno, donoseći toplinu i karakter u vaš dom.",
+      "viewCollection": "Pogledaj Kolekciju",
+      "learnMore": "Saznaj Više"
+    }
+  },
+  "nav": {
+    "home": "Početna",
+    "products": "Proizvodi",
+    "gallery": "Galerija",
+    "about": "O Nama",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "tagline": "Ručno Izrađena Keramika s Ljubavlju i Užitkom",
+    "quickLinks": "Brzi Linkovi",
+    "nav": {
+      "home": "Početna",
+      "products": "Proizvodi",
+      "gallery": "Galerija",
+      "about": "O Nama",
+      "contact": "Kontakt"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "email": "Email",
+      "phone": "Telefon"
+    },
+    "rights": "Sva prava pridržana.",
+    "madeWith": "Napravljeno s",
+    "andClay": "i glinom"
+  },
+  "socialGallery": {
+    "badge": "Galerija",
+    "title": "Društvena Galerija",
+    "instruction": "Dodirnite ili povucite lijevo za pregled",
+    "followButton": "Pratite na Instagramu"
+  },"testimonials": {
+  "loading": "Učitavanje recenzija...",
+  "badge": "Priče Kupaca",
+  "title": "Recenzije",
+  "subtitle": "Čujte što naši zadovoljni kupci kažu o svojim keramičkim komadima.",
+  "features": {
+    "quality": {
+      "title": "Ručno Izrađena Kvaliteta",
+      "description": "Svaki komad je napravljen s pomnom pažnjom i pažnjom na detalje."
+    },
+    "shipping": {
+      "title": "Brza Dostava",
+      "description": "Šaljemo vašu narudžbu brzo i sigurno do vaših vrata."
+    },
+    "eco": {
+      "title": "Ekološki Prihvatljivo",
+      "description": "Napravljeno s održivim praksama i prirodnim materijalima."
+    }
+  }
+},"contactForm": {
+  "title": "Kontaktirajte Nas",
+  "subtitle": "Imate pitanje o našoj keramici ili ste zainteresirani za prilagođeni komad? Rado bismo čuli od vas!",
+  "info": {
+    "email": "Email",
+    "phone": "Telefon"
+  },
+  "form": {
+    "name": "Vaše Ime *",
+    "namePlaceholder": "Ivana Marković",
+    "email": "Vaš Email *",
+    "emailPlaceholder": "ivanamarkovic211@gmail.com",
+    "message": "Vaša Poruka *",
+    "messagePlaceholder": "Recite nam više o vašem upitu...",
+    "submit": "Pošalji Poruku",
+    "sending": "Šaljem..."
+  },
+  "success": "Hvala! Vaša poruka je uspješno poslana.",
+  "error": "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
+  "failed": "Slanje poruke nije uspjelo. Molimo pokušajte ponovo."
+},"categories": {
+  "title": "Pregledaj po Kategorijama",
+  "subtitle": "Istražite našu kolekciju organiziranu po vrsti i stilu.",
+  "explore": "Istraži"
+},"featured": {
+  "loading": "Učitavanje istaknutih komada...",
+  "badge": "Odabrana Selekcija",
+  "title": "Istaknuti Radovi",
+  "subtitle": "Otkrijte naše najvol­jenije komade, ručno izrađene s pomnom pažnjom i pažnjom na detalje. Svaki predmet priča svoju priču.",
+  "dimensions": "Dimenzije",
+  "viewDetails": "Pogledaj Detalje",
+  "exploreAll": "Istražite Sve Kolekcije",
+  "availability": {
+    "available": "✓ Dostupno",
+    "unavailable": "✗ Nedostupno",
+    "reserved": "◆ Rezervirano"
+  }
+},"similar": {
+  "loading": "Učitavanje sličnih proizvoda...",
+  "title": "Slični Proizvodi",
+  "viewDetails": "Pogledaj Detalje"
+},"about": {
+  "loading": "Učitavanje...",
+  "hero": {
+    "title": "O Našoj Vještini",
+    "subtitle": "Svaki komad priča priču o strasti, predanosti i bezvremenskoj umjetnosti izrade keramike."
+  },
+  "story": {
+    "badge": "Moja Priča",
+    "title": "Stvaranje Ljepote, Jedan Komad Odjednom",
+    "text1": "Dobrodošli u našu keramičku radionicu, gdje se tradicija susreće s kreativnošću. Već više od desetljeća posvećeni smo stvaranju jedinstvenih, ručno izrađenih komada koji unose toplinu i karakter u vaš dom.",
+    "text2": "Svaki komad počinje kao sirova glina i pažljivo se oblikuje, glazira i pali s pažnjom na detalje i dubokim poštovanjem prema zanatu. Vjerujemo da je keramika više od funkcionalne umjetnosti—to je povezanost sa stoljećima tradicije i slavljenje ručnog rada.",
+    "text3": "Naša radionica je mjesto gdje kreativnost teče slobodno, gdje se nesavršenosti slave kao znakovi autentičnosti, i gdje svaki komad nosi energiju i namjeru svog stvaranja."
+  },
+  "values": {
+    "title": "Naše Vrijednosti",
+    "subtitle": "Principi koji vode naš zanat i inspiriraju svaki komad koji stvaramo.",
+    "value1": {
+      "title": "Ručno Izrađeno s Ljubavlju",
+      "description": "Svaki komad je ručno izrađen s pažnjom, detaljima i dubokom strašću prema zanatu. Ni dva komada nisu potpuno ista, čineći svaki istinski jedinstvenim."
+    },
+    "value2": {
+      "title": "Održivi Materijali",
+      "description": "Nabavljamo prirodne, ekološki prihvatljive materijale i koristimo održive prakse u našoj radionici. Naše glazure su netoksične i sigurne za svakodnevnu upotrebu."
+    },
+    "value3": {
+      "title": "Osobna Veza",
+      "description": "Volimo se povezivati s našim kupcima i stvarati prilagođene komade koji pričaju vašu priču. Svaka narudžba je suradnja i radost stvaranja."
+    }
+  },
+  "process": {
+    "title": "Naš Proces",
+    "subtitle": "Od gline do gotovog komada, svaki korak je rad ljubavi.",
+    "step1": {
+      "title": "Dizajn",
+      "description": "Svaki komad počinje s idejom, skiciranom i dorađenom dok nije spreman za stvaranje."
+    },
+    "step2": {
+      "title": "Oblikovanje",
+      "description": "Glina se pažljivo oblikuje ručno, poprima oblik kroz vješte ruke."
+    },
+    "step3": {
+      "title": "Glaziranje",
+      "description": "Svaki komad se pažljivo glazira, birajući boje i završne obrade koje poboljšavaju njegovu ljepotu."
+    },
+    "step4": {
+      "title": "Pečenje",
+      "description": "Peć pretvara sirovu glinu u trajnu keramiku, otkrivajući konačne boje i teksture."
+    }
+  },
+  "cta": {
+    "title": "Želite Saznati Više?",
+    "subtitle": "Rado bismo čuli od vas! Bilo da ste zainteresirani za prilagođeni komad, imate pitanja o našem procesu, ili samo želite pozdraviti.",
+    "contact": "Kontaktirajte Nas",
+    "viewWork": "Pogledajte Naš Rad"
+  }
+},"contactPage": {
+  "hero": {
+    "title": "Kontaktirajte Nas",
+    "subtitle": "Imate pitanje o našoj keramici ili ste zainteresirani za prilagođeni komad? Rado bismo čuli od vas!"
+  },
+  "info": {
+    "title": "Informacije za Kontakt",
+    "subtitle": "Tu smo da pomognemo i odgovorimo na sva pitanja koja biste mogli imati. Radujemo se vašem javljanju!",
+    "email": "Email",
+    "emailNote": "Odgovorit ćemo u roku od 24-48 sati",
+    "phone": "Telefon",
+    "phoneNote": "Pon-Pet, 9-17h"
+  },
+  "form": {
+    "title": "Pošaljite Nam Poruku",
+    "subtitle": "Ispunite obrazac ispod i javit ćemo vam se što prije.",
+    "name": "Vaše Ime *",
+    "namePlaceholder": "Ivana Marković",
+    "email": "Vaš Email *",
+    "emailPlaceholder": "ivanamarkovic211@gmail.com",
+    "message": "Vaša Poruka *",
+    "messagePlaceholder": "Recite nam više o vašem upitu...",
+    "productMessage": "Pozdrav,\nZanima me \"{productName}\".",
+    "preFilled": "💡 Unaprijed popunjeno: Vaš upit se odnosi na \"{productName}\"",
+    "submit": "Pošalji Poruku",
+    "sending": "Šaljem...",
+    "privacy": "Slanjem ovog obrasca slažete se s našom politikom privatnosti."
+  },
+  "status": {
+    "success": "Hvala! Vaša poruka je uspješno poslana. Javit ćemo vam se uskoro!",
+    "error": "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
+    "failed": "Slanje poruke nije uspjelo. Molimo pokušajte ponovo ili nam pošaljite email direktno."
+  }
+},"gallery": {
+  "header": {
+    "badge": "Društvena Galerija",
+    "title": "Iza Kulisa",
+    "subtitle": "Pratite naše keramičko putovanje i pogledajte što se događa u radionici",
+    "followButton": "Pratite na Instagramu"
+  },
+  "loading": "Učitavanje galerije...",
+  "empty": {
+    "title": "Još nema objava",
+    "subtitle": "Uskoro provjerite za fotografije iza kulisa!"
+  },
+  "card": {
+    "clickMore": "Kliknite za više",
+    "postDetails": "Detalji Objave",
+    "noDescription": "Nema dostupnog opisa",
+    "viewInstagram": "Pogledaj na Instagramu",
+    "clickFlip": "Kliknite karticu za vraćanje natrag"
+  },
+  "modal": {
+    "viewInstagram": "Pogledaj na Instagramu"
+  }
+},"products": {
+  "header": {
+    "title": "Naša Kolekcija",
+    "subtitle": "Istražite naše ručno izrađene keramičke komade"
+  },
+  "filters": {
+    "title": "Filteri",
+    "clearAll": "Očisti sve",
+    "search": "Pretraživanje",
+    "searchPlaceholder": "Pretraži proizvode...",
+    "category": "Kategorija",
+    "allCategories": "Sve Kategorije",
+    "availability": "Dostupnost",
+    "all": "Sve",
+    "available": "Dostupno",
+    "unavailable": "Nedostupno",
+    "reserved": "Rezervirano",
+    "filtersButton": "Filteri",
+    "active": "Aktivno",
+    "clearFilters": "Očisti Filtere",
+    "applyFilters": "Primijeni Filtere"
+  },
+  "loading": "Učitavanje...",
+  "productsFound": "{count, plural, =0 {0 proizvoda} one {# proizvod} few {# proizvoda} other {# proizvoda}} pronađeno",
+  "loadingProducts": "Učitavanje proizvoda...",
+  "empty": {
+    "title": "Nema pronađenih proizvoda",
+    "subtitle": "Pokušajte prilagoditi svoje filtere"
+  }
+},"productDetail": {
+  "backButton": "Natrag na Proizvode",
+  "availability": {
+    "available": "Dostupno",
+    "unavailable": "Nedostupno",
+    "reserved": "Rezervirano"
+  },
+  "featured": "Istaknuto",
+  "dimensions": {
+    "title": "Dimenzije",
+    "height": "Visina",
+    "width": "Širina",
+    "depth": "Dubina"
+  },
+  "materials": "Materijali",
+  "tags": "Oznake",
+  "inquireButton": "Upit o Ovom Komadu",
+  "inquireNote": "Zainteresirani za ovaj komad? Javite nam se!"
+}
+}

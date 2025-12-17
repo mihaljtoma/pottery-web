@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface Testimonial {
   id: string;
@@ -18,6 +19,7 @@ export default function Testimonials() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const t = useTranslations('testimonials');
 
   useEffect(() => {
     fetchTestimonials();
@@ -49,7 +51,7 @@ export default function Testimonials() {
     return (
       <section className="py-20 bg-amber-50">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <p className="text-gray-600">Loading testimonials...</p>
+          <p className="text-gray-600">{t('loading')}</p>
         </div>
       </section>
     );
@@ -62,13 +64,12 @@ export default function Testimonials() {
   const current = testimonials[currentIndex];
 
   return (
-<section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 overflow-hidden">
-        {/* Background Elements */}
+    <section className="py-16 bg-amber-50 overflow-hidden">
       {/* Background Elements */}
-<div className="absolute inset-0 pointer-events-none overflow-hidden">
-  <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl hidden md:block"></div>
-  <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/20 rounded-full blur-3xl hidden md:block"></div>
-</div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl hidden md:block"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/20 rounded-full blur-3xl hidden md:block"></div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -76,22 +77,22 @@ export default function Testimonials() {
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
             <span className="text-sm font-semibold text-amber-600 tracking-wide uppercase">
-              Customer Stories
+              {t('badge')}
             </span>
             <div className="w-1.5 h-1.5 bg-amber-600 rounded-full"></div>
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Reviews
+            {t('title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Hear what our happy customers have to say about their pottery pieces.
+            {t('subtitle')}
           </p>
         </div>
 
         {/* Testimonial Card */}
         <div className="max-w-3xl mx-auto">
-          <div className=" bg-gradient-to-br from-amber-50 to gray-50 to-amber-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
+          <div className="bg-amber-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
             {/* Content */}
             <div className="p-8 md:p-12">
               {/* Quote Icon */}
@@ -177,45 +178,44 @@ export default function Testimonials() {
               </button>
             </div>
           </div>
-
-         
         </div>
       </div>
-       {/* Feature Cards - Fun Aligned */}
-<div className="mt-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max">
-  {/* Card 1 - Top Left */}
-  <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-0">
-     <div className="flex items-start gap-4">
-              <div className="text-3xl">✨</div>
-              <div>
-                <h5 className="font-bold text-gray-900 mb-2">Handcrafted Quality</h5>
-                <p className="text-sm text-gray-700">Each piece is made with meticulous care and attention to detail.</p>
-              </div>
-            </div>
-          </div>
 
-          {/* Card 2 - Middle, Slightly Down */}
-<div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-6">
-            <div className="flex items-start gap-4">
-              <div className="text-3xl">🚀</div>
-              <div>
-                <h5 className="font-bold text-gray-900 mb-2">Fast Shipping</h5>
-                <p className="text-sm text-gray-700">We ship your order quickly and safely to your door.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 - Top Right */}
-<div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-12">
-            <div className="flex items-start gap-4">
-              <div className="text-3xl">♻️</div>
-              <div>
-                <h5 className="font-bold text-gray-900 mb-2">Eco Friendly</h5>
-                <p className="text-sm text-gray-700">Made with sustainable practices and natural materials.</p>
-              </div>
+      {/* Feature Cards */}
+      <div className="mt-12 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max">
+        {/* Card 1 */}
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-0">
+          <div className="flex items-start gap-4">
+            <div className="text-3xl">✨</div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-2">{t('features.quality.title')}</h5>
+              <p className="text-sm text-gray-700">{t('features.quality.description')}</p>
             </div>
           </div>
         </div>
+
+        {/* Card 2 */}
+        <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-6">
+          <div className="flex items-start gap-4">
+            <div className="text-3xl">🚀</div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-2">{t('features.shipping.title')}</h5>
+              <p className="text-sm text-gray-700">{t('features.shipping.description')}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 md:p-8 shadow-lg md:row-span-1 md:translate-y-12">
+          <div className="flex items-start gap-4">
+            <div className="text-3xl">♻️</div>
+            <div>
+              <h5 className="font-bold text-gray-900 mb-2">{t('features.eco.title')}</h5>
+              <p className="text-sm text-gray-700">{t('features.eco.description')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,264 @@
+{
+  "home": {
+    "hero": {
+      "badge": "✨ Handcrafted with Love",
+      "title": {
+        "line1": "Handcrafted",
+        "line2": "Pottery",
+        "line3": "Rosy"
+      },
+      "subtitle": "Each piece is uniquely crafted by hand, bringing warmth and character to your home.",
+      "viewCollection": "View Collection",
+      "learnMore": "Learn More"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Handcrafted Pottery with Love and Enjoyment",
+    "quickLinks": "Quick Links",
+    "nav": {
+      "home": "Home",
+      "products": "Products",
+      "gallery": "Gallery",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "andClay": "and clay"
+  },
+  "socialGallery": {
+    "badge": "Gallery",
+    "title": "Social Gallery",
+    "instruction": "Tap or swipe left to explore",
+    "followButton": "Follow on Instagram"
+  },"testimonials": {
+  "loading": "Loading testimonials...",
+  "badge": "Customer Stories",
+  "title": "Reviews",
+  "subtitle": "Hear what our happy customers have to say about their pottery pieces.",
+  "features": {
+    "quality": {
+      "title": "Handcrafted Quality",
+      "description": "Each piece is made with meticulous care and attention to detail."
+    },
+    "shipping": {
+      "title": "Fast Shipping",
+      "description": "We ship your order quickly and safely to your door."
+    },
+    "eco": {
+      "title": "Eco Friendly",
+      "description": "Made with sustainable practices and natural materials."
+    }
+  }
+},"contactForm": {
+  "title": "Get in Touch",
+  "subtitle": "Have a question about our pottery or interested in a custom piece? We'd love to hear from you!",
+  "info": {
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "form": {
+    "name": "Your Name *",
+    "namePlaceholder": "Ivana Marković",
+    "email": "Your Email *",
+    "emailPlaceholder": "ivanamarkovic211@gmail.com",
+    "message": "Your Message *",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "submit": "Send Message",
+    "sending": "Sending..."
+  },
+  "success": "Thank you! Your message has been sent successfully.",
+  "error": "Something went wrong. Please try again.",
+  "failed": "Failed to send message. Please try again."
+},"categories": {
+  "title": "Browse by Category",
+  "subtitle": "Explore our collection organized by type and style.",
+  "explore": "Explore"
+},"featured": {
+  "loading": "Loading featured pieces...",
+  "badge": "Curated Selection",
+  "title": "Featured Work",
+  "subtitle": "Discover our most beloved pieces, handcrafted with meticulous care and attention to detail. Each item tells its own story.",
+  "dimensions": "Dimensions",
+  "viewDetails": "View Details",
+  "exploreAll": "Explore All Collections",
+  "availability": {
+    "available": "✓ Available",
+    "unavailable": "✗ Unavailable",
+    "reserved": "◆ Reserved"
+  }
+},"similar": {
+  "loading": "Loading similar products...",
+  "title": "Similar Products",
+  "viewDetails": "View Details"
+},"about": {
+  "loading": "Loading...",
+  "hero": {
+    "title": "About Our Craft",
+    "subtitle": "Every piece tells a story of passion, dedication, and the timeless art of pottery making."
+  },
+  "story": {
+    "badge": "My Story",
+    "title": "Crafting Beauty, One Piece at a Time",
+    "text1": "Welcome to our pottery studio, where tradition meets creativity. For over a decade, we've been dedicated to creating unique, handcrafted pieces that bring warmth and character to your home.",
+    "text2": "Each piece begins as raw clay and is carefully shaped, glazed, and fired with attention to detail and a deep respect for the craft. We believe that pottery is more than just functional art—it's a connection to centuries of tradition and a celebration of the handmade.",
+    "text3": "Our studio is a place where creativity flows freely, where imperfections are celebrated as marks of authenticity, and where every piece carries the energy and intention of its creation."
+  },
+  "values": {
+    "title": "Our Values",
+    "subtitle": "The principles that guide our craft and inspire every piece we create.",
+    "value1": {
+      "title": "Handcrafted with Love",
+      "description": "Every piece is made by hand with care, attention to detail, and a deep passion for the craft. No two pieces are exactly alike, making each one truly unique."
+    },
+    "value2": {
+      "title": "Sustainable Materials",
+      "description": "We source natural, eco-friendly materials and use sustainable practices in our studio. Our glazes are non-toxic and safe for everyday use."
+    },
+    "value3": {
+      "title": "Personal Connection",
+      "description": "We love connecting with our customers and creating custom pieces that tell your story. Each commission is a collaboration and a joy to create."
+    }
+  },
+  "process": {
+    "title": "Our Process",
+    "subtitle": "From clay to finished piece, each step is a labor of love.",
+    "step1": {
+      "title": "Design",
+      "description": "Every piece begins with an idea, sketched and refined until it's ready to create."
+    },
+    "step2": {
+      "title": "Shaping",
+      "description": "Clay is carefully shaped by hand, taking form through skilled hands."
+    },
+    "step3": {
+      "title": "Glazing",
+      "description": "Each piece is carefully glazed, choosing colors and finishes that enhance its beauty."
+    },
+    "step4": {
+      "title": "Firing",
+      "description": "The kiln transforms raw clay into durable pottery, revealing the final colors and textures."
+    }
+  },
+  "cta": {
+    "title": "Want to Learn More?",
+    "subtitle": "We'd love to hear from you! Whether you're interested in a custom piece, have questions about our process, or just want to say hello.",
+    "contact": "Get in Touch",
+    "viewWork": "View Our Work"
+  }
+},"contactPage": {
+  "hero": {
+    "title": "Get in Touch",
+    "subtitle": "Have a question about our pottery or interested in a custom piece? We'd love to hear from you!"
+  },
+  "info": {
+    "title": "Contact Information",
+    "subtitle": "We're here to help and answer any questions you might have. We look forward to hearing from you!",
+    "email": "Email",
+    "emailNote": "We'll respond within 24-48 hours",
+    "phone": "Phone",
+    "phoneNote": "Mon-Fri, 9am-5pm EST"
+  },
+  "form": {
+    "title": "Send us a Message",
+    "subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "name": "Your Name *",
+    "namePlaceholder": "Ivana Marković",
+    "email": "Your Email *",
+    "emailPlaceholder": "ivanamarkovic211@gmail.com",
+    "message": "Your Message *",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "productMessage": "Hello,\nI'm interested in \"{productName}\".",
+    "preFilled": "💡 Pre-filled: Your inquiry is about \"{productName}\"",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "privacy": "By submitting this form, you agree to our privacy policy."
+  },
+  "status": {
+    "success": "Thank you! Your message has been sent successfully. We'll get back to you soon!",
+    "error": "Something went wrong. Please try again.",
+    "failed": "Failed to send message. Please try again or email us directly."
+  }
+},"gallery": {
+  "header": {
+    "badge": "Social Gallery",
+    "title": "Behind the Scenes",
+    "subtitle": "Follow our pottery journey and see what's happening in the studio",
+    "followButton": "Follow on Instagram"
+  },
+  "loading": "Loading gallery...",
+  "empty": {
+    "title": "No posts yet",
+    "subtitle": "Check back soon for behind-the-scenes photos!"
+  },
+  "card": {
+    "clickMore": "Click to see more",
+    "postDetails": "Post Details",
+    "noDescription": "No description available",
+    "viewInstagram": "View on Instagram",
+    "clickFlip": "Click card to flip back"
+  },
+  "modal": {
+    "viewInstagram": "View on Instagram"
+  }
+},"products": {
+  "header": {
+    "title": "Our Collection",
+    "subtitle": "Explore our handcrafted pottery pieces"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all",
+    "search": "Search",
+    "searchPlaceholder": "Search products...",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "availability": "Availability",
+    "all": "All",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "reserved": "Reserved",
+    "filtersButton": "Filters",
+    "active": "Active",
+    "clearFilters": "Clear Filters",
+    "applyFilters": "Apply Filters"
+  },
+  "loading": "Loading...",
+  "productsFound": "{count, plural, =0 {0 products} one {# product} other {# products}} found",
+  "loadingProducts": "Loading products...",
+  "empty": {
+    "title": "No products found",
+    "subtitle": "Try adjusting your filters"
+  }
+},"productDetail": {
+  "backButton": "Back to Products",
+  "availability": {
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "reserved": "Reserved"
+  },
+  "featured": "Featured",
+  "dimensions": {
+    "title": "Dimensions",
+    "height": "Height",
+    "width": "Width",
+    "depth": "Depth"
+  },
+  "materials": "Materials",
+  "tags": "Tags",
+  "inquireButton": "Inquire About This Piece",
+  "inquireNote": "Interested in this piece? Get in touch with us!"
+}
+}

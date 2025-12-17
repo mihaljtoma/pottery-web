@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, Phone, Send } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
+import { useTranslations } from 'next-intl';
 import ParallaxSection from '@/components/public/ParallaxSection';
 
 export default function ContactForm() {
@@ -14,6 +15,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
   const { settings } = useSettings();
+  const t = useTranslations('contactForm');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,19 +32,19 @@ export default function ContactForm() {
       if (res.ok) {
         setStatus({
           type: 'success',
-          message: 'Thank you! Your message has been sent successfully.'
+          message: t('success')
         });
         setFormData({ name: '', email: '', message: '' });
       } else {
         setStatus({
           type: 'error',
-          message: 'Something went wrong. Please try again.'
+          message: t('error')
         });
       }
     } catch (error) {
       setStatus({
         type: 'error',
-        message: 'Failed to send message. Please try again.'
+        message: t('failed')
       });
     } finally {
       setLoading(false);
@@ -50,26 +52,25 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-amber-50 to gray-50 to-amber-50">
+    <section className="py-16 bg-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div>
-            <ParallaxSection
-              imageUrl="/anton_suskov.jpg"
-              title=""
-              subtitle=""
-              height="h-96"
-            />
-          </div>
+        <div>
+          <ParallaxSection
+            imageUrl="/anton_suskov.jpg"
+            title=""
+            subtitle=""
+            height="h-96"
+          />
+        </div>
 
         <div className="py-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Get in Touch
+              {t('title')}
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Have a question about our pottery or interested in a custom piece? 
-              We'd love to hear from you!
+              {t('subtitle')}
             </p>
 
             <div className="space-y-6">
@@ -78,7 +79,7 @@ export default function ContactForm() {
                   <Mail className="text-amber-600" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('info.email')}</h3>
                   <a 
                     href={`mailto:${settings.contactEmail || 'contact@potterystudio.com'}`}
                     className="text-amber-600 hover:text-amber-700 transition"
@@ -93,12 +94,10 @@ export default function ContactForm() {
                   <Phone className="text-amber-600" size={24} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t('info.phone')}</h3>
                   <p className="text-gray-600">{settings.contactPhone || '+1 (555) 123-4567'}</p>
                 </div>
               </div>
-
-              
             </div>
           </div>
 
@@ -107,7 +106,7 @@ export default function ContactForm() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Name *
+                  {t('form.name')}
                 </label>
                 <input
                   type="text"
@@ -116,13 +115,13 @@ export default function ContactForm() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition bg-white"
-                  placeholder="Ivana Marković"
+                  placeholder={t('form.namePlaceholder')}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Email *
+                  {t('form.email')}
                 </label>
                 <input
                   type="email"
@@ -131,13 +130,13 @@ export default function ContactForm() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition bg-white"
-                  placeholder="ivanamarkovic211@gmail.com"
+                  placeholder={t('form.emailPlaceholder')}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Message *
+                  {t('form.message')}
                 </label>
                 <textarea
                   id="message"
@@ -146,7 +145,7 @@ export default function ContactForm() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows="5"
                   className="text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition resize-none bg-white"
-                  placeholder="Recite nam više o vašem upitu..."
+                  placeholder={t('form.messagePlaceholder')}
                 />
               </div>
 
@@ -165,9 +164,9 @@ export default function ContactForm() {
                 disabled={loading}
                 className="w-full bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 text-white font-semibold py-4 rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
               >
-                {loading ? 'Sending...' : (
+                {loading ? t('form.sending') : (
                   <>
-                    Send Message
+                    {t('form.submit')}
                     <Send size={20} />
                   </>
                 )}

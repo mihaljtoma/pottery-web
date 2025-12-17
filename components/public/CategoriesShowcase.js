@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function CategoriesShowcase() {
   const [categories, setCategories] = useState([]);
@@ -11,6 +12,8 @@ export default function CategoriesShowcase() {
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const t = useTranslations('categories');
+  const locale = useLocale();
 
   const checkScroll = () => {
     if (scrollContainerRef.current) {
@@ -75,15 +78,14 @@ export default function CategoriesShowcase() {
 
   return (
     <section className="py-16 bg-amber-50">
-     
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Browse by Category
+            {t('title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our collection organized by type and style.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -118,7 +120,7 @@ export default function CategoriesShowcase() {
             >
               {categories.map((category, index) => (
                 <div key={category.id} className="flex-shrink-0 w-72 snap-center">
-                  <CategoryCard category={category} index={index} gradients={gradients} />
+                  <CategoryCard category={category} index={index} gradients={gradients} locale={locale} t={t} />
                 </div>
               ))}
             </div>
@@ -133,7 +135,7 @@ export default function CategoriesShowcase() {
               'grid-cols-2 md:grid-cols-4 max-w-5xl'
             }`}>
               {categories.map((category, index) => (
-                <CategoryCard key={category.id} category={category} index={index} gradients={gradients} />
+                <CategoryCard key={category.id} category={category} index={index} gradients={gradients} locale={locale} t={t} />
               ))}
             </div>
           </div>
@@ -151,10 +153,10 @@ export default function CategoriesShowcase() {
 }
 
 // Separate CategoryCard component for reusability
-function CategoryCard({ category, index, gradients }) {
+function CategoryCard({ category, index, gradients, locale, t }) {
   return (
     <Link
-      href={`/products?category=${category.slug}`}
+      href={`/${locale}/products?category=${category.slug}`}
       className="group relative block"
     >
       <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
@@ -192,7 +194,7 @@ function CategoryCard({ category, index, gradients }) {
           )}
           
           <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
-            Explore
+            {t('explore')}
             <ArrowRight size={16} />
           </span>
         </div>

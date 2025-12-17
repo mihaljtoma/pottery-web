@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Instagram, ExternalLink } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
-
+import { useTranslations, useLocale } from 'next-intl';
 export default function SocialGallery() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,8 @@ export default function SocialGallery() {
   const containerRef = useRef(null);
   const [screenSize, setScreenSize] = useState('mobile');
   const { settings } = useSettings();
-
+const t = useTranslations('socialGallery');
+const locale = useLocale();
   // Detect screen size
   useEffect(() => {
     const handleResize = () => {
@@ -252,13 +253,13 @@ export default function SocialGallery() {
         <div className="text-center mb-8 md:mb-12">
           <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm text-pink-800 px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-sm">
             <Instagram size={16} />
-            Gallery
+            {t('badge')}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Social Gallery
+            {t('title')}
           </h2>
           <p className="text-sm text-gray-600">
-            Tap or swipe left to explore
+            {t('instruction')}
           </p>
         </div>
 
@@ -431,8 +432,8 @@ export default function SocialGallery() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
             >
-              <Instagram size={18} />
-              Follow on Instagram
+             <Instagram size={18} />
+              {t('followButton')}
               <ExternalLink size={16} />
             </a>
           </div>
