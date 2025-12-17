@@ -1,9 +1,5 @@
+import dynamic from 'next/dynamic';
 import Hero from '@/components/public/Hero';
-import FeaturedProducts from '@/components/public/FeaturedProducts';
-import CategoriesShowcase from '@/components/public/CategoriesShowcase';
-import ContactForm from '@/components/public/ContactForm';
-import SocialGallery from '@/components/public/SocialGallery';
-import Testimonials from '@/components/public/Testimonials';
 import { getHomepageSections } from '@/lib/db';
 import { getTranslations } from 'next-intl/server';
 
@@ -21,6 +17,37 @@ export async function generateMetadata({ params }) {
     }
   };
 }
+
+// Loading skeleton
+const LoadingSkeleton = () => (
+  <div className="h-96 bg-gradient-to-br from-amber-50 to-gray-50 animate-pulse rounded-lg" />
+);
+
+// Lazy load komponente (ispod fold-a)
+const FeaturedProducts = dynamic(
+  () => import('@/components/public/FeaturedProducts'),
+  { loading: LoadingSkeleton, ssr: true }
+);
+
+const CategoriesShowcase = dynamic(
+  () => import('@/components/public/CategoriesShowcase'),
+  { loading: LoadingSkeleton, ssr: true }
+);
+
+const SocialGallery = dynamic(
+  () => import('@/components/public/SocialGallery'),
+  { loading: LoadingSkeleton, ssr: true }
+);
+
+const Testimonials = dynamic(
+  () => import('@/components/public/Testimonials'),
+  { loading: LoadingSkeleton, ssr: true }
+);
+
+const ContactForm = dynamic(
+  () => import('@/components/public/ContactForm'),
+  { loading: LoadingSkeleton, ssr: true }
+);
 
 // Map section IDs to components
 const sectionComponents = {
