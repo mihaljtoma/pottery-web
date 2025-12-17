@@ -5,22 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Search, Filter, Package, X } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'metadata.products' });
-  
-  return {
-    title: t('title'),
-    description: t('description'),
-    openGraph: {
-      title: t('title'),
-      description: t('description'),
-      locale: locale === 'hr' ? 'hr_HR' : 'en_US',
-    }
-  };
-}
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
