@@ -5,11 +5,22 @@ import ContactForm from '@/components/public/ContactForm';
 import SocialGallery from '@/components/public/SocialGallery';
 import Testimonials from '@/components/public/Testimonials';
 import { getHomepageSections } from '@/lib/db';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata = {
-  title: 'Pottery Studio - Handcrafted Pottery',
-  description: 'Discover unique handcrafted pottery pieces made with love and dedication.',
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata.home' });
+  
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      locale: locale === 'hr' ? 'hr_HR' : 'en_US',
+    }
+  };
+}
 
 // Map section IDs to components
 const sectionComponents = {
@@ -28,7 +39,6 @@ export default async function HomePage() {
     sections = await getHomepageSections();
   } catch (error) {
     console.error('Failed to load homepage sections:', error);
-    // Fallback to all sections if there's an error
     sections = [
       { id: 'hero', enabled: true, order: 0 },
       { id: 'featured-products', enabled: true, order: 1 },
@@ -39,7 +49,6 @@ export default async function HomePage() {
     ];
   }
 
-  // Filter enabled sections and sort by order
   const enabledSections = sections
     .filter(section => section.enabled)
     .sort((a, b) => a.order - b.order);
