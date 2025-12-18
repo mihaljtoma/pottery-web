@@ -62,7 +62,7 @@ const locale = useLocale();
 
     const offsetX = ((pseudo1 % 40) - 20);
     const offsetY = ((pseudo2 % 40) - 20);
-    const rotation = ((pseudo5 % 60) - 30);
+    const rotation = ((pseudo5 % 65) - 30);
 
     return { offsetX, offsetY, rotation };
   };
@@ -88,8 +88,8 @@ const locale = useLocale();
         return { 
           visibleCards: 9,
           cardAspect: 'aspect-[3/4]',
-          cardWidth: '240px',
-          cardHeight: '320px'
+          cardWidth: '200px',
+          cardHeight: '275px'
         };
     }
   };
@@ -351,7 +351,7 @@ const locale = useLocale();
                       translateY(${transform.offsetY + animationOffsetY + stackOffsetY}px)
                       rotate(${transform.rotation}deg)
                     `,
-                    opacity: isTopCard && isAnimating ? 0 : 1,
+                    opacity: isTopCard && isAnimating ? 0 : 0.97,
                     transition: isAnimating 
                       ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease-out'
                       : 'none',
