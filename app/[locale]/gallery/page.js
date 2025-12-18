@@ -396,7 +396,7 @@ export default function GalleryPage() {
                             {expandedPost.caption || 'Post Details'}
                           </h2>
                             {/* Bottom Link Bar */}
-                      <div className="bg-amber-50/10 backdrop-blur-sm mx-14 px-4 py-4  justify-end rounded-lg">
+                      <div className="bg-amber-50/10 backdrop-blur-sm mx-8 px-4 py-4  justify-end rounded-lg">
                         <a
                           href={expandedPost.postUrl || settings.instagramUrl}
                           target="_blank"
