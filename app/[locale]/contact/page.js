@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Mail, Phone, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle,Truck } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -139,6 +139,20 @@ export default function ContactPageContent() {
                   <p className="text-sm text-gray-500 mt-1">
                     {t('info.phoneNote')}
                   </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-4 rounded-xl flex-shrink-0">
+                  <Truck className="text-green-600" size={28} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-2 text-lg">{t('info.dostava')}</h3>
+                  <a 
+                    className="text-green-600 hover:text-green-700 transition"
+                  >
+                    4.5€
+                  </a>
+                  
                 </div>
               </div>
             </div>

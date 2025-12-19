@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, Send } from 'lucide-react';
+import { Mail, Phone, Send ,Truck} from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
 import { useTranslations } from 'next-intl';
 import ParallaxSection from '@/components/public/ParallaxSection';
@@ -98,9 +98,20 @@ export default function ContactForm() {
                   <p className="text-gray-600">{settings.contactPhone || '+1 (555) 123-4567'}</p>
                 </div>
               </div>
-            </div>
-          </div>
-
+           
+        
+              <div className="flex items-start gap-4">
+                              <div className="bg-amber-100 p-3 rounded-lg">
+                                <Truck className="text-amber-600" size={24} />
+                              </div>
+                              <div>
+                                <h3 className="font-semibold text-gray-900 mb-1">{t('info.dostava')}</h3>
+                                <p className="text-gray-600">4.5€</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
           {/* Right Side - Contact Form */}
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">

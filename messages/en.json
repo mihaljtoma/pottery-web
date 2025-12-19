@@ -67,7 +67,9 @@
   "subtitle": "Have a question about our pottery or interested in a custom piece? We'd love to hear from you!",
   "info": {
     "email": "Email",
-    "phone": "Phone"
+    "phone": "Phone",
+    "dostava": "Delivery"
+
   },
   "form": {
     "name": "Your Name *",
@@ -169,7 +171,9 @@
     "email": "Email",
     "emailNote": "We'll respond within 24-48 hours",
     "phone": "Phone",
-    "phoneNote": "Mon-Fri, 9am-5pm EST"
+    "phoneNote": "Mon-Fri, 9am-5pm EST",
+        "dostava": "Delivery"
+
   },
   "form": {
     "title": "Send us a Message",

@@ -67,7 +67,9 @@
   "subtitle": "Imate pitanje o našoj keramici ili ste zainteresirani za prilagođeni komad? Rado bismo čuli od vas!",
   "info": {
     "email": "Email",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "dostava": "Dostava"
+
   },
   "form": {
     "name": "Vaše Ime *",
@@ -169,7 +171,9 @@
     "email": "Email",
     "emailNote": "Odgovorit ćemo u roku od 24-48 sati",
     "phone": "Telefon",
-    "phoneNote": "Pon-Pet, 9-17h"
+    "phoneNote": "Pon-Pet, 9-17h",
+        "dostava": "Dostava"
+
   },
   "form": {
     "title": "Pošaljite Nam Poruku",
