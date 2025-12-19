@@ -32,14 +32,14 @@ export default function FeaturedProducts() {
   const [loading, setLoading] = useState(true);
   const t = useTranslations('featured');
   const locale = useLocale();
-
+  
   useEffect(() => {
     fetchFeaturedProducts();
-  }, []);
+  }, [locale]); // Dodaj locale u dependency array
 
   const fetchFeaturedProducts = async () => {
     try {
-      const res = await fetch('/api/products?featured=true');
+      const res = await fetch(`/api/products?featured=true&locale=${locale}`); // Dodaj &locale=${locale}
       const data = await res.json();
       setProducts(data.slice(0, 9)); // Show 9 products for better mosaic
     } catch (error) {
@@ -48,6 +48,7 @@ export default function FeaturedProducts() {
       setLoading(false);
     }
   };
+
 
   const getGridSpan = (index: number, totalProducts: number): GridSpan => {
     // Desktop pattern: 2x2, 1x1, 1x2, 2x1, 1x1, 1x1, 1x2, 1x1

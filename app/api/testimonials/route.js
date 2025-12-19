@@ -2,9 +2,12 @@
 import { getTestimonials, createTestimonial } from '@/lib/db';
 import { requireAuth } from '@/lib/auth';
 
-export async function GET() {
+export async function GET(request) {
   try {
-    const testimonials = await getTestimonials();
+    const { searchParams } = new URL(request.url);
+    const locale = searchParams.get('locale') || 'hr'; // Dodaj ovo
+    
+    const testimonials = await getTestimonials(locale); // Proslijedi locale
     return NextResponse.json(testimonials);
   } catch (error) {
     console.error('Get testimonials error:', error);

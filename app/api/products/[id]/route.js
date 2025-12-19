@@ -5,7 +5,10 @@ import { requireAuth } from '@/lib/auth';
 export async function GET(request, context) {
   try {
     const params = await context.params;
-    const product = await getProductById(params.id);
+    const { searchParams } = new URL(request.url);
+    const locale = searchParams.get('locale') || 'hr'; // Dodaj ovo
+    
+    const product = await getProductById(params.id, locale); // Prosljeđi locale
     
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });

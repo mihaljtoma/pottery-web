@@ -5,6 +5,8 @@ import { requireAuth } from '@/lib/auth';
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
+    const locale = searchParams.get('locale') || 'hr'; // Dodaj ovo
+    
     const filters = {
       categoryId: searchParams.get('categoryId'),
       availability: searchParams.get('availability'),
@@ -12,9 +14,11 @@ export async function GET(request) {
       search: searchParams.get('search')
     };
 
-    console.log('API: Fetching products with filters:', filters); // ADD THIS
-    const products = await getProducts(filters);
-    console.log('API: Found products:', products.length); // ADD THIS
+    console.log('API: Fetching products with filters:', filters);
+    console.log('API: Locale:', locale); // Dodaj ovo
+    
+    const products = await getProducts(filters, locale); // Proslijedi locale
+    console.log('API: Found products:', products.length);
     
     return NextResponse.json(products);
   } catch (error) {

@@ -7,9 +7,10 @@ import { useSettings } from '@/lib/hooks/useSettings';
 import { useTranslations, useLocale } from 'next-intl';
 
 export default function AboutPage() {
-  const { settings, loading } = useSettings();
-  const t = useTranslations('about');
   const locale = useLocale();
+
+  const { settings, loading } = useSettings(locale); // Proslijedi locale
+  const t = useTranslations('about');
 
   if (loading) {
     return (

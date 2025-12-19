@@ -25,7 +25,7 @@ export default function CategoriesShowcase() {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [locale]); // Dodaj locale u dependency array
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -38,7 +38,7 @@ export default function CategoriesShowcase() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('/api/categories');
+      const res = await fetch(`/api/categories?locale=${locale}`); // Dodaj locale
       const data = await res.json();
       setCategories(data.filter(cat => cat.visible));
     } catch (error) {

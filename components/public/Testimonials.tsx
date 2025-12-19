@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl'; // Dodaj ovo
 
 interface Testimonial {
   id: string;
@@ -20,14 +21,16 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const t = useTranslations('testimonials');
+  const locale = useLocale(); // Dodaj ovo
+
 
   useEffect(() => {
     fetchTestimonials();
-  }, []);
+  }, [locale]); // Dodaj locale u dependency array
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch('/api/testimonials');
+      const res = await fetch(`/api/testimonials?locale=${locale}`); // Dodaj ?locale=${locale}
       const data = await res.json();
       // Filter only visible testimonials and sort by order
       const visible = data.filter((t: Testimonial) => t.visible !== false);

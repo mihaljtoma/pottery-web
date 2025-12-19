@@ -24,40 +24,40 @@ export default function ProductDetailPage() {
   }, [params.id]);
 
   const fetchProduct = async () => {
-    try {
-      const res = await fetch(`/api/products/${params.id}`);
-      if (res.ok) {
-        const data = await res.json();
-        setProduct(data);
-        
-        // Fetch category details
-        if (data.categoryId) {
-          fetchCategory(data.categoryId);
-        }
-      } else {
-        // Product not found
-        router.push('/products');
+  try {
+    const res = await fetch(`/api/products/${params.id}?locale=${locale}`);
+    if (res.ok) {
+      const data = await res.json();
+      setProduct(data);
+      
+      // Fetch category details
+      if (data.categoryId) {
+        fetchCategory(data.categoryId);
       }
-    } catch (error) {
-      console.error('Failed to fetch product:', error);
-      router.push('/products');
-    } finally {
-      setLoading(false);
+    } else {
+      // Product not found
+      router.push(`/${locale}/products`);
     }
-  };
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    router.push(`/${locale}/products`);
+  } finally {
+    setLoading(false);
+  }
+};
 
-  const fetchCategory = async (categoryId) => {
-    try {
-      const res = await fetch('/api/categories');
-      const categories = await res.json();
-      const cat = Array.isArray(categories) 
-        ? categories.find(c => c.id === categoryId)
-        : null;
-      setCategory(cat);
-    } catch (error) {
-      console.error('Failed to fetch category:', error);
-    }
-  };
+ const fetchCategory = async (categoryId) => {
+  try {
+    const res = await fetch(`/api/categories?locale=${locale}`);
+    const categories = await res.json();
+    const cat = Array.isArray(categories) 
+      ? categories.find(c => c.id === categoryId)
+      : null;
+    setCategory(cat);
+  } catch (error) {
+    console.error('Failed to fetch category:', error);
+  }
+};
 
   const nextImage = () => {
     if (product?.images && product.images.length > 0) {

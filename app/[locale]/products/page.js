@@ -18,67 +18,68 @@ export default function ProductsPage() {
   const locale = useLocale();
   // Fetch categories on mount and set category from URL
   useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        const res = await fetch('/api/categories');
-        const data = await res.json();
-        const cats = Array.isArray(data) ? data.filter(cat => cat.visible) : [];
-        setCategories(cats);
-        
-        // After categories load, check URL parameter
-        if (typeof window !== 'undefined') {
-          const params = new URLSearchParams(window.location.search);
-          const categoryFromUrl = params.get('category');
-          if (categoryFromUrl) {
-            setSelectedCategory(categoryFromUrl);
-          }
+  const loadCategories = async () => {
+    try {
+      const res = await fetch(`/api/categories?locale=${locale}`);
+      const data = await res.json();
+      const cats = Array.isArray(data) ? data.filter(cat => cat.visible) : [];
+      setCategories(cats);
+      
+      // After categories load, check URL parameter
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const categoryFromUrl = params.get('category');
+        if (categoryFromUrl) {
+          setSelectedCategory(categoryFromUrl);
         }
-      } catch (error) {
-        console.error('Failed to fetch categories:', error);
-        setCategories([]);
       }
-    };
-    
-    loadCategories();
-  }, []);
-
-  // Fetch products when filters change
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const params = new URLSearchParams();
-
-        if (selectedCategory && categories.length > 0) {
-          const category = categories.find(cat => cat.slug === selectedCategory);
-          if (category) {
-            params.append('categoryId', category.id);
-          }
-        }
-        if (selectedAvailability) {
-          params.append('availability', selectedAvailability);
-        }
-        if (searchQuery) {
-          params.append('search', searchQuery);
-        }
-
-        const res = await fetch('/api/products?' + params.toString());
-        const data = await res.json();
-        setProducts(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-        setProducts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // Only fetch if categories are loaded
-    if (categories.length > 0 || (!selectedCategory && !selectedAvailability && !searchQuery)) {
-      fetchProducts();
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+      setCategories([]);
     }
-  }, [selectedCategory, selectedAvailability, searchQuery, categories]);
+  };
+  
+  loadCategories();
+}, [locale]); // Dodaj locale u dependency array
 
+// Fetch products when filters change
+useEffect(() => {
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+
+      if (selectedCategory && categories.length > 0) {
+        const category = categories.find(cat => cat.slug === selectedCategory);
+        if (category) {
+          params.append('categoryId', category.id);
+        }
+      }
+      if (selectedAvailability) {
+        params.append('availability', selectedAvailability);
+      }
+      if (searchQuery) {
+        params.append('search', searchQuery);
+      }
+      
+      params.append('locale', locale);
+
+      const res = await fetch('/api/products?' + params.toString());
+      const data = await res.json();
+      setProducts(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Only fetch if categories are loaded
+  if (categories.length > 0 || (!selectedCategory && !selectedAvailability && !searchQuery)) {
+    fetchProducts();
+  }
+}, [selectedCategory, selectedAvailability, searchQuery, categories, locale]); // ← Dodaj locale
   // ... rest of your component code (clearFilters, getCategoryName, return JSX, etc.)
 
   const clearFilters = () => {
