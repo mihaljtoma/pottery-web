@@ -175,7 +175,7 @@ export default function ProductDetailPage() {
             )}
           </div>
 
-          {/* Product Info */}
+         {/* Product Info */}
           <div className="space-y-6">
             {/* Category & Status */}
             <div className="flex items-center gap-3">
@@ -209,6 +209,13 @@ export default function ProductDetailPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
               {product.name}
             </h1>
+
+            {/* Price */}
+            {product.price && (
+              <div className="text-3xl font-bold text-gray-900">
+                €{Number(product.price).toFixed(2)}
+              </div>
+            )}
 
             {/* Description */}
             {product.description && (

@@ -433,6 +433,9 @@ useEffect(() => {
                         {product.name}
                       </h3>
                       <p className="text-sm text-gray-600 mb-2">{getCategoryName(product.categoryId)}</p>
+                      {product.price && (
+                        <p className="text-xl font-bold text-gray-900 mb-2">€{Number(product.price).toFixed(2)}</p>
+                      )}
                       <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
                     </div>
                   </Link>
@@ -441,6 +444,8 @@ useEffect(() => {
             )} 
           </div>
         </div>
+
+ 
       </div>
     </div>
   );

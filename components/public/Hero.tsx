@@ -28,10 +28,10 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <Image
-          src="/ggg.jpg"
+          src="/maca_up.jpeg"
           alt="pottery background"
           fill
-          className="object-cover object-right opacity-40"
+          className="object-cover object-center opacity-40"
           priority
         />
       </div>

@@ -20,6 +20,7 @@ interface Product {
   availability: 'available' | 'unavailable' | 'reserved';
   images?: string[];
   dimensions?: ProductDimensions;
+  price?: number;
 }
 
 interface GridSpan {
@@ -190,6 +191,12 @@ export default function FeaturedProducts() {
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-100 transition">
                     {product.name}
                   </h3>
+                  
+                  {product.price && (
+                    <p className="text-2xl font-bold text-white mb-3">
+                      €{Number(product.price).toFixed(2)}
+                    </p>
+                  )}
                   
                   {/* Show description and dimensions only on desktop hover and on larger cards */}
                   <div className="hidden sm:block">
