@@ -50,6 +50,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        <meta name="google-site-verification" content="RQrP3F-2CD-2E40PmW5NkUzbybmdptHBimkJC3pLF-c" />
         <link
           href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
           rel="stylesheet"
