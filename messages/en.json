@@ -193,6 +193,7 @@
     "privacy": "By submitting this form, you agree to our privacy policy."
   },
   "status": {
+        "confirmationSent": "Check your email to confirm your request",
     "success": "Thank you! Your message has been sent successfully. We'll get back to you soon!",
     "error": "Something went wrong. Please try again.",
     "failed": "Failed to send message. Please try again or email us directly."
@@ -292,5 +293,12 @@
     "title": "Gallery - Behind the Scenes",
     "description": "Follow our pottery journey and see what's happening in the studio."
   }
+},"confirmContact": {
+  "loading": "Confirming your request...",
+  "success": "Your request has been confirmed! We will contact you soon.",
+  "confirmed": "✓ Confirmed!",
+  "error": "Something went wrong.",
+  "errorTitle": "✗ Error",
+  "linkExpired": "Confirmation failed or link expired."
 }
 }

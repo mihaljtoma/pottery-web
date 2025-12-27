@@ -55,7 +55,7 @@ export default function ContactPageContent() {
       if (res.ok) {
         setStatus({
           type: 'success',
-          message: t('status.success')
+          message: t('status.confirmationSent') // Change from 'success'
         });
         setFormData({ name: '', email: '', message: '', productId: null });
       } else {
@@ -224,19 +224,19 @@ export default function ContactPageContent() {
 
                 {/* Status Message */}
                 {status.message && (
-                  <div className={`p-4 rounded-lg flex items-start gap-3 ${
-                    status.type === 'success' 
-                      ? 'bg-green-50 border border-green-200' 
-                      : 'bg-red-50 border border-red-200'
-                  }`}>
-                    {status.type === 'success' && (
-                      <CheckCircle className="text-green-600 flex-shrink-0 mt-0.5" size={20} />
-                    )}
-                    <p className={status.type === 'success' ? 'text-green-800' : 'text-red-800'}>
-                      {status.message}
-                    </p>
-                  </div>
-                )}
+                <div className={`p-4 rounded-lg flex items-start gap-3 ${
+                  status.type === 'success' 
+                    ? 'bg-blue-50 border border-blue-200' 
+                    : 'bg-red-50 border border-red-200'
+                }`}>
+                  {status.type === 'success' && (
+                    <Mail className="text-blue-600 flex-shrink-0 mt-0.5" size={20} />
+                  )}
+                  <p className={status.type === 'success' ? 'text-blue-800' : 'text-red-800'}>
+                    {status.message}
+                  </p>
+                </div>
+              )}
 
                 {/* Submit Button */}
                 <button

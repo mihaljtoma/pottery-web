@@ -192,6 +192,7 @@
     "privacy": "Slanjem ovog obrasca slažete se s našom politikom privatnosti."
   },
   "status": {
+        "confirmationSent": "Provjerite svoju e-poštu kako biste potvrdili svoj zahtjev.",
     "success": "Hvala! Vaša poruka je uspješno poslana. Javit ćemo vam se uskoro!",
     "error": "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
     "failed": "Slanje poruke nije uspjelo. Molimo pokušajte ponovo ili nam pošaljite email direktno."
@@ -291,5 +292,12 @@
     "title": "Galerija - Iza Kulisa",
     "description": "Pratite naše keramičko putovanje i pogledajte što se događa u radionici."
   }
+},"confirmContact": {
+  "loading": "Potvrđujem vaš zahtjev...",
+  "success": "Vaš zahtjev je potvrđen! Uskoro ćemo vas kontaktirati.",
+  "confirmed": "✓ Potvrđeno!",
+  "error": "Nešto je pošlo po zlu.",
+  "errorTitle": "✗ Greška",
+  "linkExpired": "Potvrda nije uspjela ili je veza istekla."
 }
 }
