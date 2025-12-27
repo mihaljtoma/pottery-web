@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 import { saveContactSubmission } from '@/lib/db';
-import { sendContactEmail } from '@/lib/email';
+import { sendConfirmationEmail } from '@/lib/email';
+import { kv } from '@vercel/kv';
+import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(request) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, message, productName, productId } = await request.json();
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -22,25 +24,45 @@ export async function POST(request) {
       );
     }
 
-    // Save to database
-    await saveContactSubmission({ name, email, message });
+    // Generate confirmation token
+    const confirmationToken = uuidv4();
+    const confirmationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/confirm-contact/${confirmationToken}`;
 
-    // Send email notification
-    const emailResult = await sendContactEmail({ name, email, message });
-    
-    if (!emailResult.success) {
-      console.error('Email failed but saved to database:', emailResult.error);
-      // Still return success since it's saved to database
+    // Store pending contact (expires in 24 hours)
+    await kv.set(`contact:${confirmationToken}`, {
+      name,
+      email,
+      message,
+      productName,
+      productId,
+      confirmed: false,
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+    }, { ex: 86400 });
+
+    // Send confirmation email
+    const confirmationResult = await sendConfirmationEmail({
+      name,
+      email,
+      confirmationUrl,
+      productName
+    });
+
+    if (!confirmationResult.success) {
+      return NextResponse.json(
+        { error: 'Failed to send confirmation email' },
+        { status: 500 }
+      );
     }
-    
+
     return NextResponse.json(
-      { success: true, message: 'Message sent successfully' },
+      { success: true, message: 'Confirmation email sent' },
       { status: 200 }
     );
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
-      { error: 'Failed to send message' },
+      { error: 'Failed to process request' },
       { status: 500 }
     );
   }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Phone, Send ,Truck} from 'lucide-react';
+import { Mail, Phone, Send, Truck } from 'lucide-react';
 import { useSettings } from '@/lib/hooks/useSettings';
 import { useTranslations } from 'next-intl';
 import ParallaxSection from '@/components/public/ParallaxSection';
@@ -14,6 +14,7 @@ export default function ContactForm() {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const [confirmed, setConfirmed] = useState(false); // Add this
   const { settings } = useSettings();
   const t = useTranslations('contactForm');
 
@@ -26,13 +27,16 @@ export default function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          confirmed: false // Send email confirmation link
+        })
       });
 
       if (res.ok) {
         setStatus({
           type: 'success',
-          message: t('success')
+          message: t('pendingConfirmation') // "Check email to confirm"
         });
         setFormData({ name: '', email: '', message: '' });
       } else {

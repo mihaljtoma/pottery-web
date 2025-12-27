@@ -65,6 +65,7 @@
 },"contactForm": {
   "title": "Kontaktirajte Nas",
   "subtitle": "Imate pitanje o našoj keramici ili ste zainteresirani za prilagođeni komad? Rado bismo čuli od vas!",
+  "pendingConfirmation": "Provjerite svoju e-poštu kako biste potvrdili svoj zahtjev.",
   "info": {
     "email": "Email",
     "phone": "Telefon",

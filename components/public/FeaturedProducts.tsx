@@ -193,7 +193,7 @@ export default function FeaturedProducts() {
                   </h3>
                   
                   {product.price && (
-                    <p className="text-2xl font-bold text-white mb-3">
+                    <p className="text-2xl font-bold text-white mb-1">
                       €{Number(product.price).toFixed(2)}
                     </p>
                   )}
