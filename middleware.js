@@ -3,8 +3,7 @@ import { locales, defaultLocale } from './i18n';
 
 export default createMiddleware({
   locales,
-  defaultLocale,
-  localePrefix: 'always' // Uvijek pokazuje /hr/ ili /en/
+   defaultLocale: 'hr',
 });
 
 export const config = {
