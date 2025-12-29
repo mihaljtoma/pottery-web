@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pottery Studio",
+  title: "Rosy Pottery",
   description: "Handcrafted pottery with love",
 };
 
