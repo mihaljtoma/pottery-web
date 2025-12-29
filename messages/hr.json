@@ -258,9 +258,9 @@
   "featured": "Istaknuto",
   "dimensions": {
     "title": "Dimenzije",
-    "height": "Visina",
+    "height": "Duljina",
     "width": "Širina",
-    "depth": "Dubina"
+    "depth": "Visina"
   },
   "materials": "Materijali",
   "tags": "Oznake",

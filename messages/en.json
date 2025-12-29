@@ -259,9 +259,9 @@
   "featured": "Featured",
   "dimensions": {
     "title": "Dimensions",
-    "height": "Height",
+    "height": "Length",
     "width": "Width",
-    "depth": "Depth"
+    "depth": "Height"
   },
   "materials": "Materials",
   "tags": "Tags",

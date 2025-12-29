@@ -324,7 +324,7 @@ export default function ProductsPage() {
                 <div className="grid grid-cols-4 gap-4">
                   <input
                     type="number"
-                    placeholder="Height"
+                    placeholder="Length"
                     value={formData.dimensions.height}
                     onChange={(e) => setFormData({
                       ...formData,
@@ -344,7 +344,7 @@ export default function ProductsPage() {
                   />
                   <input
                     type="number"
-                    placeholder="Depth"
+                    placeholder="Height"
                     value={formData.dimensions.depth}
                     onChange={(e) => setFormData({
                       ...formData,
