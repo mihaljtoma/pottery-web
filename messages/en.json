@@ -4,7 +4,7 @@
       "badge": "✨ Handcrafted with Love",
       "title": {
         "line1": "",
-        "line2": "Rosie",
+        "line2": "Rosy",
         "line3": "Pottery"
       },
       "subtitle": "Each piece is uniquely crafted by hand, bringing warmth and character to your home.",
@@ -116,10 +116,10 @@
   "story": {
     "badge": "My Story",
     "title": "Crafting Beauty, One Piece at a Time",
-    "text1": "Welcome to our pottery studio, where tradition meets creativity. For over a decade, we've been dedicated to creating unique, handcrafted pieces that bring warmth and character to your home.",
-    "text2": "Each piece begins as raw clay and is carefully shaped, glazed, and fired with attention to detail and a deep respect for the craft. We believe that pottery is more than just functional art—it's a connection to centuries of tradition and a celebration of the handmade.",
-    "text3": "Our studio is a place where creativity flows freely, where imperfections are celebrated as marks of authenticity, and where every piece carries the energy and intention of its creation."
-  },
+     "text1": "Welcome to the world of handmade ceramics, created by a young woman and mother who has been lovingly shaping clay into unique everyday pieces for the past three years. What began as a small personal passion has grown into creations that bring warmth, tenderness, and character into every home.",
+  "text2": "Each piece begins as raw clay, carefully shaped by hand, then glazed and fired with great attention to detail. At every step, there is a deep love for the craft, patience, and dedication to handmade work that honors a slower, more genuine way of creating.",
+  "text3": "Here, ceramics are more than just functional objects—they are small stories, blending creativity, tradition, and everyday moments. Imperfections are not hidden but celebrated as marks of authenticity, with each piece carrying the energy of the home where it was made and the intention behind its creation."
+ },
   "values": {
     "title": "Our Values",
     "subtitle": "The principles that guide our craft and inspire every piece we create.",
@@ -269,7 +269,7 @@
   "inquireNote": "Interested in this piece? Get in touch with us!"
 },"metadata": {
   "home": {
-    "title": "Rosie Pottery- Handcrafted Pottery",
+    "title": "Rosy Pottery- Handcrafted Pottery",
     "description": "Discover unique handcrafted pottery pieces. Each piece is made with love and attention to detail."
   },
   "products": {

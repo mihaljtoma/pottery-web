@@ -4,7 +4,7 @@
       "badge": "✨ Ručno Izrađeno s Ljubavlju",
       "title": {
         "line1": "",
-        "line2": "Rosie",
+        "line2": "Rosy",
         "line3": "Keramika"
       },
       "subtitle": "Svaki komad je jedinstveno izrađen ručno, donoseći toplinu i karakter u vaš dom.",
@@ -115,9 +115,9 @@
   "story": {
     "badge": "Moja Priča",
     "title": "Stvaranje Ljepote, od Ideje do Stvarnosti",
-    "text1": "Dobrodošli u našu keramičku radionicu, gdje se tradicija susreće s kreativnošću. Već više od desetljeća posvećeni smo stvaranju jedinstvenih, ručno izrađenih komada koji unose toplinu i karakter u vaš dom.",
-    "text2": "Svaki komad počinje kao sirova glina i pažljivo se oblikuje, glazira i pali s pažnjom na detalje i dubokim poštovanjem prema zanatu. Vjerujemo da je keramika više od funkcionalne umjetnosti—to je povezanost sa stoljećima tradicije i slavljenje ručnog rada.",
-    "text3": "Naša radionica je mjesto gdje kreativnost teče slobodno, gdje se nesavršenosti slave kao znakovi autentičnosti, i gdje svaki komad nosi energiju i namjeru svog stvaranja."
+    "text1": "Dobrodošli u svijet ručno rađene keramike, iza koje stoji mlada žena i majka koja već tri godine s ljubavlju oblikuje glinu u jedinstvene predmete za svakodnevni život. Iz male osobne strasti nastali su komadi koji unose toplinu, nježnost i karakter u svaki dom.",
+    "text2": "Svaki proizvod započinje kao sirova glina, pažljivo oblikovana rukama, zatim glazirana i pečena s posebnom pažnjom na detalje. U svakom koraku prisutna je ljubav prema zanatu, strpljenje i posvećenost ručnom radu koji poštuje sporiji, iskreniji način stvaranja.",
+    "text3": "Keramika ovdje nije samo funkcionalan predmet, već mala priča — spoj kreativnosti, tradicije i svakodnevnih trenutaka. Nesavršenosti se ne skrivaju, već se slave kao znak autentičnosti, dok svaki komad nosi energiju doma u kojem je nastao i namjeru s kojom je stvoren."
   },
   "values": {
     "title": "Naše Vrijednosti",
@@ -268,7 +268,7 @@
   "inquireNote": "Zainteresirani za ovaj komad? Javite nam se!"
 },"metadata": {
   "home": {
-    "title": "Rosie Keramika - Ručno Izrađena Keramika",
+    "title": "Rosy Keramika - Ručno Izrađena Keramika",
     "description": "Otkrijte jedinstvene ručno izrađene keramičke komade. Svaki komad je napravljen s ljubavlju i pažnjom na detalje."
   },
   "products": {
