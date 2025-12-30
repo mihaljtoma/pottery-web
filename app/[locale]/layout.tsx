@@ -19,6 +19,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Rosy Pottery",
   description: "Handcrafted pottery with love",
+   openGraph: {
+    images: [
+      {
+        url: 'https://pottery-web.vercel.app/og-image.png',
+        width: 1200,
+        height: 630,
+      }
+    ]
+  }
 };
 
 export function generateStaticParams() {
