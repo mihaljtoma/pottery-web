@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-static';
-
 export async function GET() {
   const baseUrl = 'https://pottery-web.vercel.app';
   
@@ -72,9 +70,9 @@ export async function GET() {
   return new NextResponse(xml, {
     status: 200,
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
+      'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-      'X-Robots-Tag': 'noindex', // Prevent indexing the sitemap itself
+      // NO X-Robots-Tag header!
     },
   });
 }
