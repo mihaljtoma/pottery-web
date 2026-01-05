@@ -16,10 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Rosy Pottery",
-  description: "Handcrafted pottery with love",
-};
+
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'hr' }];
