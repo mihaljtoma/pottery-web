@@ -3,10 +3,12 @@ import { locales, defaultLocale } from './i18n';
 
 export default createMiddleware({
   locales,
-   defaultLocale: 'hr',
+  defaultLocale: 'hr',
 });
 
 export const config = {
-  // Matcher koji ignorira admin, api i static fajlove
-  matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)']
+  // Explicitly exclude sitemap.xml and robots.txt
+  matcher: [
+    '/((?!api|admin|_next|_vercel|sitemap.xml|robots.txt|favicon.ico|.*\\..*).*)'
+  ]
 };
