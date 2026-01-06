@@ -14,7 +14,7 @@ Sitemap: https://pottery-web.vercel.app/sitemap-final.xml
 Push to Git or deploy manually.
 
 ---
-
+    
 ## Step 4: Test New Sitemap
 
 **Verify it works:**
