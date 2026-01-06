@@ -10,11 +10,6 @@ const intlMiddleware = createMiddleware({
 export default function middleware(request) {
   const pathname = request.nextUrl.pathname;
   
-  // Skip middleware for static files (images, fonts, etc.)
-  if (pathname.match(/\.(jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf)$/i)) {
-    return NextResponse.next();
-  }
-  
   // Skip middleware for sitemap, robots, and static files
   if (
     pathname === '/sitemap.xml' ||
@@ -26,12 +21,11 @@ export default function middleware(request) {
     return NextResponse.next();
   }
   
-  // Apply intl middleware for other paths
   return intlMiddleware(request);
 }
 
 export const config = {
   matcher: [
-    '/((?!api|admin|_next|_vercel|.*\\..*).*)'
+    '/((?!api|admin|_next|_vercel).*)'
   ]
 };
