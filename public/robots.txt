@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pottery-web.vercel.app/sitemap.xml
+Sitemap: https://pottery-web.vercel.app/sitemap.xmlUser-agent: *
+Allow: /
+
+Sitemap: https://pottery-web.vercel.app/sitemap-final.xml
+```
+
+---
+
+## Step 3: Deploy
+
+Push to Git or deploy manually.
+
+---
+
+## Step 4: Test New Sitemap
+
+**Verify it works:**
+```
+https://pottery-web.vercel.app/sitemap-final.xml
