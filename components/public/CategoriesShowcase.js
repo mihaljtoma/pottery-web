@@ -156,11 +156,10 @@ function CategoryCard({ category, locale, t }) {
             className="absolute inset-0"
             style={{ clipPath: 'inset(23% 0 0 0)' }}
           >
-            <Image
+            <img
               src="/back_cut.jpg"
               alt="Category background"
-              fill
-              className="object-cover"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             
             {/* Amber gradient overlay to fade into section background */}
@@ -190,12 +189,11 @@ function CategoryCard({ category, locale, t }) {
         </div>
         {/* PNG Image - positioned to overflow from top, centered */}
         {category.image && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5/5 aspect-square pointer-events-none">
-            <Image
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full aspect-square pointer-events-none">
+            <img
               src={category.image}
               alt={category.name}
-              fill
-              className="object-contain group-hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
             />
           </div>
         )}
