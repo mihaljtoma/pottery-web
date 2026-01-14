@@ -40,7 +40,10 @@ body {
     0 20px 20px rgba(0,0,0,.15);
   transform: translateY(-2px);
 }
-
+img {
+  border: none !important;
+  outline: none !important;
+}
 /* Animated floating version */
 .text-3d-float-animated {
   text-shadow: 

@@ -25,7 +25,7 @@ export default function CategoriesShowcase() {
 
   useEffect(() => {
     fetchCategories();
-  }, [locale]); // Dodaj locale u dependency array
+  }, [locale]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -38,7 +38,7 @@ export default function CategoriesShowcase() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(`/api/categories?locale=${locale}`); // Dodaj locale
+      const res = await fetch(`/api/categories?locale=${locale}`);
       const data = await res.json();
       setCategories(data.filter(cat => cat.visible));
     } catch (error) {
@@ -63,16 +63,6 @@ export default function CategoriesShowcase() {
     return null;
   }
 
-  // Fallback gradient colors for categories without images
-  const gradients = [
-    'from-amber-400 to-orange-500',
-    'from-rose-400 to-pink-500',
-    'from-orange-400 to-red-500',
-    'from-yellow-400 to-amber-500',
-    'from-amber-500 to-orange-600',
-    'from-pink-400 to-rose-500'
-  ];
-
   // Determine layout: slider if 5+ categories, centered grid if fewer
   const useSlider = categories.length >= 5;
 
@@ -93,19 +83,19 @@ export default function CategoriesShowcase() {
           /* Slider Layout for 5+ categories */
           <div className="relative">
             {/* Navigation Buttons - Hidden on mobile/tablet, visible on desktop */}
-            <div className="hidden lg:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 justify-between pointer-events-none px-2 z-10">
+            <div className="hidden lg:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 justify-between pointer-events-none px-2 z-50">
               <button
                 onClick={() => handleScroll('left')}
                 disabled={!canScrollLeft}
-                className="pointer-events-auto p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
+                className="pointer-events-auto z-50 p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
                 aria-label="Scroll left"
               >
-                <ChevronLeft size={24} className="text-gray-700" />
+                <ChevronLeft size={24} className="text-gray-700 " />
               </button>
               <button
                 onClick={() => handleScroll('right')}
                 disabled={!canScrollRight}
-                className="pointer-events-auto p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
+                className="pointer-events-auto z-50 p-2 bg-white/90 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition shadow-lg"
                 aria-label="Scroll right"
               >
                 <ChevronRight size={24} className="text-gray-700" />
@@ -118,9 +108,9 @@ export default function CategoriesShowcase() {
               className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {categories.map((category, index) => (
+              {categories.map((category) => (
                 <div key={category.id} className="flex-shrink-0 w-72 snap-center">
-                  <CategoryCard category={category} index={index} gradients={gradients} locale={locale} t={t} />
+                  <CategoryCard category={category} locale={locale} t={t} />
                 </div>
               ))}
             </div>
@@ -134,8 +124,8 @@ export default function CategoriesShowcase() {
               categories.length === 3 ? 'grid-cols-1 md:grid-cols-3 max-w-4xl' :
               'grid-cols-2 md:grid-cols-4 max-w-5xl'
             }`}>
-              {categories.map((category, index) => (
-                <CategoryCard key={category.id} category={category} index={index} gradients={gradients} locale={locale} t={t} />
+              {categories.map((category) => (
+                <CategoryCard key={category.id} category={category} locale={locale} t={t} />
               ))}
             </div>
           </div>
@@ -151,56 +141,64 @@ export default function CategoriesShowcase() {
     </section>
   );
 }
-
-// Separate CategoryCard component for reusability
-function CategoryCard({ category, index, gradients, locale, t }) {
+// Separate CategoryCard component
+function CategoryCard({ category, locale, t }) {
   return (
     <Link
       href={`/${locale}/products?category=${category.slug}`}
       className="group relative block"
     >
-      <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
-        {/* Category Image or Gradient */}
-        {category.image ? (
-          <Image
-            src={category.image}
-            alt={category.name}
-            fill
-            className="object-cover group-hover:scale-110 transition-transform duration-500"
-          />
-        ) : (
-          <div className={`w-full h-full bg-gradient-to-br ${gradients[index % gradients.length]}`}>
-            {/* Decorative pattern overlay */}
-            <div className="absolute inset-0 opacity-20" style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-              backgroundSize: '30px 30px'
-            }} />
+      {/* Overflow container - allows PNG to extend beyond card */}
+      <div className="relative overflow-visible pt-16">
+        <div className="relative aspect-square rounded-2xl overflow-hidden transition-all duration-300 transform group-hover:-translate-y-1">
+          {/* Background Image with top 23% cropped */}
+          <div 
+            className="absolute inset-0"
+            style={{ clipPath: 'inset(23% 0 0 0)' }}
+          >
+            <Image
+              src="/back_cut.jpg"
+              alt="Category background"
+              fill
+              className="object-cover"
+            />
+            
+            {/* Amber gradient overlay to fade into section background */}
+            <div className="absolute -top-10 inset-x-0 bottom-0 bg-gradient-to-b from-amber-50 via-amber-50 via-40% to-transparent" />
+          </div>
+          
+          {/* Content at bottom */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 z-40">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-50 transition">
+              {category.name}
+            </h3>
+            
+            {category.description && (
+              <p className="text-sm text-white/90 mb-3 line-clamp-2">
+                {category.description}
+              </p>
+            )}
+            
+            <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
+              {t('explore')}
+              <ArrowRight size={16} />
+            </span>
+          </div>
+
+          {/* Shine effect on hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+        </div>
+        {/* PNG Image - positioned to overflow from top, centered */}
+        {category.image && (
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5/5 aspect-square pointer-events-none">
+            <Image
+              src={category.image}
+              alt={category.name}
+              fill
+              className="object-contain group-hover:scale-110 transition-transform duration-500"
+            />
           </div>
         )}
-        
-        {/* Dark overlay for text */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-end p-6">
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-amber-50 transition">
-            {category.name}
-          </h3>
-          
-          {category.description && (
-            <p className="text-sm text-white/90 mb-3 line-clamp-2">
-              {category.description}
-            </p>
-          )}
-          
-          <span className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:gap-3 transition-all">
-            {t('explore')}
-            <ArrowRight size={16} />
-          </span>
-        </div>
-
-        {/* Shine effect on hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
       </div>
     </Link>
   );
