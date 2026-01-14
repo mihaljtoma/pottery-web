@@ -157,13 +157,16 @@ function CategoryCard({ category, locale, t }) {
             style={{ clipPath: 'inset(23% 0 0 0)' }}
           >
             <img
-              src="/back_cut.jpg"
+              src="/back_cut.JPG"
               alt="Category background"
               className="absolute inset-0 w-full h-full object-cover"
             />
             
             {/* Amber gradient overlay to fade into section background */}
             <div className="absolute -top-10 inset-x-0 bottom-0 bg-gradient-to-b from-amber-50 via-amber-50 via-40% to-transparent" />
+            
+            {/* Dark overlay at bottom for text readability */}
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/30 via-black/20 to-transparent" />
           </div>
           
           {/* Content at bottom */}
